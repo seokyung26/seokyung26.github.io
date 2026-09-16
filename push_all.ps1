@@ -1,4 +1,4 @@
-# push_all.ps1 - GitHub에 저장소 5개를 만들고 첫 커밋을 올립니다.
+﻿# push_all.ps1 - GitHub에 저장소 5개를 만들고 첫 커밋을 올립니다.
 # 사용법:  gh auth login  후에
 #   powershell -ExecutionPolicy Bypass -File "G:\내 드라이브\서경's\Graduate\cv\push_all.ps1"
 
