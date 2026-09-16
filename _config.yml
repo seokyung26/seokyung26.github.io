@@ -1,0 +1,35 @@
+# ---- Site settings (GitHub Pages / Jekyll) ----
+title: Seokyung Park
+description: M.S. student, Precision Agriculture and Smart Sensing System (PASS) Lab, Pusan National University. Agricultural robotics, field sensing, and structural analysis.
+author: Seokyung Park
+email: seokyung.park@pusan.ac.kr
+lang: en
+url: "https://seokyung26.github.io"
+baseurl: ""
+
+# Theme bundled with GitHub Pages (change later when you want a prettier look)
+theme: minima
+minima:
+  skin: classic
+
+# Navigation order (each file below has `title:` in its front matter)
+header_pages:
+  - research.md
+  - publications.md
+  - about.md
+  - education.md
+  - skills.md
+  - experience.md
+  - contact.md
+
+show_excerpts: false
+plugins:
+  - jekyll-seo-tag
+
+exclude:
+  - README.md
+  - GITHUB_GUIDE.md
+  - push_all.ps1
+  - Gemfile
+  - Gemfile.lock
+  - vendor
