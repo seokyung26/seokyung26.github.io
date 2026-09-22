@@ -9,4 +9,19 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 @media print{.site-header,.site-footer,.hero-actions,.menu-toggle,.article-end{display:none}.hero,.page-shell,.project-detail{padding:0;max-width:none}.hero{display:block}.hero-figure{width:50%}.project-grid{display:block}.project-card{break-inside:avoid;margin-bottom:25px}a{color:inherit}body{font-size:12pt}}
 
-.portrait-figure{width:min(100%,350px);justify-self:center}.portrait-figure .hero-image{padding:0;background:#f0f1f3}.portrait-figure .hero-image img{width:100%;height:auto}.portrait-figure figcaption{font-size:14px;padding:18px 23px}.portrait-figure .figure-number{font-size:10px;margin-bottom:6px}@media(max-width:780px){.portrait-figure{width:min(100%,310px)}}
+/* Compact profile and verified academic links. */
+.hero{grid-template-columns:minmax(0,1fr) 300px;gap:80px;padding-top:62px;padding-bottom:62px}
+.profile-card{width:300px;max-width:100%;justify-self:center;align-self:center}
+.profile-portrait{width:220px;height:auto;margin:0 auto 22px;border-radius:3px}
+.profile-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.profile-links a{display:flex;align-items:center;gap:9px;min-height:42px;padding:8px 12px;border:1px solid var(--line);font-size:14px;line-height:1.4;text-decoration:none;transition:background .15s,border-color .15s}
+.profile-links a:hover{background:var(--pale);border-color:#a9c4bb}
+.profile-links svg{width:17px;height:17px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.profile-links .file-type{margin-left:auto;font-size:10px}
+.profile-tools{margin-top:22px;padding-top:17px;border-top:1px solid var(--line)}
+.profile-tools h2{font:600 13px/1.5 var(--sans);letter-spacing:0;margin:0 0 11px;color:var(--muted)}
+.profile-tools ul{display:flex;flex-wrap:wrap;list-style:none;gap:7px;margin:0 0 12px;padding:0}
+.profile-tools li{font-size:12px;line-height:1.5;color:var(--text);background:var(--pale);border:1px solid #e4ebe7;padding:4px 9px;margin:0;border-radius:3px}
+.profile-tools>a{font-size:12px;text-decoration:none}
+@media(max-width:1000px){.hero{grid-template-columns:minmax(0,1fr) 270px;gap:38px}.profile-card{width:270px}.profile-portrait{width:200px}.profile-links a{padding-left:10px;padding-right:10px;font-size:13px}}
+@media(max-width:780px){.hero{grid-template-columns:1fr;gap:34px;padding-top:42px;padding-bottom:44px}.profile-card{width:min(100%,340px)}.profile-portrait{width:170px;margin-bottom:19px}.profile-links a{font-size:14px}.profile-tools{margin-top:19px}}
