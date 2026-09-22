@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} | Seokyung Park</title>
+  <meta name="description" content="{{ page.description | default: site.description | escape }}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <meta name="theme-color" content="#00685d">
+  <meta property="og:title" content="{{ page.title }} | Seokyung Park">
+  <meta property="og:description" content="{{ page.description | default: site.description | escape }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script src="/assets/js/site.js" defer></script>
+</head>
+<body data-page="{{ page.nav }}">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="Seokyung Park home"><span class="brand-mark" aria-hidden="true">SP</span><span>Seokyung Park</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu <span aria-hidden="true">+</span></button>
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <a class="nav-home" href="/">Home</a><a class="nav-research" href="/research/">Research</a><a class="nav-publications" href="/publications/">Publications</a><a class="nav-about" href="/about/">About</a><a class="nav-contact" href="/contact/">Contact</a>
+        <a class="nav-cv" href="/assets/documents/Seokyung_Park_CV.pdf">CV <span class="file-type">PDF</span></a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="site-main">{{ content }}</main>
+  <footer class="site-footer"><div class="footer-inner"><div><a class="footer-name" href="/">Seokyung Park <span lang="ko">박서경</span></a><p>Precision Agriculture and Smart Sensing System Lab.<br>Pusan National University · Miryang, Republic of Korea</p></div><div class="footer-links"><a href="mailto:seokyung.park@pusan.ac.kr">Email</a><a href="https://pass.pusan.ac.kr/">Lab website</a><a href="https://github.com/seokyung26">GitHub</a><span>Updated September 2026</span></div></div></footer>
+</body>
+</html>

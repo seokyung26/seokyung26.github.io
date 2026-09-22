@@ -1,30 +1,16 @@
-# seokyung26.github.io — personal academic website
+# Seokyung Park — academic website
 
-Source of https://seokyung26.github.io (GitHub Pages + Jekyll, `minima` theme).
+Public research website: https://seokyung26.github.io/
 
-## Edit content
-Each menu item is one Markdown file. Edit the text and push:
+This repository contains the website, selected research figures and the academic CV. Research implementation repositories remain private.
 
-| Menu | File |
-|---|---|
-| Home | `index.md` |
-| Research | `research.md` |
-| Publications | `publications.md` |
-| About | `about.md` |
-| Education | `education.md` |
-| Skills | `skills.md` |
-| Experience | `experience.md` |
-| Contact | `contact.md` |
+## Content
 
-Menu order = `header_pages` in `_config.yml`. Lines marked `<!-- TODO -->` still need checking.
+- `index.md`: homepage
+- `research.md` and `projects/`: four research areas
+- `publications.md`: published work, manuscript status and presentations
+- `about.md`, `education.md`, `experience.md`, `skills.md`, `contact.md`: academic background
+- `assets/documents/`: downloadable CV in PDF and Word formats
+- `_layouts/` and `assets/css/site.css`: custom presentation over GitHub Pages / Jekyll
 
-## Publish
-```bash
-git add .
-git commit -m "Update research page"
-git push
-```
-GitHub rebuilds the site automatically in about a minute.
-
-## Make it pretty later
-Swap `theme: minima` in `_config.yml` for another GitHub Pages theme, or use `remote_theme:` with an academic theme such as *al-folio* or *academicpages*.
+GitHub Pages publishes the `main` branch at the repository root. Lora is distributed under the SIL Open Font License; see `assets/fonts/OFL.txt`.

@@ -1,43 +1,8 @@
 ---
 layout: page
-title: Research
+title: "Research"
+nav: research
 permalink: /research/
 ---
 
-Ongoing and completed research projects. Code for each project is on [GitHub](https://github.com/seokyung26).
-
-## 1. Quadruped robot for agricultural field & greenhouse sensing (2025.09 – present)
-**Platform:** Unitree Go2 EDU · Jetson AGX Orin · Hesai XT-16 LiDAR + FAST-LIO2 · u-blox F9P RTK-GNSS · RealSense · 3-channel T/RH/CO₂ mast
-**Funding:** NRF Master's Research Grant, *Development of Locomotion Algorithms and Autonomous Control Systems for Quadruped Robots Specialized for Korean Agricultural Terrain* (PI, 2025.09–2026.08)
-
-- **Greenhouse microclimate mapping.** Lane-by-lane traversal of a commercial greenhouse with a multi-height sensor mast; per-lane cross-calibration, temporal correction with fixed sensors and self-heating correction; spatial T/RH/CO₂ maps that quantify the representativeness error of single fixed control sensors. *Manuscript in preparation.*
-- **Ground-reaction-force-based lateral slope estimation.** 1D-ResNet regression on 64+9 proprioceptive channels over 3 surfaces × 5 slopes; MAE 1.06°, R² 0.92. *KSAM Spring 2026.*
-- **M.S. thesis (2026.09–2027.02).** *LiDAR-inertial mapping of soil surface microtopography in sloping upland fields, linked with foot–ground contact response.* Each footstep is treated as a discrete penetration test (per-step auto-zeroing, peak GRF, dF/dt, sinkage, apparent stiffness) and geo-referenced onto the LiDAR DEM; validated with cone index, bulk density, water content, pin-meter roughness and UAV RTK DEM.
-
-[GitHub: quadruped-agri-robot](https://github.com/seokyung26/quadruped-agri-robot)
-
-## 2. Speed-dependent robotic gripper control for tomato harvesting (2024.06 – present)
-**System:** myCobot 320 Pi + adaptive gripper · SingleTact CSU15-4.5N force sensor · RealSense D415 + YOLOv8 · Raspberry Pi 5 / Jetson Nano · MQTT · ROS1 MoveIt · VIS–NIR hyperspectral imaging
-
-- Built a real-time force-sensing gripper and a sigmoid force-prediction model (R² ≥ 0.99) from gripper opening and speed; derived the stable gripping window by derivative analysis.
-- Tested four loading rates (6.9–15.3 N/s) on standard and cherry tomatoes; viscoelastic contact modelling showed progressive tissue softening with speed, and hyperspectral imaging (800–850 nm) revealed a delayed-damage transition around 10.5–13.1 N/s in standard tomatoes.
-- Conclusion: loading rate, not only peak force, should be a gripper control variable.
-
-*Biosystems Engineering, under review (R2, 2026)* · KSAM 2025 (oral, award) · KSAM Fall 2024 (poster, award)
-[GitHub: tomato-gripper-speed-control](https://github.com/seokyung26/tomato-gripper-speed-control)
-
-## 3. Air-dome foundation: pull-out FEA, DIC tests and structural sensing (2025.09 – present)
-**Project:** Development of a low-energy commercial vertical farm based on an air dome adapted to the Middle-East hot climate (Stage 2, PNU)
-
-- **Abaqus/Standard 3D parametric FEA** of the X-PILE winged pile (wing angle 30–90°, wing size) in sand/sandstone with Mohr–Coulomb soil and frictional contact; mesh-convergence study; manuscript drafted.
-- **Laboratory pull-out tests with DIC** (OpenCorr) to visualise soil displacement fields around model piles. *KSAE Fall 2025.*
-- **Field monitoring system** for the Damyang air-house: tension load cells, inclinometers, RS-485 accelerometers and IMUs on Raspberry Pi nodes → MQTT → Node-RED / InfluxDB / Grafana on a Jetson Orin Nano.
-
-[GitHub: airdome-foundation-monitoring](https://github.com/seokyung26/airdome-foundation-monitoring)
-
-## 4. Inertial sensors in agriculture: review (2025)
-Co-authored a review of IMU applications for agricultural machines (position estimation, navigation) and living targets (livestock behaviour, fruit-tree vibration harvesting), classifying sensor types and data-utilisation techniques. *Korean Journal of Agricultural Science 52(4), 2025.*
-
-## 5. Image-based drought-stress phenotyping of soybean (2023, undergraduate)
-RGB time-lapse imaging under controlled drought, leaf-colour standardisation (ImageJ) and a YOLOv8 instance-segmentation model (mAP 0.64) to grade drought damage; used to show that line CMJ199 is more drought-tolerant than PI416937. *PISA Day 2023.*
-[GitHub: soybean-drought-phenotyping](https://github.com/seokyung26/soybean-drought-phenotyping)
+<p class="page-lead">Robotics and sensing across crops, soil and agricultural structures.</p><p class="intro-narrow">These four connected research areas combine experimental systems, physical measurements and analysis. Each project describes the research question, my contribution and the current stage of the work.</p><div class="project-grid"><article class="project-card"><a class="project-image robotic-harvesting" href="/research/robotic-harvesting/"><img src="/assets/images/robotic-gripping-system.png" alt="Experimental robotic arm and adaptive force-sensing gripper" loading="lazy" width="720" height="480"></a><div class="project-card-body"><p class="project-kicker"><span>01</span> Robotic harvesting</p><h3><a href="/research/robotic-harvesting/">Robotic gripping for tomato harvesting</a></h3><p>Connecting gripping speed, contact mechanics and hyperspectral imaging to understand delayed tomato damage.</p><p class="project-tags">Force sensing · Python · Hyperspectral imaging</p><div class="project-bottom"><span class="status">Manuscript under review</span><a class="read-link" href="/research/robotic-harvesting/" aria-label="Read about Robotic gripping for tomato harvesting">Read project <span aria-hidden="true">↗</span></a></div></div></article><article class="project-card"><a class="project-image airdome-foundation" href="/research/airdome-foundation/"><img src="/assets/images/xpile-geometry.png" alt="Expandable pile geometry and wing dimensions used in the numerical study" loading="lazy" width="720" height="480"></a><div class="project-card-body"><p class="project-kicker"><span>02</span> Soil–structure interaction</p><h3><a href="/research/airdome-foundation/">Uplift resistance of air-dome foundations</a></h3><p>Investigating how pile geometry changes uplift resistance, with a separate DIC study of soil deformation.</p><p class="project-tags">Abaqus · Finite-element analysis · DIC</p><div class="project-bottom"><span class="status">Manuscript in preparation</span><a class="read-link" href="/research/airdome-foundation/" aria-label="Read about Uplift resistance of air-dome foundations">Read project <span aria-hidden="true">↗</span></a></div></div></article><article class="project-card"><a class="project-image airdome-sensing" href="/research/airdome-sensing/"><img src="/assets/images/field-load-cell.jpg" alt="Tension load cell installed at an air-dome cable anchor" loading="lazy" width="720" height="480"></a><div class="project-card-body"><p class="project-kicker"><span>03</span> Field instrumentation</p><h3><a href="/research/airdome-sensing/">Structural sensing for air-supported domes</a></h3><p>Taking measurements from cable anchors to field data: load cells, sensor evaluation and Raspberry Pi acquisition.</p><p class="project-tags">Load cells · RS485 · Raspberry Pi</p><div class="project-bottom"><span class="status">Field acquisition tested</span><a class="read-link" href="/research/airdome-sensing/" aria-label="Read about Structural sensing for air-supported domes">Read project <span aria-hidden="true">↗</span></a></div></div></article><article class="project-card"><a class="project-image quadruped-research" href="/research/quadruped-research/"><img src="/assets/images/greenhouse-sensing-platform.png" alt="Quadruped robot with environmental sensing modules at two canopy heights" loading="lazy" width="720" height="480"></a><div class="project-card-body"><p class="project-kicker"><span>04</span> Mobile sensing & phenotyping</p><h3><a href="/research/quadruped-research/">Quadruped robots for agricultural sensing</a></h3><p>Bringing mobile sensing into greenhouses and field surveys, with plant phenotyping as the next research direction.</p><p class="project-tags">ROS 2 · Environmental sensing · RTK-GNSS</p><div class="project-bottom"><span class="status">Manuscript in preparation</span><a class="read-link" href="/research/quadruped-research/" aria-label="Read about Quadruped robots for agricultural sensing">Read project <span aria-hidden="true">↗</span></a></div></div></article></div><aside class="research-note"><h2>Earlier work in plant bioscience</h2><p>As an undergraduate researcher, I used RGB imaging, YOLOv8, Roboflow and ImageJ to investigate soybean leaf phenotypes under drought stress, supported by Arduino-based environmental measurements.</p><a href="/about/">More about my background →</a></aside>

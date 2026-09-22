@@ -1,29 +1,19 @@
 ---
 layout: page
-title: Publications
+title: "Publications"
+nav: publications
 permalink: /publications/
 ---
 
-\* corresponding author · **bold** = me
 
-## Journal articles
-1. **Park, S.**, Song, J., Hwang, H., Park, G., Park, J.\* *Speed-Dependent Control of Robotic Gripper for Tomato Harvesting to Minimise Compression-Induced Damage.* **Biosystems Engineering**, under review (2nd revision), 2026.
-2. Park, J., **Park, S.**, Jung, E., Song, J., Park, G., Lee, J., Kim, M., Park, J.\* (2025). *Inertial sensor applications in agriculture: Sensor types and data utilization techniques for mechanical and wearable applications.* **Korean Journal of Agricultural Science**, 52(4), 447–469. [doi:10.7744/kjoas.520405](https://doi.org/10.7744/kjoas.520405)
-
-## In preparation
-- **Park, S.**, et al. *Analysis of Microclimate Spatial Distribution Maps in Greenhouses via Quadruped Robot-Based Lane-by-Lane Mapping and Registration.* (2026)
-- **박서경** 외. *사질토 지반에서 확장형 기초 파일의 날개 경사각 및 치수 변화에 따른 인발 저항력에 대한 수치 해석.* (2026)
-
-## Conference presentations
-1. **Park, S.**, et al. *2026 ASABE Annual International Meeting*, July 2026. <!-- TODO: 발표 제목 확인 -->
-2. **박서경**, 박재성\*, 황현준, 강소현. 고랑 추종 주행을 위한 사족보행로봇의 지면 반력 기반 측방향 경사 추정 모델 개발. **2026 한국농업기계학회 춘계학술대회**, 2026.05.15.
-3. **박서경** 외. 디지털 이미지 상관기법(DIC)을 이용한 지반 내 파일(Pile)의 인발 거동 분석. **2025 한국농공학회 추계학술대회**, 2025.10.
-4. **박서경**, 박재성\*, 박건휘, 송지수, 황현준. 실시간 압력 센서 기반 로봇팔 및 그리퍼 시스템을 활용한 과채류 수확 시 손상 최소화 및 제어 최적화. **2025 한국농업기계학회 춘계학술대회** (oral), 2025. *Award*
-5. **박서경** 외. **2025 한국정밀농업학회 학술대회**, 2025. *Award* <!-- TODO: 발표 제목 확인 -->
-6. **Park, S.**, Park, G., Park, J.\*, Song, J. *Research on a Damage Minimization System for Harvesting and Packaging of Fruits and Vegetables Using Robotic Arms and Grippers.* **2024 KSAM Fall Conference** (poster), Oct 2024. *Award*
-7. **박서경** 외. **2024 한국정밀농업학회 학술대회**, 2024. *Award* <!-- TODO: 발표 제목 확인 -->
-8. **Park, S.-K.**, Park, J.-E., Jun, T.-H.\* 콩 내건성 검정을 위한 표현형 분석 지표 탐색 및 Deep learning 모델 기반 환경 스트레스 진단 기술 개발. **PISA Day 2023**, Pusan National University, Nov 2023.
-
-## Reports & proposals
-- NRF Master's Research Grant proposal (2025) and annual report (2026): *Development of Locomotion Algorithms and Autonomous Control Systems for Quadruped Robots Specialized for Korean Agricultural Terrain* (PI).
-- Air-dome vertical farm project, Stage 2 (2026): sensing-system design report.
+<p class="page-lead">Journal articles, manuscripts and selected presentations.</p>
+<section class="publication-group"><div class="section-label"><h2>Published</h2><span>2025</span></div><article class="publication"><span class="publication-type">Review article</span><h3>Inertial sensor applications in agriculture: Sensor types and data utilization techniques for mechanical and wearable applications</h3><p>Park, J., <strong>Park, S.</strong>, Jung, E., Song, J., Park, G., Lee, J., Kim, M., &amp; Park, J.</p><p><em>Korean Journal of Agricultural Science</em>, 52(4), 447–469 (2025).</p><a class="text-link" href="https://doi.org/10.7744/kjoas.520405">Read published article ↗</a></article></section>
+<section class="publication-group"><div class="section-label"><h2>Under review</h2><span>2026</span></div><article class="publication"><span class="publication-type">First author · Second revision</span><h3>Speed-dependent control of robotic gripper for tomato harvesting to minimise compression-induced damage</h3><p><strong>Park, S.</strong>, Song, J., Hwang, H., Park, G., &amp; Park, J.</p><p><em>Biosystems Engineering</em> · Under review.</p><a class="text-link" href="/research/robotic-harvesting/">Research overview →</a></article></section>
+<section class="publication-group"><div class="section-label"><h2>In preparation</h2><span>Before submission</span></div><article class="publication"><span class="publication-type">Co-first author · Final preparation</span><h3>Greenhouse microclimate mapping using a quadruped robot to assess fixed sensor representativeness</h3><p>Hwang, H.†, <strong>Park, S.†</strong>, &amp; Park, J.</p><p>† Equal contribution. Manuscript in final preparation before submission.</p><a class="text-link" href="/research/quadruped-research/">Research overview →</a></article><article class="publication"><span class="publication-type">First author · Final preparation</span><h3>Analysis of uplift resistance characteristics of expandable piles in sandy soil with varying wing inclination and dimensions</h3><p><strong>Park, S.</strong>, Park, J., Jang, J., Park, D., Kwon, S., Kim, M., &amp; Choi, G.</p><p>Manuscript in final preparation before submission. Korean manuscript; title translated into English.</p><a class="text-link" href="/research/airdome-foundation/">Research overview →</a></article></section>
+<section class="talks"><h2>Selected presentations</h2><p class="muted">Titles originally in Korean are shown in English translation.</p><ol class="presentation-list">
+<li><span class="year">2026</span><div><h3>Height-resolved 3D microclimate mapping and spatiotemporal analysis within greenhouse crop canopies using a quadruped robot</h3><p>Seokyung Park · AKABFE Student Research Spotlight, ASABE Annual International Meeting. Indianapolis, USA · July 14, 2026.</p></div></li>
+<li><span class="year">2026</span><div><h3>Ground-reaction-force-based lateral slope estimation for furrow-following quadruped robots</h3><p>Park, S., Park, J., Hwang, H., &amp; Kang, S. · Korean Society for Agricultural Machinery, Spring Conference.</p></div></li>
+<li><span class="year">2025</span><div><h3>Analysis of pile pull-out behaviour in Middle Eastern soil using digital image correlation</h3><p>Park, S., Park, J., Song, J., &amp; Kim, M. · Korean Society of Agricultural Engineers, Autumn Conference. Jeju, Korea · October 31, 2025.</p></div></li>
+<li><span class="year">2025</span><div><h3>Remote control and integrated sensor-data environment for an agricultural quadruped robot</h3><p>Hwang, H., Park, S., et al. · Korean Society for Precision Agriculture, Spring Conference · May 22, 2025. Coauthor.</p></div></li>
+<li><span class="year">2025</span><div><h3>Minimising damage and optimising control in fruit and vegetable harvesting using a robotic arm and gripper with real-time force sensing</h3><p>Park, S., Park, J., Park, G., Song, J., &amp; Hwang, H. · Korean Society for Agricultural Machinery, Spring Conference · April 25, 2025.</p></div></li>
+</ol></section>

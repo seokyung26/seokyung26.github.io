@@ -1,26 +1,11 @@
 ---
 layout: page
-title: Experience
+title: "Experience"
+nav: about
 permalink: /experience/
 ---
 
-## Research positions
-- **Graduate researcher, PASS Lab, Pusan National University** — 2025.03 – present
-  Agricultural robotics and sensing; leads the quadruped-robot field sensing line and the tomato-gripper study; supports the air-dome foundation project.
-- **Undergraduate research student, Functional Crop Laboratory, Dept. of Plant Bioscience, PNU** — 2023.07 – 2024.02
-  Image-based drought phenotyping of soybean, Arduino environment sensing, disease image datasets.
 
-## Funded projects
-- **NRF Master's Research Grant (석사과정생 연구장려금)** — *Development of Locomotion Algorithms and Autonomous Control Systems for Quadruped Robots Specialized for Korean Agricultural Terrain*, 2025.09 – 2026.08 — **Principal investigator**
-- **Air-dome-based low-energy commercial vertical farm for the Middle-East hot climate (Stage 2)** — foundation FEA, DIC pull-out tests, structural sensing system, 2025.09 – present — researcher
-- **NRF Excellent Young Researcher project (quadruped robot in greenhouse)** — greenhouse microclimate mapping with a legged robot, 2026 – present — researcher
-- **RDA project on rectangular steel-pipe greenhouse structures (농진청 각형강관)** — 2025.09 – present — researcher
-- **Reservoir monitoring project (PNU, interim report 2026)** — researcher <!-- TODO: 과제명·역할 확인 -->
-- **PNU Practical Problem-Solving Research Group (실전문제연구단)**, 2024 — interim & final presentation awards
-
-## Field & lab experience
-- Greenhouse robot mapping campaigns (2026.06), Damyang air-house site surveys (2026.01), open-field RTK / camera trials (2025.10 –), laboratory pull-out / DIC tests (2025.09 –)
-- Conference participation: ASABE AIM 2026 (USA), KSAM 2024–2026, KSAE 2025, KSPA 2024–2025
-
-## Teaching & service
-<!-- TODO: 조교, 세미나 발표, 학회 활동 등 추가 -->
+<h2>Research positions</h2><div class="timeline-entry"><p class="eyebrow">March 2025 – present</p><h3>Graduate Researcher</h3><p>Precision Agriculture and Smart Sensing System Lab., Pusan National University</p><p>Robotic gripping, quadruped environmental sensing, foundation uplift analysis and structural sensing.</p></div><div class="timeline-entry"><p class="eyebrow">July 2023 – February 2024</p><h3>Undergraduate Research Student</h3><p>Functional Crop Laboratory, Pusan National University</p><p>Analysed soybean leaf phenotypes under drought stress using time-series RGB imaging, YOLOv8, Roboflow and ImageJ, with Arduino-based environmental measurements.</p></div>
+<section class="prose-section"><h2>Research funding</h2><h3>Master’s Student Research Encouragement Grant in Science and Engineering</h3><p>September 2025 – August 2026</p><p>Development of Locomotion Algorithms and Autonomous Control Systems for Quadruped Robots Specialized for Korean Agricultural Terrain.</p></section>
+<section class="prose-section"><h2>Honours and awards</h2><ul class="spaced-list"><li><strong>Best Paper Presentation Award (team)</strong> — Korean Society for Precision Agriculture, Spring Conference, May 2025; Autumn Conference, November 2024.</li><li><strong>Excellent Paper Presentation Award</strong> — Korean Society for Agricultural Machinery, Spring Conference, April 2025; Autumn Conference, October 2024.</li><li><strong>Excellence Award</strong> — PNU–PKNU Field Problem Research Group Final Symposium, November 2024.</li><li><strong>Best Presentation Award (team)</strong> — Korean Society for Engineering Education, September 2024.</li><li><strong>Bronze Prize</strong> — College of Natural Resources and Life Science Capstone Design Competition, Pusan National University, October 2023.</li><li><strong>Excellence Award</strong> — Busan LINC 3.0 Entrepreneurship Shared University Competition, January 2023.</li><li><strong>PNU merit scholarships</strong> — Four full-tuition and two partial awards, 2017–2024.</li></ul></section><a class="text-link" href="/about/">← Back to About</a>
