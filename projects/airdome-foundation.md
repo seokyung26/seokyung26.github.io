@@ -3,44 +3,67 @@ layout: project
 title: "Uplift resistance of air-dome foundations"
 nav: research
 permalink: /research/airdome-foundation/
-description: "Investigating how pile geometry changes uplift resistance, with a separate DIC study of soil deformation."
+description: "Numerical analysis of expandable X-Pile foundations: effects of wing dimensions and inclination on uplift resistance in sandy soil."
 ---
 
-[← Research portfolio](../../README.md)
+# X-Pile Foundations for Air-Supported Domes
 
-# Air-Dome Foundation Uplift Research
+**Project 03 · Numerical analysis of expandable piles in sandy soil**
 
-**Numerical pile–soil interaction and laboratory image-based deformation analysis**
+**Status:** First-author manuscript in final preparation before submission.
 
-**Status:** X-Pile manuscript in final preparation before submission. Related laboratory DIC work was presented at the 2025 Korean Society of Agricultural Engineers fall conference.
-
-Air-supported domes transfer membrane and cable tension into their foundations. For shallow foundations in sandy soils, understanding how geometry mobilizes uplift resistance is important to structural design. This research combines a numerical study of expandable winged piles with a related laboratory investigation of soil deformation during pile pullout.
-
-## Numerical study: expandable foundation piles
-
-The X-Pile concept uses a steel pipe shaft with four wings near its tip. Three-dimensional models in Abaqus/Standard represent the pile within a Mohr–Coulomb sand domain under calcareous-sand conditions representative of Abu Dhabi. A quarter-symmetric model reduces the computational domain while retaining the studied geometry and loading conditions.
+Air-supported domes transfer membrane and cable tension into their foundations. This study investigates how the dimensions and inclination of expandable pile wings affect uplift resistance in sandy soil, with a focus on the mechanisms of pile–soil load transfer.
 
 ![X-Pile geometry and studied dimensions](/assets/images/xpile-geometry.png)
-*X-Pile geometry and parameter ranges used in the numerical study. Source: manuscript, Fig. 1.*
+*X-Pile geometry and parameter ranges used in the numerical study. Manuscript, Fig. 1.*
 
-The analysis fixes embedment depth at 750 mm and compares wing lengths of 170, 370, and 625 mm at a 90° shaft–wing angle. A separate series examines angles from 90° to 70° at a 370 mm wing length. Outputs include resistance–displacement curves, shaft and wing resistance components, contact forces, and soil plastic zones.
+## Research question
 
-At 7 mm uplift displacement, simulated resistance increased from 12.27 to 32.59 kN across the studied wing lengths. Wings contributed 89.8–98.4% of the total resistance. Larger wings increased total resistance while reducing normalized resistance efficiency. At a 370 mm wing length and 5 mm uplift displacement, changing the angle from 90° to 70° reduced simulated resistance by 35.9%.
+How do wing length and shaft–wing inclination change the resistance mobilized during uplift? The analysis separates wing and shaft contributions to examine both total resistance and the efficiency of the expanded geometry.
+
+## Numerical model and study design
+
+The X-Pile consists of a steel pipe shaft with four expandable wings near its tip. Three-dimensional quarter-symmetric models in Abaqus/Standard represent pile–soil interaction under calcareous-sand conditions representative of Abu Dhabi. The model uses Mohr–Coulomb soil, a rigid pile idealization, hard normal contact and Coulomb friction.
+
+The analysis uses a fixed embedment depth of **750 mm** and a shaft diameter of **114 mm**. Two parameter series examine:
+
+- **Wing length:** 170, 370 and 625 mm at a 90° shaft–wing angle.
+- **Wing inclination:** 90°, 85°, 80°, 75° and 70° at a fixed 370 mm wing length.
+
+Displacement-controlled uplift simulations provide resistance–displacement curves, wing and shaft resistance components, contact forces and soil plastic-zone distributions.
+
+## Selected numerical findings
+
+At **7 mm uplift**, the calculated resistance increased with wing length:
+
+| Wing length | Simulated uplift resistance |
+| --- | --- |
+| 170 mm | 12.27 kN |
+| 370 mm | 20.54 kN |
+| 625 mm | 32.59 kN |
+
+Wings contributed **89.8–98.4%** of the total resistance in the studied cases. Larger wings mobilized a larger soil region and increased total resistance, while reducing normalized resistance efficiency.
+
+For the **370 mm** wing at **5 mm uplift**, reducing the inclination from 90° to 70° decreased simulated resistance from **19.14 to 12.27 kN**, a **35.9% reduction**. The accompanying contact-force analysis helps explain the change in load transfer.
 
 ![Soil plastic zones for different wing lengths](/assets/images/soil-plastic-zones.png)
-*Simulated equivalent plastic strain at 7 mm uplift displacement, showing how the mobilized soil region changes with wing length. Source: manuscript, Fig. 5.*
+*Simulated equivalent plastic strain at 7 mm uplift, illustrating the effect of wing length on the mobilized soil region. Manuscript, Fig. 5.*
 
-These results describe the investigated numerical conditions. The model assumes fully deployed, rigidly connected wings and idealized soil behavior. Installation effects are excluded, mesh sensitivity remains relevant, and experimental validation is a next step.
+## My contribution
 
-## Related laboratory study: digital image correlation
+I investigated pile–soil interaction using three-dimensional finite-element models, compared wing dimensions and inclination, and analysed resistance components and soil plastic zones for the first-author manuscript.
 
-A separate 2025 study used a soil box, a semicylindrical pile, a load cell, and camera imaging to examine local deformation during pullout. The workflow combined FFmpeg frame extraction, OpenCorr displacement estimation, and heat-map/vector-field visualization. The observed displacement fields helped characterize localized and asymmetric soil movement.
+## Interpretation and limitations
 
-![Laboratory soil box and pile for DIC analysis](/assets/images/dic-pullout-test.jpeg)
-*Laboratory pile-pullout setup used for the DIC study. Source: 2025 conference presentation, slide 8.*
+These are numerical comparisons at the stated uplift displacements, rather than measured field capacities or ultimate capacities. The model assumes fully deployed, rigidly connected wings and idealized soil behaviour; installation effects are excluded. Mesh sensitivity remains relevant, and experimental validation is still required.
 
-This experiment supports a complementary view of pile–soil behavior; it does not constitute validation of the X-Pile numerical model.
+## Manuscript
 
-**Tools and methods:** Abaqus/Standard · finite element analysis · pile–soil contact · digital image correlation · OpenCorr · OpenCV · FFmpeg
+**Analysis of uplift resistance characteristics of expandable piles in sandy soil with varying wing inclination and dimensions**
+Seokyung Park, Jaesung Park, Junbong Jang, Daniel Park, Sein Kwon, Minjoo Kim and Gaeun Choi.
+
+Korean manuscript; title translated into English. **Final preparation before submission.**
+
+**Tools and methods:** Abaqus/CAE · Abaqus/Standard · finite-element analysis · pile–soil contact · parametric modelling
 
 **Code availability:** Implementation code is not publicly available.

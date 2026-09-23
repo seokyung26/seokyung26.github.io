@@ -6,17 +6,22 @@ permalink: /research/airdome-sensing/
 description: "Taking measurements from cable anchors to field data: load cells, sensor evaluation and Raspberry Pi acquisition."
 ---
 
-[← Research portfolio](../../README.md)
-
 # Structural Sensing for Air-Supported Domes
 
-**From cable-anchor measurements to a multi-sensor monitoring workflow**
+**Project 04 · From cable-anchor measurements to a multi-sensor monitoring workflow**
 
 **Status:** Load-cell field measurements and bench sensor comparison completed; environmental packaging and broader system integration are ongoing.
 
 Air-supported domes rely on internal pressure and tensioned membranes. Cable forces and foundation movement provide useful observations for evaluating their structural response. This project develops a practical sensing workflow around those observations, beginning with site inspection, sensor selection, and a field data acquisition setup.
 
-## Field measurements at a dome wire anchor
+## Sensor placement and system architecture
+
+![Air-dome sensor locations and proposed power and acquisition connections](/assets/images/airdome-sensor-layout.png)
+*Sensor-placement and wiring concept for the air-dome monitoring system. The diagram shows IMU sensors, load cells, an inclinometer, Raspberry Pi acquisition nodes and power-supply connections.*
+
+The diagram summarizes the intended multi-sensor arrangement and power distribution. It represents the integration design; the completed work described below comprises field load-cell acquisition and bench sensor evaluation. Inclination sensing and broader system integration remain planned extensions.
+
+## Field photographs and load-cell measurements
 
 Site observations at Damyang informed potential sensor locations and attachment arrangements. Load cells were installed at an outer-dome wire anchor for a field measurement session on 15 June 2026. The setup connected the load-cell output to an indicator, then transferred readings through a USB–RS485 interface to a Raspberry Pi for CSV logging.
 

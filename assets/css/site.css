@@ -25,3 +25,4 @@
 .profile-tools>a{font-size:12px;text-decoration:none}
 @media(max-width:1000px){.hero{grid-template-columns:minmax(0,1fr) 270px;gap:38px}.profile-card{width:270px}.profile-portrait{width:200px}.profile-links a{padding-left:10px;padding-right:10px;font-size:13px}}
 @media(max-width:780px){.hero{grid-template-columns:1fr;gap:34px;padding-top:42px;padding-bottom:44px}.profile-card{width:min(100%,340px)}.profile-portrait{width:170px;margin-bottom:19px}.profile-links a{font-size:14px}.profile-tools{margin-top:19px}}
+.project-image.airdome-sensing{background:#f4f7f5}.project-image.airdome-sensing img{padding:12px;object-fit:contain;object-position:center}

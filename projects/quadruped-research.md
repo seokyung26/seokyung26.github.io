@@ -8,6 +8,8 @@ description: "Bringing mobile sensing into greenhouses and field surveys, with p
 
 # Quadruped Robotics for Agricultural Sensing
 
+**Project 02**
+
 My quadruped research connects agricultural field conditions with mobile sensing, robot perception and spatial analysis. The work spans greenhouse microclimate monitoring, repeat surveys of reservoir upstream terrain, and proprioceptive terrain assessment. Plant phenotyping is the next planned direction.
 
 **Implementation code is not publicly available.**
