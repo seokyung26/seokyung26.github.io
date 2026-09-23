@@ -47,3 +47,22 @@
 .article-content .sensing-overview{grid-template-columns:minmax(0,2.25fr) minmax(0,1fr);align-items:center}.article-content .sensing-overview .research-figure:first-child img{height:auto;max-height:none}.article-content .sensing-overview .research-figure:last-child img{height:auto;max-height:330px}.course-list [lang=ko]{font-size:12px;color:#64748b;overflow-wrap:anywhere}.skill-evidence ul{padding-left:20px}.skill-evidence li{margin:8px 0}@media(max-width:780px){.article-content .sensing-overview{grid-template-columns:1fr}}
 .project-funding{margin-top:35px;padding-top:8px;border-top:1px solid #e2e8f0}.funding-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}.article-content .funding-grid h3{font-size:20px;margin-top:12px}.funding-grid p{font-size:14px;line-height:1.75}@media(max-width:600px){.funding-grid{grid-template-columns:1fr;gap:8px}}
 .research-cards.three-topics{grid-template-columns:repeat(3,minmax(0,1fr))}.study-header{margin:28px 0 24px;padding-bottom:18px;border-bottom:1px solid #e2e8f0}.article-content .study-header h2{margin:12px 0 18px;font-size:30px}.study-number{font-size:13px;color:#1772d0;font-weight:600}.study-authors{font-size:18px}.study-author-note,.study-affiliations{font-size:13px;color:#64748b}.study-affiliations{margin-bottom:18px}.study-affiliations summary{cursor:pointer;color:#1772d0}.study-affiliations p{margin-top:10px}.canopy-panels{max-width:650px;margin-left:auto!important;margin-right:auto!important}.canopy-excerpt{display:block;width:100%;height:auto;overflow:hidden;background:#fff}@media(max-width:600px){.research-cards.three-topics{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.research-cards.three-topics .topic-label{font-size:13px}.research-cards.three-topics .topic-summary{display:none}.research-cards.three-topics img{height:76px}.research-cards.three-topics .topic-status{font-size:10px}.article-content .study-header h2{font-size:25px}}
+
+/* Compact greenhouse figures; original files remain available at full size. */
+.article-content #greenhouse .research-figure{max-width:620px;margin-left:auto;margin-right:auto}
+.article-content #greenhouse .canopy-panels{max-width:400px}
+
+.article-content #reservoir .research-figure{max-width:760px;margin-left:auto;margin-right:auto}
+
+/* Smaller figures throughout research detail pages, without cropping. */
+.academic-project .article-content .research-figure{max-width:640px;margin-left:auto;margin-right:auto}
+.academic-project .article-content .research-figure img,
+.academic-project .article-content .sensing-overview .research-figure:first-child img,
+.academic-project .article-content .sensing-overview .research-figure:last-child img,
+.academic-project .article-content>p>img,
+.academic-project .research-panel>p>img{display:block;width:auto;max-width:100%;height:auto;max-height:400px;object-fit:contain;margin-left:auto;margin-right:auto;background:#fff}
+.academic-project .article-content .sensing-overview{max-width:760px;margin-left:auto;margin-right:auto}
+.article-content #reservoir .research-figure{max-width:640px}
+.research-thumb .harvesting-card-visual{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;align-items:center;background:#fff}
+.research-thumb .harvesting-card-visual img{display:block;width:100%;height:auto;max-height:150px;object-fit:contain;background:#fff}
+@media(max-width:600px){.academic-project .article-content .research-figure img,.academic-project .article-content .sensing-overview .research-figure:first-child img,.academic-project .article-content .sensing-overview .research-figure:last-child img,.academic-project .article-content>p>img,.academic-project .research-panel>p>img{max-height:300px}.academic-project .canopy-excerpt{max-height:300px}.research-thumb .harvesting-card-visual{gap:3px}}

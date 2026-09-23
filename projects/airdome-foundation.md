@@ -50,8 +50,7 @@ For the **370 mm** wing at **5 mm uplift**, reducing the inclination from 90° t
 
 ### Figure 5 · Effect of wing length on the plastic zone
 
-![Soil plastic zones for different wing lengths](/assets/images/soil-plastic-zones.png)
-*Simulated equivalent plastic strain at 7 mm uplift, illustrating the effect of wing length on the mobilized soil region. Manuscript, Fig. 5.*
+<figure class="research-figure"><a href="/assets/images/soil-plastic-zones.png" target="_blank" rel="noopener"><img src="/assets/images/soil-plastic-zones.png" alt="Soil plastic zones for different wing lengths" loading="lazy"></a><figcaption>Simulated equivalent plastic strain at 7 mm uplift, illustrating the effect of wing length on the mobilized soil region. Manuscript, Fig. 5. <a href="/assets/images/soil-plastic-zones.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure>
 
 
 
