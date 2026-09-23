@@ -6,7 +6,7 @@ permalink: /research/airdome-sensing/
 description: "Hands-on load-cell installation, cable-tension measurement and Raspberry Pi data acquisition for air-supported domes."
 ---
 
-<section class="hero project-hero"><div class="hero-body"><div class="container is-max-desktop"><div class="columns is-centered"><div class="column has-text-centered"><p class="project-number">PROJECT 04</p><h1 class="title is-1 publication-title">Load-Cell Sensing<br>for Air-Supported Domes</h1><div class="is-size-5 publication-authors"><a href="/">Seokyung Park</a></div><p class="project-affiliation">Precision Agriculture and Smart Sensing System Lab.<br>Pusan National University</p><p class="project-status">Load-cell installation · Field tension measurements · Data acquisition</p><div class="publication-links"><span class="link-block"><a class="button is-normal is-rounded is-dark" href="#system">System overview</a></span><span class="link-block"><a class="button is-normal is-rounded is-dark" href="#field">Field measurements</a></span><span class="link-block"><a class="button is-normal is-rounded is-dark" href="https://pass.pusan.ac.kr/">Lab website</a></span></div></div></div></div></div></section>
+<section class="hero project-hero"><div class="hero-body"><div class="container is-max-desktop"><div class="columns is-centered"><div class="column has-text-centered"><p class="project-number">PROJECT 04</p><h1 class="title is-1 publication-title">Load-Cell Sensing<br>for Air-Supported Domes</h1><div class="is-size-5 publication-authors"><a href="/">Seokyung Park</a></div><p class="project-status">Load-cell installation · Field tension measurements · Data acquisition</p></div></div></div></div></section>
 
 
 **Focus:** Hands-on experience with load cells within a broader multi-sensor monitoring project.
@@ -15,7 +15,7 @@ The air-dome monitoring plan considers load cells, IMUs and inclinometers. My ma
 
 <span id="system" class="section-anchor"></span>
 
-## Monitoring context and load-cell installation
+## 1. System overview & field measurement
 
 <div class="research-split sensing-overview"><figure class="research-figure "><a href="/assets/images/airdome-system-figure.png" target="_blank" rel="noopener" aria-label="Open full-size figure: Complete air-dome monitoring diagram including sensor locations, wiring, power supply and acquisition nodes"><img src="/assets/images/airdome-system-figure.png" alt="Complete air-dome monitoring diagram including sensor locations, wiring, power supply and acquisition nodes" loading="lazy"></a><figcaption><strong>Monitoring system concept.</strong> Original sensor-placement, wiring and power-supply figure prepared for the air-dome project. <a href="/assets/images/airdome-system-figure.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><figure class="research-figure "><a href="/assets/images/field-load-cell.jpg" target="_blank" rel="noopener" aria-label="Open full-size figure: Actual load-cell installation at an air-dome cable anchor"><img src="/assets/images/field-load-cell.jpg" alt="Actual load-cell installation at an air-dome cable anchor" loading="lazy"></a><figcaption><strong>In the field.</strong> Load cells installed at the Damyang outer-dome anchor, 15 June 2026. <a href="/assets/images/field-load-cell.jpg" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure></div>
 
@@ -23,7 +23,7 @@ The diagram places load cells within the proposed multi-sensor system. The field
 
 <span id="field" class="section-anchor"></span>
 
-## Field measurement workflow
+### Field measurement workflow
 
 Load cells were installed at an outer-dome wire anchor at Damyang on **15 June 2026**. Readings passed from the load-cell indicator through a **USB–RS485 interface to a Raspberry Pi**, where the measurements were saved as CSV files.
 
