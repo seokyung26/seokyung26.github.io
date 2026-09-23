@@ -99,3 +99,9 @@
 .academic-project .article-content .uplift-results-grid .research-figure img{height:auto;width:auto;max-width:100%;max-height:260px;margin:0 auto;padding:6px}
 .academic-project .article-content .uplift-results-grid figcaption{font-size:12px;line-height:1.5;padding-top:8px}
 @media(max-width:600px){.uplift-results-grid{grid-template-columns:1fr;gap:18px;max-width:330px}.academic-project .article-content .uplift-results-grid .research-figure img{max-height:220px}}
+
+/* Profile and study presentation, September 2026. */
+.home-research-band{background:#f6f7f9;border-top:1px solid #e8ebee;padding:4px 0 22px}.profile-photo-cell .cv-download{margin:16px auto 0;display:inline-flex}.profile-photo-cell .cv-format{font-size:10px}.profile-contact{justify-content:center}
+.article-content #greenhouse .canopy-triptych{max-width:800px}.canopy-panel-row{display:grid;grid-template-columns:1fr 1fr 3.6fr;gap:8px;align-items:start}.canopy-panel-row .canopy-excerpt{width:100%;height:auto;max-height:none}
+.article-content #reservoir .reservoir-sheet{border:0;border-radius:0;padding:0;background:none;color:inherit;margin:28px 0 20px}.article-content #reservoir .study-header h2{font-size:30px}.article-content .rs-sites-intro,.article-content .rs-route-note,.article-content .rs-output{font-size:15px;line-height:1.65}.article-content .rs-output{border:0;padding:0;margin:10px 0 20px;color:inherit}.article-content .rs-dataset-title{font-size:24px;margin:26px 0 10px}.article-content .rs-route-note{margin:0 0 16px;color:#526470}
+@media(max-width:600px){.article-content #reservoir .study-header h2{font-size:25px}.canopy-panel-row{gap:4px}.article-content .rs-dataset-title{font-size:22px}}
