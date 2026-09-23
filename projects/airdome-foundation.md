@@ -1,15 +1,13 @@
 ---
 layout: project
-title: "Uplift resistance of air-dome foundations"
+title: "Analysis of uplift resistance characteristics of expandable piles in sandy soil with varying wing inclination and dimensions"
 nav: research
 permalink: /research/airdome-foundation/
 description: "Numerical analysis of expandable X-Pile foundations: effects of wing dimensions and inclination on uplift resistance in sandy soil."
 ---
 
-<section class="hero project-hero"><div class="hero-body"><div class="container is-max-desktop"><div class="columns is-centered"><div class="column has-text-centered"><p class="project-number">PROJECT 03</p><h1 class="title is-1 publication-title">X-Pile Foundations<br>for Air-Supported Domes</h1><div class="is-size-5 publication-authors"><a href="/">Seokyung Park</a>, Jaesung Park, Junbong Jang,<br>Daniel Park, Sein Kwon, Minjoo Kim, Gaeun Choi</div><p class="project-affiliation">Research overview by Seokyung Park · Pusan National University</p><p class="project-status">First-author manuscript · Final preparation before submission</p><div class="publication-links"><span class="link-block"><a class="button is-normal is-rounded is-dark" href="#results">Results</a></span><span class="link-block"><a class="button is-normal is-rounded is-dark" href="#methods">Numerical model</a></span><span class="link-block"><a class="button is-normal is-rounded is-dark" href="https://pass.pusan.ac.kr/">Lab website</a></span></div></div></div></div></div></section>
+<section class="hero project-hero"><div class="hero-body"><div class="container is-max-desktop"><div class="columns is-centered"><div class="column has-text-centered"><p class="project-number">PROJECT 03</p><h1 class="title is-1 publication-title xpile-paper-title">Analysis of uplift resistance characteristics of expandable piles in sandy soil with varying wing inclination and dimensions</h1><div class="is-size-5 publication-authors"><a href="/">Seokyung Park</a>, Jaesung Park, Junbong Jang,<br>Daniel Park, Sein Kwon, Minjoo Kim, Gaeun Choi</div><p class="paper-original-title" lang="ko">사질토 지반 내 확장형 파일의 날개 경사각 및 치수에 따른 인발 저항력 특성 분석</p><p class="project-affiliation">Pusan National University</p><p class="project-status">First-author manuscript · Final preparation before submission</p><p class="paper-title-note">English title translated from the Korean manuscript.</p></div></div></div></div></section>
 
-
-**Status:** First-author manuscript in final preparation before submission.
 
 Air-supported domes transfer membrane and cable tension into their foundations. This study investigates how the dimensions and inclination of expandable pile wings affect uplift resistance in sandy soil, with a focus on the mechanisms of pile–soil load transfer.
 
@@ -36,47 +34,25 @@ Displacement-controlled uplift simulations provide resistance–displacement cur
 
 ## Selected numerical findings
 
-At **7 mm uplift**, the calculated resistance increased with wing length:
+### Effect of wing length
 
-| Wing length | Simulated uplift resistance |
-| --- | --- |
-| 170 mm | 12.27 kN |
-| 370 mm | 20.54 kN |
-| 625 mm | 32.59 kN |
+<figure class="research-figure"><a href="/assets/images/xpile-figure-4.png" target="_blank" rel="noopener"><img src="/assets/images/xpile-figure-4.png" alt="Simulated uplift resistance versus displacement for three X-Pile wing lengths and the unwinged Base pile" loading="lazy"></a><figcaption><strong>Figure 4.</strong> Uplift resistance–displacement curves for the Base pile and X-Piles with different wing lengths. <a href="/assets/images/xpile-figure-4.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure>
 
-Wings contributed **89.8–98.4%** of the total resistance in the studied cases. Larger wings mobilized a larger soil region and increased total resistance, while reducing normalized resistance efficiency.
+At **7 mm uplift**, increasing wing length from **170 to 370 and 625 mm** increased the simulated resistance from **12.27 to 20.54 and 32.59 kN**, respectively. Wings provided **89.8–98.4%** of the total resistance. The longer wings increased total resistance, although resistance per equivalent projected wing area decreased with wing size.
 
-For the **370 mm** wing at **5 mm uplift**, reducing the inclination from 90° to 70° decreased simulated resistance from **19.14 to 12.27 kN**, a **35.9% reduction**. The accompanying contact-force analysis helps explain the change in load transfer.
+<figure class="research-figure"><a href="/assets/images/soil-plastic-zones.png" target="_blank" rel="noopener"><img src="/assets/images/soil-plastic-zones.png" alt="Soil plastic zones for the Base pile and three X-Pile wing lengths" loading="lazy"></a><figcaption><strong>Figure 5.</strong> Equivalent plastic strain and PEEQ = 0.01 boundaries at 7 mm uplift. <a href="/assets/images/soil-plastic-zones.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure>
 
-### Figure 5 · Effect of wing length on the plastic zone
+The unwinged Base pile developed almost no soil plasticity. Winged piles mobilised an upward and outward plastic zone. For L-170 and L-370, the zones extended close to the ground surface; L-625 produced a broader zone around the wing that terminated approximately **190 mm below the surface**. Increasing wing size therefore changed both the resistance and the shape of the mobilised soil region.
 
-<figure class="research-figure"><a href="/assets/images/soil-plastic-zones.png" target="_blank" rel="noopener"><img src="/assets/images/soil-plastic-zones.png" alt="Soil plastic zones for different wing lengths" loading="lazy"></a><figcaption>Simulated equivalent plastic strain at 7 mm uplift, illustrating the effect of wing length on the mobilized soil region. Manuscript, Fig. 5. <a href="/assets/images/soil-plastic-zones.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure>
+### Effect of wing inclination
 
+<figure class="research-figure"><a href="/assets/images/xpile-figure-8.png" target="_blank" rel="noopener"><img src="/assets/images/xpile-figure-8.png" alt="Simulated uplift resistance versus displacement for shaft–wing angles from 90 to 70 degrees" loading="lazy"></a><figcaption><strong>Figure 8.</strong> Uplift resistance–displacement curves for different wing inclination angles at a fixed wing length of 370 mm. <a href="/assets/images/xpile-figure-8.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure>
 
+At **5 mm uplift**, resistance decreased from **19.14 kN at 90° to 12.27 kN at 70°**, a **35.9% reduction**. The decline was nonlinear, with the largest relative drop occurring between 90° and 85°. The wing-surface normal resultant fell from **17.68 to 9.80 kN**; the greater tangential contribution did not compensate for the loss of normal bearing resistance.
 
-At 7 mm uplift, the unwinged Base pile developed almost no soil plasticity. Wings mobilized an upward and outward plastic zone. The L-170 and L-370 zones extended close to the ground surface, whereas the L-625 zone was broader and more localized around the wing, terminating approximately 190 mm below the surface. A larger wing therefore increased total resistance without producing a proportional increase in the vertical extent of the plastic zone.
+<figure class="research-figure"><a href="/assets/images/xpile-figure-9.png" target="_blank" rel="noopener"><img src="/assets/images/xpile-figure-9.png" alt="Soil plastic strain contours and plastic-zone boundaries for shaft–wing angles from 90 to 70 degrees" loading="lazy"></a><figcaption><strong>Figure 9.</strong> Plastic-zone development at 5 mm uplift: (a)–(e) PEEQ contours; (f) superimposed PEEQ = 0.01 boundaries; (g) plastic-zone reach and ground-heave radius. <a href="/assets/images/xpile-figure-9.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure>
 
-### Figure 9 · Effect of wing inclination on the plastic zone
-
-<figure class="research-figure "><a href="/assets/images/xpile-figure-9.png" target="_blank" rel="noopener" aria-label="Open full-size figure: Soil plastic strain contours and plastic-zone boundaries for wing angles from 90 to 70 degrees"><img src="/assets/images/xpile-figure-9.png" alt="Soil plastic strain contours and plastic-zone boundaries for wing angles from 90 to 70 degrees" loading="lazy"></a><figcaption><strong>Figure 9.</strong> Inclination comparisons at 5 mm uplift and L = 370 mm. Panels (a)–(e): PEEQ contours; (f): superimposed PEEQ = 0.01 boundaries; (g): plastic-zone reach and ground-heave radius. <a href="/assets/images/xpile-figure-9.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure>
-
-As the shaft–wing angle decreased from 90° to 70°, the plastic zone followed the inclined wing surface and the upward wedge generally contracted. Its vertical reach was **580, 570, 500, 520 and 540 mm** for A-90 through A-70: all inclined cases remained below the horizontal-wing case, although the trend was not monotonic. The ground-heave radius decreased from **845 mm at 90° to 671 mm at 70°**, reaching a minimum of 655 mm at 75°. These patterns accompany reduced normal bearing resistance and the lower total uplift resistance of the inclined configurations.
-
-
-## My contribution
-
-I investigated pile–soil interaction using three-dimensional finite-element models, compared wing dimensions and inclination, and analysed resistance components and soil plastic zones for the first-author manuscript.
-
-## Interpretation and limitations
-
-These are numerical comparisons at the stated uplift displacements, rather than measured field capacities or ultimate capacities. The model assumes fully deployed, rigidly connected wings and idealized soil behaviour; installation effects are excluded. Mesh sensitivity remains relevant, and experimental validation is still required.
-
-## Manuscript
-
-**Analysis of uplift resistance characteristics of expandable piles in sandy soil with varying wing inclination and dimensions**
-Seokyung Park, Jaesung Park, Junbong Jang, Daniel Park, Sein Kwon, Minjoo Kim and Gaeun Choi.
-
-Korean manuscript; title translated into English. **Final preparation before submission.**
+The plastic zone followed the inclined wing surface, and the upward wedge generally contracted as the angle decreased. Vertical reach remained below the horizontal-wing case without a monotonic trend. The ground-heave radius decreased from **845 mm at 90° to 671 mm at 70°**, with a minimum of **655 mm at 75°**. These changes accompany the reduction in simulated uplift resistance.
 
 **Tools and methods:** Abaqus/CAE · Abaqus/Standard · finite-element analysis · pile–soil contact · parametric modelling
 
