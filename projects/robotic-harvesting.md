@@ -1,43 +1,44 @@
 ---
 layout: project
-title: "Robotic gripping for tomato harvesting"
+title: "Damage-aware robotic gripping for tomato harvesting"
 nav: research
 permalink: /research/robotic-harvesting/
 description: "Connecting gripping speed, contact mechanics and hyperspectral imaging to understand delayed tomato damage."
 ---
 
-<section class="hero project-hero"><div class="hero-body"><div class="container is-max-desktop"><div class="columns is-centered"><div class="column has-text-centered"><p class="project-number">PROJECT 01</p><h1 class="title is-1 publication-title">Damage-aware robotic gripping<br>for tomato harvesting</h1><div class="is-size-5 publication-authors"><a href="/">Seokyung Park</a>, Jisu Song, Hyeonjun Hwang,<br>Gunhui Park, Jaesung Park</div><p class="project-affiliation">Pusan National University</p><p class="project-status">Biosystems Engineering · Under review, second revision</p><div class="publication-links"><span class="link-block"><a class="button is-normal is-rounded is-dark" href="#results">Results</a></span><span class="link-block"><a class="button is-normal is-rounded is-dark" href="#methods">Methods</a></span><span class="link-block"><a class="button is-normal is-rounded is-dark" href="https://pass.pusan.ac.kr/">Lab website</a></span></div></div></div></div></div></section>
+<section class="hero project-hero"><div class="hero-body"><div class="container is-max-desktop"><div class="columns is-centered"><div class="column has-text-centered"><p class="project-number">PROJECT 01</p><h1 class="title is-1 publication-title">Damage-aware robotic gripping<br>for tomato harvesting</h1><div class="is-size-5 publication-authors"><a href="/">Seokyung Park</a>, Jisu Song, Hyeonjun Hwang,<br>Gunhui Park, Jaesung Park</div><p class="project-affiliation">Pusan National University</p><p class="project-status">Biosystems Engineering · Under review, second revision</p><div class="publication-links"><span class="link-block"><a class="button is-normal is-rounded is-dark" href="#methods">Materials &amp; Methods</a></span><span class="link-block"><a class="button is-normal is-rounded is-dark" href="#results">Results</a></span></div></div></div></div></div></section>
 
 
 How does the rate of force application during gripping affect tomato tissue response? This research connects robotic manipulation, force sensing and hyperspectral imaging to examine compression damage that becomes apparent after handling. The work provides experimental evidence for considering loading rate alongside peak force when designing robotic gripping strategies.
 
-<figure class="research-figure "><a href="/assets/images/tomato-research-overview.png" target="_blank" rel="noopener" aria-label="Open full-size figure: Overview of robotic compression, mechanical modelling and hyperspectral damage assessment"><img src="/assets/images/tomato-research-overview.png" alt="Overview of robotic compression, mechanical modelling and hyperspectral damage assessment" loading="lazy"></a><figcaption><strong>Research overview · Figure 1.</strong> Connecting gripper loading rate, fruit mechanics and delayed spectral changes. Selected figures from an unpublished manuscript under review. <a href="/assets/images/tomato-research-overview.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure>
 
-## Research challenge
-
-A tomato can show limited visible damage immediately after gripping while its tissue response changes during storage. Force measurements alone therefore provide an incomplete picture of handling damage. This study examined how gripping conditions relate to mechanical behaviour and delayed spectral changes in standard-sized and cherry tomatoes.
-
-The experiments used detached fruit under controlled laboratory conditions. Their purpose was to inform gripper control through measurements of fruit response.
 
 <span id="methods" class="section-anchor"></span>
 
-## System and workflow
+## Materials & Methods
+
+The experiments used detached standard-sized and cherry tomatoes under controlled laboratory conditions to relate gripping mechanics to delayed tissue response.
+
+<figure class="research-figure "><a href="/assets/images/tomato-research-overview.png" target="_blank" rel="noopener" aria-label="Open full-size figure: Overview of robotic compression, mechanical modelling and hyperspectral damage assessment"><img src="/assets/images/tomato-research-overview.png" alt="Overview of robotic compression, mechanical modelling and hyperspectral damage assessment" loading="lazy"></a><figcaption><strong>Research overview · Figure 1.</strong> Connecting gripper loading rate, fruit mechanics and delayed spectral changes. Selected figures from an unpublished manuscript under review. <a href="/assets/images/tomato-research-overview.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure>
+
+### Robotic platform and force acquisition
 
 The platform combined a myCobot 320 for Pi robotic arm with an adaptive two-finger gripper. Capacitive force sensors measured contact loads through custom, 3D-printed PLA fixtures. Python software controlled the target gripper opening and supported measurement processing, with I²C sensor communication and MQTT logging.
 
+![Experimental robotic arm, adaptive gripper and force-sensing hardware](/assets/images/robotic-gripping-system.png)
+*Experimental robotic platform for controlled tomato compression and contact-force measurement.*
+
 Four gripper settings produced mean physical loading rates of **6.9, 10.5, 13.1 and 15.3 N/s**. Force–deformation curves were analysed with a four-parameter sigmoid model and an extended Yigit–Christoforou contact model to characterise mechanical response.
+
+### Hyperspectral measurements
 
 Hyperspectral images were collected **1 hour and 5 days after compression**. The Python processing pipeline combined RGB reconstruction, reference normalisation, Segment Anything Model segmentation and paired regions of interest. Comparing the contacted region with adjacent reference tissue on the same fruit helped account for differences between individual tomatoes. The same regions were used at both observation times.
 
 
 
-## My contribution
-
-I co-led conceptualisation and contributed to the methodology, compression experiments, force-sensor acquisition and formal analysis. I was responsible for **software development, validation, data curation and visualisation**, and co-wrote the original manuscript. These responsibilities are documented in the manuscript’s author contribution statement.
-
 <span id="results" class="section-anchor"></span>
 
-## Results and interpretation
+## Results
 
 ### Figure 5 · Tracking delayed tissue response
 
@@ -65,6 +66,10 @@ For standard-sized tomatoes, the higher-loading-rate group showed a more negativ
 The accompanying sigmoid and extended contact-model fits achieved **R² > 0.98** for the measured force–deformation curves. These values describe mechanical model fit, rather than the accuracy of damage prediction.
 
 The study used one cultivar per size class and a single gripper configuration. Damage assessment relied on spectral indicators. Broader validation across cultivars, maturity stages and field conditions is needed before generalising the findings.
+
+## My contribution
+
+I co-led conceptualisation and contributed to the methodology, compression experiments, force-sensor acquisition and formal analysis. I was responsible for **software development, validation, data curation and visualisation**, and co-wrote the original manuscript. These responsibilities are documented in the manuscript’s author contribution statement.
 
 ## Research output
 

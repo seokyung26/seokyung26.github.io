@@ -30,12 +30,14 @@ document.querySelectorAll('.research-tabs').forEach(tabs => {
   function activate(index, updateUrl = false) {
     links.forEach((link, i) => {
       link.setAttribute('aria-selected', String(i === index));
-      link.tabIndex = i === index ? 0 : -1;
+      link.tabIndex = i === index || (index < 0 && i === 0) ? 0 : -1;
       panels[i].hidden = i !== index;
     });
+    const prompt = document.getElementById('topic-prompt');
+    if (prompt) prompt.hidden = index >= 0;
     if (updateUrl && location.hash !== links[index].hash) history.pushState(null, '', links[index].hash);
   }
-  const fromHash = () => Math.max(0, links.findIndex(link => link.hash === location.hash));
+  const fromHash = () => links.findIndex(link => link.hash === location.hash);
   activate(fromHash());
   links.forEach((link, i) => {
     link.addEventListener('click', event => { event.preventDefault(); activate(i, true); });
@@ -51,4 +53,35 @@ document.querySelectorAll('.research-tabs').forEach(tabs => {
   });
   window.addEventListener('popstate', () => activate(fromHash()));
   window.addEventListener('hashchange', () => activate(fromHash()));
+});
+
+document.querySelectorAll('.figure-carousel').forEach(carousel => {
+  const images = [...carousel.querySelectorAll('.carousel-link img')];
+  const buttons = [...carousel.querySelectorAll('[data-slide]')];
+  const pause = carousel.querySelector('.carousel-pause');
+  const label = carousel.querySelector('.carousel-label');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  let index = 0, paused = reduced.matches, timer;
+  function show(i) {
+    index = i;
+    images.forEach((img,n) => { img.hidden = n !== i; });
+    buttons.forEach((button,n) => button.setAttribute('aria-pressed', String(n === i)));
+    label.textContent = 'Fig. ' + images[i].dataset.figure;
+  }
+  function stop() { clearInterval(timer); timer = null; }
+  function start() {
+    stop();
+    pause.textContent = paused ? 'Play' : 'Pause';
+    pause.setAttribute('aria-label', paused ? 'Start figure rotation' : 'Pause figure rotation');
+    if (!paused && !document.hidden && !carousel.matches(':hover') && !carousel.contains(document.activeElement)) timer = setInterval(() => show((index + 1) % images.length), 4500);
+  }
+  buttons.forEach((button,i) => button.addEventListener('click', () => { show(i); paused = true; start(); }));
+  pause.addEventListener('click', () => { paused = !paused; start(); });
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
+  carousel.addEventListener('focusin', stop);
+  carousel.addEventListener('focusout', () => setTimeout(start, 0));
+  document.addEventListener('visibilitychange', start);
+  reduced.addEventListener('change', () => { paused = reduced.matches; start(); });
+  show(0); start();
 });

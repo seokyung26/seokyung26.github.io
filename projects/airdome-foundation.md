@@ -82,3 +82,8 @@ Korean manuscript; title translated into English. **Final preparation before sub
 **Tools and methods:** Abaqus/CAE · Abaqus/Standard · finite-element analysis · pile–soil contact · parametric modelling
 
 **Code availability:** Implementation code is not publicly available.
+
+
+## Funding
+
+This work was supported by the Korea Institute of Planning and Evaluation for Technology in Food, Agriculture and Forestry (IPET) through the Agri-Food Export Enhancement Technology Development Program, funded by the Ministry of Agriculture, Food and Rural Affairs (MAFRA) (RS-2025-02313370).
