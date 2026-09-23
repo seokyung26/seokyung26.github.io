@@ -6,20 +6,20 @@ permalink: /research/airdome-foundation/
 description: "Numerical analysis of expandable X-Pile foundations: effects of wing dimensions and inclination on uplift resistance in sandy soil."
 ---
 
-# X-Pile Foundations for Air-Supported Domes
+<section class="hero project-hero"><div class="hero-body"><div class="container is-max-desktop"><div class="columns is-centered"><div class="column has-text-centered"><p class="project-number">PROJECT 03</p><h1 class="title is-1 publication-title">X-Pile Foundations<br>for Air-Supported Domes</h1><div class="is-size-5 publication-authors"><a href="/">Seokyung Park</a>, Jaesung Park, Junbong Jang,<br>Daniel Park, Sein Kwon, Minjoo Kim, Gaeun Choi</div><p class="project-affiliation">Research overview by Seokyung Park · Pusan National University</p><p class="project-status">First-author manuscript · Final preparation before submission</p><div class="publication-links"><span class="link-block"><a class="button is-normal is-rounded is-dark" href="#results">Results</a></span><span class="link-block"><a class="button is-normal is-rounded is-dark" href="#methods">Numerical model</a></span><span class="link-block"><a class="button is-normal is-rounded is-dark" href="https://pass.pusan.ac.kr/">Lab website</a></span></div></div></div></div></div></section>
 
-**Project 03 · Numerical analysis of expandable piles in sandy soil**
 
 **Status:** First-author manuscript in final preparation before submission.
 
 Air-supported domes transfer membrane and cable tension into their foundations. This study investigates how the dimensions and inclination of expandable pile wings affect uplift resistance in sandy soil, with a focus on the mechanisms of pile–soil load transfer.
 
-![X-Pile geometry and studied dimensions](/assets/images/xpile-geometry.png)
-*X-Pile geometry and parameter ranges used in the numerical study. Manuscript, Fig. 1.*
+<div class="research-split geometry-overview"><figure class="research-figure "><a href="/assets/images/xpile-geometry.png" target="_blank" rel="noopener" aria-label="Open full-size figure: X-Pile geometry and studied dimensions"><img src="/assets/images/xpile-geometry.png" alt="X-Pile geometry and studied dimensions" loading="lazy"></a><figcaption><strong>Figure 1.</strong> Geometric definitions and analysis configurations. <a href="/assets/images/xpile-geometry.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><div class="geometry-table"><div class="table-scroll" tabindex="0" role="region" aria-label="Table 1: X-Pile analysis cases"><table><caption>Table 1 · Geometric parameters and numerical analysis cases</caption><thead><tr><th scope="col">Case</th><th scope="col">θ (°)</th><th scope="col">L (mm)</th><th scope="col">W (mm)</th><th scope="col">Dₑ (mm)</th><th scope="col">H/Dₑ</th><th scope="col">Dₑ/D</th><th scope="col">uₘₐₓ (mm)</th></tr></thead><tbody><tr><th scope="row">Base</th><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>5 / 7</td></tr><tr><th scope="row">L-170</th><td>90</td><td>170</td><td>113</td><td>340.0</td><td>2.21</td><td>2.98</td><td>7</td></tr><tr><th scope="row">L-370</th><td>90</td><td>370</td><td>313</td><td>740.0</td><td>1.01</td><td>6.49</td><td>7</td></tr><tr><th scope="row">L-625</th><td>90</td><td>625</td><td>568</td><td>1250.0</td><td>0.60</td><td>10.96</td><td>7</td></tr><tr><th scope="row">A-90</th><td>90</td><td>370</td><td>313</td><td>740.0</td><td>1.01</td><td>6.49</td><td>5</td></tr><tr><th scope="row">A-85</th><td>85</td><td>370</td><td>313</td><td>737.6</td><td>1.02</td><td>6.47</td><td>5</td></tr><tr><th scope="row">A-80</th><td>80</td><td>370</td><td>313</td><td>730.5</td><td>1.03</td><td>6.41</td><td>5</td></tr><tr><th scope="row">A-75</th><td>75</td><td>370</td><td>313</td><td>718.7</td><td>1.04</td><td>6.30</td><td>5</td></tr><tr><th scope="row">A-70</th><td>70</td><td>370</td><td>313</td><td>702.2</td><td>1.07</td><td>6.16</td><td>5</td></tr></tbody></table></div><p class="figure-note">Common parameters: D = 114 mm; H = 750 mm; H/D = 6.58; four wings; B = 48 mm; h = 31 mm; shaft wall, toe plate and wing thickness = 4.5 mm. W = L − D/2. Dₑ denotes effective wing diameter; uₘₐₓ is maximum applied uplift displacement.</p></div></div>
 
 ## Research question
 
 How do wing length and shaft–wing inclination change the resistance mobilized during uplift? The analysis separates wing and shaft contributions to examine both total resistance and the efficiency of the expanded geometry.
+
+<span id="methods" class="section-anchor"></span>
 
 ## Numerical model and study design
 
@@ -31,6 +31,8 @@ The analysis uses a fixed embedment depth of **750 mm** and a shaft diameter of 
 - **Wing inclination:** 90°, 85°, 80°, 75° and 70° at a fixed 370 mm wing length.
 
 Displacement-controlled uplift simulations provide resistance–displacement curves, wing and shaft resistance components, contact forces and soil plastic-zone distributions.
+
+<span id="results" class="section-anchor"></span>
 
 ## Selected numerical findings
 
@@ -46,8 +48,21 @@ Wings contributed **89.8–98.4%** of the total resistance in the studied cases.
 
 For the **370 mm** wing at **5 mm uplift**, reducing the inclination from 90° to 70° decreased simulated resistance from **19.14 to 12.27 kN**, a **35.9% reduction**. The accompanying contact-force analysis helps explain the change in load transfer.
 
+### Figure 5 · Effect of wing length on the plastic zone
+
 ![Soil plastic zones for different wing lengths](/assets/images/soil-plastic-zones.png)
 *Simulated equivalent plastic strain at 7 mm uplift, illustrating the effect of wing length on the mobilized soil region. Manuscript, Fig. 5.*
+
+
+
+At 7 mm uplift, the unwinged Base pile developed almost no soil plasticity. Wings mobilized an upward and outward plastic zone. The L-170 and L-370 zones extended close to the ground surface, whereas the L-625 zone was broader and more localized around the wing, terminating approximately 190 mm below the surface. A larger wing therefore increased total resistance without producing a proportional increase in the vertical extent of the plastic zone.
+
+### Figure 9 · Effect of wing inclination on the plastic zone
+
+<figure class="research-figure "><a href="/assets/images/xpile-figure-9.png" target="_blank" rel="noopener" aria-label="Open full-size figure: Soil plastic strain contours and plastic-zone boundaries for wing angles from 90 to 70 degrees"><img src="/assets/images/xpile-figure-9.png" alt="Soil plastic strain contours and plastic-zone boundaries for wing angles from 90 to 70 degrees" loading="lazy"></a><figcaption><strong>Figure 9.</strong> Inclination comparisons at 5 mm uplift and L = 370 mm. Panels (a)–(e): PEEQ contours; (f): superimposed PEEQ = 0.01 boundaries; (g): plastic-zone reach and ground-heave radius. <a href="/assets/images/xpile-figure-9.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure>
+
+As the shaft–wing angle decreased from 90° to 70°, the plastic zone followed the inclined wing surface and the upward wedge generally contracted. Its vertical reach was **580, 570, 500, 520 and 540 mm** for A-90 through A-70: all inclined cases remained below the horizontal-wing case, although the trend was not monotonic. The ground-heave radius decreased from **845 mm at 90° to 671 mm at 70°**, reaching a minimum of 655 mm at 75°. These patterns accompany reduced normal bearing resistance and the lower total uplift resistance of the inclined configurations.
+
 
 ## My contribution
 

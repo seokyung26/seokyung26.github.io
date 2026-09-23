@@ -6,64 +6,77 @@ permalink: /research/quadruped-research/
 description: "Bringing mobile sensing into greenhouses and field surveys, with plant phenotyping as the next research direction."
 ---
 
-# Quadruped Robotics for Agricultural Sensing
+<section class="hero project-hero"><div class="hero-body"><div class="container is-max-desktop"><div class="columns is-centered"><div class="column has-text-centered"><p class="project-number">PROJECT 02</p><h1 class="title is-1 publication-title">Quadruped Robotics<br>for Agricultural Sensing</h1><div class="is-size-5 publication-authors"><a href="/">Seokyung Park</a></div><p class="project-affiliation">Precision Agriculture and Smart Sensing System Lab.<br>Pusan National University</p><p class="project-status">Mobile sensing · Greenhouse mapping · Field surveys</p><div class="publication-links"><span class="link-block"><a class="button is-normal is-rounded is-dark" href="#greenhouse">Greenhouse</a></span><span class="link-block"><a class="button is-normal is-rounded is-dark" href="#reservoir">Reservoirs</a></span><span class="link-block"><a class="button is-normal is-rounded is-dark" href="https://pass.pusan.ac.kr/">Lab website</a></span></div></div></div></div></div></section>
 
-**Project 02**
 
 My quadruped research connects agricultural field conditions with mobile sensing, robot perception and spatial analysis. The work spans greenhouse microclimate monitoring, repeat surveys of reservoir upstream terrain, and proprioceptive terrain assessment. Plant phenotyping is the next planned direction.
 
 **Implementation code is not publicly available.**
 
-## Greenhouse microclimate mapping
+<nav class="research-tabs" aria-label="Quadruped research topics"><a id="tab-greenhouse" href="#greenhouse">1. Greenhouse</a><a id="tab-reservoir" href="#reservoir">2. Reservoirs</a><a id="tab-terrain" href="#terrain">3. Terrain research</a><a id="tab-phenotyping" href="#phenotyping">4. Phenotyping</a></nav>
 
-**Status:** Experimental study completed; manuscript in final preparation before submission.
+<section id="greenhouse" class="research-panel" aria-labelledby="tab-greenhouse">
+<h2>1. Greenhouse microclimate mapping</h2>
+<p><strong>Status:</strong> Experimental study completed; manuscript in final preparation before submission.</p>
+<p>Greenhouse control systems often rely on a few fixed environmental sensors. This project asks how well those readings represent the conditions experienced by crops across space and height. I contributed to the methodology, experimental investigation and manuscript preparation as a co-first author.</p>
+<p><img src="/assets/images/greenhouse-sensing-platform.png" alt="Quadruped robot with dual-height sensors and custom acquisition modules"></p>
+<p><em>The field platform and custom sensor modules. Sensors sampled the fruit zone at 1.15 m and upper canopy at 1.65 m. Source: manuscript, Figure 2.</em></p>
+<p>The team integrated temperature, relative humidity and CO2 sensors with a Unitree Go2 EDU. LiDAR-based pipe-rail detection and PID steering supported traversal within eight 54 m greenhouse lanes. ROS 2 recorded environmental observations and point clouds on a common clock.</p>
+<p>Four sessions conducted on separate days in June 2026 produced 24 environmental maps: three variables, two heights and four sessions. Cross-calibration aligned the sensor modules; fixed-sensor time series supported correction for temporal variation during sequential lane measurements. Each map contained 160 measured grid cells.</p>
+<p><img src="/assets/images/greenhouse-microclimate-overlay.jpg" alt="Temperature, humidity and CO2 measurements overlaid on greenhouse point clouds"></p>
+<p><em>Midday measurements at two heights overlaid on LiDAR geometry. Map coordinates were estimated from elapsed traversal time and lane length. Source: manuscript, Figure 6.</em></p>
+<figure class="research-figure "><a href="/assets/images/greenhouse-24-maps.png" target="_blank" rel="noopener" aria-label="Open full-size figure: Twenty-four greenhouse maps of temperature, humidity and carbon dioxide at two heights across four sessions"><img src="/assets/images/greenhouse-24-maps.png" alt="Twenty-four greenhouse maps of temperature, humidity and carbon dioxide at two heights across four sessions" loading="lazy"></a><figcaption><strong>Mapping results · Figure 5.</strong> Three environmental variables × two sensor heights × four sessions. Each map contains 160 measured grid cells. The sessions were conducted on separate days. <a href="/assets/images/greenhouse-24-maps.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure>
 
-Greenhouse control systems often rely on a few fixed environmental sensors. This project asks how well those readings represent the conditions experienced by crops across space and height. I contributed to the methodology, experimental investigation and manuscript preparation as a co-first author.
+<h3>Mapping results</h3>
+<p>All 24 maps showed positive spatial autocorrelation, with Moran&#39;s I of <strong>0.40–0.85</strong>. Humidity references from fixed sensors were <strong>2.4–7.3 percentage points</strong> below mobile spatial means. These results support periodic assessment of fixed-sensor representativeness. They do not establish absolute sensor accuracy or effects on crop yield.</p>
+<ul>
+<li><strong>Spatial structure:</strong> Moran’s I ranged from 0.40 to 0.85 (p &lt; 0.001), showing that nearby measurements formed spatial patterns rather than a uniform greenhouse environment.</li>
+<li><strong>Vertical differences:</strong> Upper-canopy humidity was 2.6–4.4 percentage points higher and CO₂ was 12–69 ppm higher than in the fruit zone across the sessions.</li>
+<li><strong>Fixed-sensor coverage:</strong> Depending on the session, 19–53% of mapped cells differed from the fixed temperature reference by more than 0.5 °C; 18–76% differed from the humidity reference by more than 5 percentage points. These are illustrative comparison thresholds.</li>
+</ul>
+<figure class="research-figure "><a href="/assets/images/greenhouse-fixed-sensor-comparison.png" target="_blank" rel="noopener" aria-label="Open full-size figure: Comparison of mobile spatial distributions with fixed environmental sensor readings"><img src="/assets/images/greenhouse-fixed-sensor-comparison.png" alt="Comparison of mobile spatial distributions with fixed environmental sensor readings" loading="lazy"></a><figcaption><strong>Fixed-sensor representativeness · Figure 9.</strong> Mobile observations reveal how a single reference reading can differ from conditions across the crop area. <a href="/assets/images/greenhouse-fixed-sensor-comparison.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure>
 
-![Quadruped robot with dual-height sensors and custom acquisition modules](/assets/images/greenhouse-sensing-platform.png)
+<p>Coordinates were reconstructed from traversal time and lane length. The maps support spatial comparison within the experiment; they are not a validation of absolute positioning or sensor accuracy.</p>
+<p><strong>Manuscript:</strong> HyeonJun Hwang†, Seokyung Park† and Jaesung Park. “Greenhouse microclimate mapping using a quadruped robot to assess fixed sensor representativeness.” In preparation. † Equal contribution.</p>
 
-*The field platform and custom sensor modules. Sensors sampled the fruit zone at 1.15 m and upper canopy at 1.65 m. Source: manuscript, Figure 2.*
+</section>
 
-The team integrated temperature, relative humidity and CO2 sensors with a Unitree Go2 EDU. LiDAR-based pipe-rail detection and PID steering supported traversal within eight 54 m greenhouse lanes. ROS 2 recorded environmental observations and point clouds on a common clock.
+<section id="reservoir" class="research-panel" aria-labelledby="tab-reservoir">
+<h2>2. Reservoir upstream surveys</h2>
+<p><strong>Status:</strong> Repeated field surveys completed under dry and wet conditions; image-based analysis is ongoing. Project period: April–October 2026.</p>
+<p>This project uses a quadruped robot to revisit upstream terrain at <strong>Hwangsaegol Reservoir (Miryang)</strong> and <strong>Dwitgol Reservoir (Ulsan)</strong>. Repeated images and concurrent soil water-content measurements provide a basis for comparing surface conditions before and after heavy rainfall.</p>
+<div class="research-split reservoir-intro">
+<figure class="research-figure "><a href="/assets/images/reservoir-quadruped.png" target="_blank" rel="noopener" aria-label="Open full-size figure: Quadruped robot surveying rocky reservoir upstream terrain"><img src="/assets/images/reservoir-quadruped.png" alt="Quadruped robot surveying rocky reservoir upstream terrain" loading="lazy"></a><figcaption><strong>Field platform.</strong> Quadruped robot deployed on uneven reservoir terrain. Source: reservoir project presentation, slide 2. <a href="/assets/images/reservoir-quadruped.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure>
+<div><h3>Acquisition setup</h3><ul><li>Quadruped robot with RGB camera and RTK-GNSS.</li><li>Camera height: <strong>40 cm above ground</strong>.</li><li>Image scale: <strong>0.23 mm/pixel</strong>.</li><li>Repeated imaging at the same locations before and after rainfall.</li><li>Soil water content measured concurrently with image acquisition.</li></ul></div>
+</div>
 
-Four sessions conducted on separate days in June 2026 produced 24 environmental maps: three variables, two heights and four sessions. Cross-calibration aligned the sensor modules; fixed-sensor time series supported correction for temporal variation during sequential lane measurements. Each map contained 160 measured grid cells.
+<h3>Before- and after-rainfall survey design</h3>
+<p>Heavy rainfall was defined as <strong>at least 50 mm accumulated over 24 hours</strong>. Dry-condition surveys comprised <strong>two to three visits per site before the August 15–17 heavy-rainfall event</strong>. Two wet-condition surveys followed major rainfall events.</p>
+<div class="table-scroll"><table><caption>Survey schedule</caption><thead><tr><th>Survey</th><th>Timing</th><th>Rainfall context</th></tr></thead><tbody><tr><td>Dry conditions</td><td>Hwangsaegol: July 2 and 30<br>Dwitgol: July 21 and 27; August 12</td><td>Before the August 15–17 heavy-rainfall event; 2–3 visits per site.</td></tr><tr><td>Wet survey 1</td><td>August 24</td><td>About one week after August 15–17; maximum rainfall intensity 50 mm/h.</td></tr><tr><td>Wet survey 2</td><td>September 18</td><td>About three weeks after the August 29 event; maximum rainfall intensity 34 mm/h.</td></tr></tbody></table></div>
 
-![Temperature, humidity and CO2 measurements overlaid on greenhouse point clouds](/assets/images/greenhouse-microclimate-overlay.jpg)
+<h3>Survey sites and representative ground images</h3>
+<p>The maps and ground photographs below document the two upstream survey areas. A–C identify the representative image locations shown in the source presentation. These photographs illustrate the observed terrain; they do not by themselves establish rainfall-induced erosion or a soil-moisture prediction model.</p>
+<h3>Hwangsaegol Reservoir · Miryang</h3><figure class="research-figure "><a href="/assets/images/hwangsaegol-survey-map.png" target="_blank" rel="noopener" aria-label="Open full-size figure: hwangsaegol upstream survey route"><img src="/assets/images/hwangsaegol-survey-map.png" alt="hwangsaegol upstream survey route" loading="lazy"></a><figcaption>Upstream survey area and recorded route. Map labels are retained from the original field presentation. <a href="/assets/images/hwangsaegol-survey-map.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><div class="ground-grid"><figure class="research-figure "><a href="/assets/images/hwangsaegol-ground-a.png" target="_blank" rel="noopener" aria-label="Open full-size figure: hwangsaegol ground image A"><img src="/assets/images/hwangsaegol-ground-a.png" alt="hwangsaegol ground image A" loading="lazy"></a><figcaption>Location A · Representative ground photograph. <a href="/assets/images/hwangsaegol-ground-a.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><figure class="research-figure "><a href="/assets/images/hwangsaegol-ground-b.png" target="_blank" rel="noopener" aria-label="Open full-size figure: hwangsaegol ground image B"><img src="/assets/images/hwangsaegol-ground-b.png" alt="hwangsaegol ground image B" loading="lazy"></a><figcaption>Location B · Representative ground photograph. <a href="/assets/images/hwangsaegol-ground-b.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><figure class="research-figure "><a href="/assets/images/hwangsaegol-ground-c.png" target="_blank" rel="noopener" aria-label="Open full-size figure: hwangsaegol ground image C"><img src="/assets/images/hwangsaegol-ground-c.png" alt="hwangsaegol ground image C" loading="lazy"></a><figcaption>Location C · Representative ground photograph. <a href="/assets/images/hwangsaegol-ground-c.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure></div>
+<h3>Dwitgol Reservoir · Ulsan</h3><figure class="research-figure "><a href="/assets/images/dwitgol-survey-map.png" target="_blank" rel="noopener" aria-label="Open full-size figure: dwitgol upstream survey route"><img src="/assets/images/dwitgol-survey-map.png" alt="dwitgol upstream survey route" loading="lazy"></a><figcaption>Upstream survey area and recorded route. Map labels are retained from the original field presentation. <a href="/assets/images/dwitgol-survey-map.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><div class="ground-grid"><figure class="research-figure "><a href="/assets/images/dwitgol-ground-a.png" target="_blank" rel="noopener" aria-label="Open full-size figure: dwitgol ground image A"><img src="/assets/images/dwitgol-ground-a.png" alt="dwitgol ground image A" loading="lazy"></a><figcaption>Location A · Representative ground photograph. <a href="/assets/images/dwitgol-ground-a.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><figure class="research-figure "><a href="/assets/images/dwitgol-ground-b.png" target="_blank" rel="noopener" aria-label="Open full-size figure: dwitgol ground image B"><img src="/assets/images/dwitgol-ground-b.png" alt="dwitgol ground image B" loading="lazy"></a><figcaption>Location B · Representative ground photograph. <a href="/assets/images/dwitgol-ground-b.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><figure class="research-figure "><a href="/assets/images/dwitgol-ground-c.png" target="_blank" rel="noopener" aria-label="Open full-size figure: dwitgol ground image C"><img src="/assets/images/dwitgol-ground-c.png" alt="dwitgol ground image C" loading="lazy"></a><figcaption>Location C · Representative ground photograph. <a href="/assets/images/dwitgol-ground-c.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure></div>
 
-*Midday measurements at two heights overlaid on LiDAR geometry. Map coordinates were estimated from elapsed traversal time and lane length. Source: manuscript, Figure 6.*
+<h3>Analysis direction</h3>
+<p>The workflow pairs repeat RGB observations with RTK-GNSS positions and field water-content measurements. Current work examines vegetation, gravel and exposed-soil regions to support comparisons across visits. Quantitative soil-moisture estimation and erosion/deposition assessment require further analysis and validation.</p>
 
-All 24 maps showed positive spatial autocorrelation, with Moran's I of **0.40–0.85**. Humidity references from fixed sensors were **2.4–7.3 percentage points** below mobile spatial means. These results support periodic assessment of fixed-sensor representativeness. They do not establish absolute sensor accuracy or effects on crop yield.
+</section>
 
-**Manuscript:** HyeonJun Hwang†, Seokyung Park† and Jaesung Park. “Greenhouse microclimate mapping using a quadruped robot to assess fixed sensor representativeness.” In preparation. † Equal contribution.
+<section id="terrain" class="research-panel" aria-labelledby="tab-terrain">
+<h2>3. Fellowship-supported platform and terrain research</h2>
+<p><strong>Status:</strong> Research performed during the September 2025–August 2026 Master&#39;s Student Research Encouragement Grant period; controlled terrain results documented in 2026 conference materials.</p>
+<p>The fellowship project, “Development of Locomotion Algorithms and Autonomous Control Systems for Quadruped Robots Specialized for Korean Agricultural Terrain,” supported integration of LiDAR, inertial and environmental sensing, ROS 2 logging, greenhouse mapping and rail-following experiments. Early prototypes used Hesai LiDAR and LiDAR–inertial mapping; the later microclimate study above used a different acquisition configuration.</p>
+<p><img src="/assets/images/terrain-sensing-experiment.jpg" alt="Quadruped robot beside the high-friction experimental surface"></p>
+<p><em>Experimental setup for evaluating locomotion on a high-friction surface. Source: 2026 spring conference slides, page 11, Figure 6.</em></p>
+<p>A related controlled experiment examined body orientation, ground reaction forces and joint responses across rigid, high-friction and compliant surfaces at five slope settings from 0° to 25°. A 1D-ResNet slope estimator reported <strong>1.06° mean absolute error and R² = 0.92</strong> in five-fold validation on this experimental dataset. Testing on varied field soils and deploying real-time inference are future steps.</p>
 
-## Reservoir upstream inspection
+</section>
 
-**Status:** Ongoing project; repeated field surveys and initial image processing completed. Project period: April–October 2026.
+<section id="phenotyping" class="research-panel" aria-labelledby="tab-phenotyping">
+<h2>4. Planned plant phenotyping</h2>
+<p><strong>Status:</strong> Planned research; results are not yet available.</p>
+<p>The next direction is quadruped-based plant phenotyping: extending mobile observation from the surrounding environment to crop traits. The intended research connection is to relate plant observations to their environmental context. The experimental design, sensing configuration and target traits will be documented as the project develops.</p>
 
-This work extends mobile sensing to uneven reservoir upstream terrain, where repeat observations can support analysis of soil surface conditions. The sensing workflow combines an RTK-GNSS receiver and RGB camera, records their timestamps, interpolates coordinates for image frames, and extracts representative images along survey routes.
-
-![Recorded reservoir survey route coloured by elevation](/assets/images/reservoir-survey-route.png)
-
-*An elevation-coloured survey trajectory with observation locations. Source: reservoir interim report, slide 8.*
-
-The July survey records contain **1,116 images across eight sessions and 365.0 m of travel**, aggregated from four survey dates at two reservoirs. For routes repeated six days apart at Dwitgol Reservoir, 76% of observations were within 2 m of the comparison route; the median nearest-route distance was 0.93 m. These values describe route correspondence, rather than positioning accuracy.
-
-Initial processing separates vegetation, gravel and exposed soil to support comparisons between surveys. Soil moisture estimation and erosion/deposition assessment remain subsequent research steps; a validated predictive model is not yet reported.
-
-## Fellowship-supported platform and terrain research
-
-**Status:** Research performed during the September 2025–August 2026 Master's Student Research Encouragement Grant period; controlled terrain results documented in 2026 conference materials.
-
-The fellowship project, “Development of Locomotion Algorithms and Autonomous Control Systems for Quadruped Robots Specialized for Korean Agricultural Terrain,” supported integration of LiDAR, inertial and environmental sensing, ROS 2 logging, greenhouse mapping and rail-following experiments. Early prototypes used Hesai LiDAR and LiDAR–inertial mapping; the later microclimate study above used a different acquisition configuration.
-
-![Quadruped robot beside the high-friction experimental surface](/assets/images/terrain-sensing-experiment.jpg)
-
-*Experimental setup for evaluating locomotion on a high-friction surface. Source: 2026 spring conference slides, page 11, Figure 6.*
-
-A related controlled experiment examined body orientation, ground reaction forces and joint responses across rigid, high-friction and compliant surfaces at five slope settings from 0° to 25°. A 1D-ResNet slope estimator reported **1.06° mean absolute error and R² = 0.92** in five-fold validation on this experimental dataset. Testing on varied field soils and deploying real-time inference are future steps.
-
-## Planned plant phenotyping
-
-**Status:** Planned research; results are not yet available.
-
-The next direction is quadruped-based plant phenotyping: extending mobile observation from the surrounding environment to crop traits. The intended research connection is to relate plant observations to their environmental context. The experimental design, sensing configuration and target traits will be documented as the project develops.
+</section>

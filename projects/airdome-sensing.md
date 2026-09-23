@@ -6,20 +6,22 @@ permalink: /research/airdome-sensing/
 description: "Taking measurements from cable anchors to field data: load cells, sensor evaluation and Raspberry Pi acquisition."
 ---
 
-# Structural Sensing for Air-Supported Domes
+<section class="hero project-hero"><div class="hero-body"><div class="container is-max-desktop"><div class="columns is-centered"><div class="column has-text-centered"><p class="project-number">PROJECT 04</p><h1 class="title is-1 publication-title">Structural Sensing<br>for Air-Supported Domes</h1><div class="is-size-5 publication-authors"><a href="/">Seokyung Park</a></div><p class="project-affiliation">Precision Agriculture and Smart Sensing System Lab.<br>Pusan National University</p><p class="project-status">Field acquisition tested · System integration ongoing</p><div class="publication-links"><span class="link-block"><a class="button is-normal is-rounded is-dark" href="#system">System overview</a></span><span class="link-block"><a class="button is-normal is-rounded is-dark" href="#field">Field measurements</a></span><span class="link-block"><a class="button is-normal is-rounded is-dark" href="https://pass.pusan.ac.kr/">Lab website</a></span></div></div></div></div></div></section>
 
-**Project 04 · From cable-anchor measurements to a multi-sensor monitoring workflow**
 
 **Status:** Load-cell field measurements and bench sensor comparison completed; environmental packaging and broader system integration are ongoing.
 
 Air-supported domes rely on internal pressure and tensioned membranes. Cable forces and foundation movement provide useful observations for evaluating their structural response. This project develops a practical sensing workflow around those observations, beginning with site inspection, sensor selection, and a field data acquisition setup.
 
+<span id="system" class="section-anchor"></span>
+
 ## Sensor placement and system architecture
 
-![Air-dome sensor locations and proposed power and acquisition connections](/assets/images/airdome-sensor-layout.png)
-*Sensor-placement and wiring concept for the air-dome monitoring system. The diagram shows IMU sensors, load cells, an inclinometer, Raspberry Pi acquisition nodes and power-supply connections.*
+<div class="research-split sensing-overview"><figure class="research-figure "><a href="/assets/images/airdome-sensor-placement.png" target="_blank" rel="noopener" aria-label="Open full-size figure: Sensor locations on the air dome, extracted from the original PowerPoint diagram"><img src="/assets/images/airdome-sensor-placement.png" alt="Sensor locations on the air dome, extracted from the original PowerPoint diagram" loading="lazy"></a><figcaption><strong>Sensor-placement concept.</strong> IMU, load-cell and inclinometer locations. Diagram extracted from the original presentation, slide 12. <a href="/assets/images/airdome-sensor-placement.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><figure class="research-figure "><a href="/assets/images/field-load-cell.jpg" target="_blank" rel="noopener" aria-label="Open full-size figure: Actual load-cell installation at an air-dome cable anchor"><img src="/assets/images/field-load-cell.jpg" alt="Actual load-cell installation at an air-dome cable anchor" loading="lazy"></a><figcaption><strong>In the field.</strong> Load cells installed at the Damyang outer-dome anchor, 15 June 2026. <a href="/assets/images/field-load-cell.jpg" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure></div>
 
-The diagram summarizes the intended multi-sensor arrangement and power distribution. It represents the integration design; the completed work described below comprises field load-cell acquisition and bench sensor evaluation. Inclination sensing and broader system integration remain planned extensions.
+The diagram summarizes the intended multi-sensor arrangement. Acquisition nodes use Raspberry Pi computers, with voltage conversion and sensor interfaces specified in the system integration plan. It represents the integration design; the completed work described below comprises field load-cell acquisition and bench sensor evaluation. Inclination sensing and broader system integration remain planned extensions.
+
+<span id="field" class="section-anchor"></span>
 
 ## Field photographs and load-cell measurements
 
