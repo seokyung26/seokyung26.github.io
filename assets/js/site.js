@@ -57,31 +57,24 @@ document.querySelectorAll('.research-tabs').forEach(tabs => {
 
 document.querySelectorAll('.figure-carousel').forEach(carousel => {
   const images = [...carousel.querySelectorAll('.carousel-link img')];
-  const buttons = [...carousel.querySelectorAll('[data-slide]')];
-  const pause = carousel.querySelector('.carousel-pause');
-  const label = carousel.querySelector('.carousel-label');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  let index = 0, paused = reduced.matches, timer;
+  let index = 0, timer;
   function show(i) {
     index = i;
-    images.forEach((img,n) => { img.hidden = n !== i; });
-    buttons.forEach((button,n) => button.setAttribute('aria-pressed', String(n === i)));
-    label.textContent = 'Fig. ' + images[i].dataset.figure;
+    images.forEach((img, n) => { img.hidden = n !== i; });
   }
   function stop() { clearInterval(timer); timer = null; }
   function start() {
     stop();
-    pause.textContent = paused ? 'Play' : 'Pause';
-    pause.setAttribute('aria-label', paused ? 'Start figure rotation' : 'Pause figure rotation');
-    if (!paused && !document.hidden && !carousel.matches(':hover') && !carousel.contains(document.activeElement)) timer = setInterval(() => show((index + 1) % images.length), 4500);
+    if (images.length > 1 && !reduced.matches && !document.hidden && !carousel.matches(':hover') && !carousel.contains(document.activeElement)) {
+      timer = setInterval(() => show((index + 1) % images.length), 4500);
+    }
   }
-  buttons.forEach((button,i) => button.addEventListener('click', () => { show(i); paused = true; start(); }));
-  pause.addEventListener('click', () => { paused = !paused; start(); });
   carousel.addEventListener('mouseenter', stop);
   carousel.addEventListener('mouseleave', start);
   carousel.addEventListener('focusin', stop);
   carousel.addEventListener('focusout', () => setTimeout(start, 0));
   document.addEventListener('visibilitychange', start);
-  reduced.addEventListener('change', () => { paused = reduced.matches; start(); });
+  reduced.addEventListener('change', start);
   show(0); start();
 });
