@@ -27,9 +27,6 @@ The diagram places load cells within the proposed multi-sensor system. The field
 
 Load cells were installed at an outer-dome wire anchor at Damyang on **15 June 2026**. Readings passed from the load-cell indicator through a **USB–RS485 interface to a Raspberry Pi**, where the measurements were saved as CSV files.
 
-![Field data acquisition equipment for load-cell measurements](/assets/images/field-data-acquisition.jpg)
-*Load-cell acquisition equipment used in the field session. Project sensing presentation, slide 28.*
-
 ### Practical work
 
 - Examining cable-anchor geometry and sensor attachment arrangements.
