@@ -78,3 +78,7 @@
 
 .reservoir-sheet{padding:18px 24px}.rs-schedule th,.rs-schedule td{padding:5px}.rs-field img{height:190px}.rs-equipment svg{height:160px}.rs-site-images{max-width:360px;margin-left:auto;margin-right:auto}.rs-map-key{height:13%}.rs-site:last-child .rs-map-key{height:20%;width:49%}
 @media(max-width:780px){.reservoir-sheet{padding:18px 16px}.rs-field img{height:180px}.rs-site-images{max-width:360px}.rs-map-key{font-size:8px;line-height:11px}}
+
+/* Map labels use the centres of the original slide text boxes. */
+.rs-map-point{transform:translate(-50%,-50%)}
+.article-content .reservoir-image-examples h3{font-size:21px;margin:24px 0 8px}
