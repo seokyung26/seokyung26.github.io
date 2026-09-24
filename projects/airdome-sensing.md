@@ -42,3 +42,5 @@ Load cells were installed at an outer-dome wire anchor at Damyang on **15 June 2
 ## Funding
 
 This work was supported by the Korea Institute of Planning and Evaluation for Technology in Food, Agriculture and Forestry (IPET) through the Agri-Food Export Enhancement Technology Development Program, funded by the Ministry of Agriculture, Food and Rural Affairs (MAFRA) (RS-2025-02313370).
+
+**Project title:** *Development of Commercial-scale Vertical Farming System with Low Energy Consumption Based on Passive Air-dome Technology for Hot Climate in Middle East*
