@@ -3,7 +3,7 @@ layout: home
 title: "Home"
 nav: home
 permalink: /
-description: "Seokyung Park — image-based agricultural analysis, sensing and plant phenotyping interests at Pusan National University."
+description: "Personal Website"
 ---
 
 <div class="home-shell">
