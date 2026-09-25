@@ -107,3 +107,15 @@
 .article-content #greenhouse .canopy-triptych{max-width:800px}.canopy-panel-row{display:grid;grid-template-columns:1fr 1fr 3.6fr;gap:8px;align-items:start}.canopy-panel-row .canopy-excerpt{width:100%;height:auto;max-height:none}
 .article-content #reservoir .reservoir-sheet{border:0;border-radius:0;padding:0;background:none;color:inherit;margin:28px 0 20px}.article-content #reservoir .study-header h2{font-size:30px}.article-content .rs-sites-intro,.article-content .rs-route-note,.article-content .rs-output{font-size:15px;line-height:1.65}.article-content .rs-output{border:0;padding:0;margin:10px 0 20px;color:inherit}.article-content .rs-dataset-title{font-size:24px;margin:26px 0 10px}.article-content .rs-route-note{margin:0 0 16px;color:#526470}
 @media(max-width:600px){.article-content #reservoir .study-header h2{font-size:25px}.canopy-panel-row{gap:4px}.article-content .rs-dataset-title{font-size:22px}}
+
+/* Research headings and enlarged plastic-zone figures. */
+.article-content .publication-title.paper-long-title{font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.3}
+.article-content .result-figure-label{font-size:13px;line-height:1.5;color:#667085;margin:8px 0 16px}
+.article-content .muted-funding{background:#f5f6f7;color:#667085;padding:24px;border-radius:6px;margin-top:40px}
+.article-content .muted-funding h2,.article-content .muted-funding h3,.article-content .muted-funding strong,.article-content .muted-funding p{color:#667085}
+.uplift-results-grid.expanded-plastic-zones{grid-template-columns:minmax(0,1fr);max-width:950px;gap:28px}
+.academic-project .article-content .expanded-plastic-zones .research-figure:first-child{width:100%;max-width:520px;margin:auto}
+.academic-project .article-content .expanded-plastic-zones .research-figure:first-child img{width:100%;max-height:none;padding:0}
+.academic-project .article-content .expanded-plastic-zones .research-figure:nth-child(2){width:100%;max-width:950px;margin:auto}
+.academic-project .article-content .expanded-plastic-zones .research-figure:nth-child(2) img{width:100%;height:auto;max-height:none;padding:0}
+@media(max-width:600px){.article-content .muted-funding{padding:18px}.uplift-results-grid.expanded-plastic-zones{max-width:100%;gap:20px}}
