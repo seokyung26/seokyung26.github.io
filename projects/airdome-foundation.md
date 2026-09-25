@@ -52,10 +52,6 @@ At **5 mm uplift**, resistance decreased from **19.14 kN at 90° to 12.27 kN at 
 
 The plastic zone followed the inclined wing surface, and the upward wedge generally contracted as the angle decreased. Vertical reach remained below the horizontal-wing case without a monotonic trend. The ground-heave radius decreased from **845 mm at 90° to 671 mm at 70°**, with a minimum of **655 mm at 75°**. These changes accompany the reduction in simulated uplift resistance.
 
-**Tools and methods:** Abaqus/CAE · Abaqus/Standard · finite-element analysis · pile–soil contact · parametric modelling
-
-**Code availability:** Implementation code is not publicly available.
-
 
 <section class="project-funding muted-funding"><h2>Funding</h2><p>This work was supported by the Korea Institute of Planning and Evaluation for Technology in Food, Agriculture and Forestry (IPET) through the Agri-Food Export Enhancement Technology Development Program, funded by the Ministry of Agriculture, Food and Rural Affairs (MAFRA) (RS-2025-02313370).</p><p><strong>Project title:</strong> <em>Development of Commercial-scale Vertical Farming System with Low Energy Consumption Based on Passive Air-dome Technology for Hot Climate in Middle East</em></p></section>
 
