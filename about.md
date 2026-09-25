@@ -21,8 +21,10 @@ I am an M.S. student at Pusan National University, working on agricultural robot
 
 **Graduate:** Biological Image Processing; Statistical Processing and Data Analysis in Bio-Industrial Machinery Engineering; Advanced Bio-Industrial Machinery Design; Biosystems Mechanics; Advanced Biomaterials Engineering I.
 
-**Undergraduate — engineering & statistics:** Biosystems Control Engineering; Biosensor and Bio-Instrumentation & Practice; Bio-Production Mechatronics Design; Experimental Design for Biologists; Biostatistics.
+**Undergraduate — engineering & sensing:** Biosensor and Bio-Instrumentation & Practice; Biosystems Control Engineering; Bio-Production Mechatronics Design; Applied Mechanics of Materials; Bio-Industrial Machine Element Design (I); Food Process Engineering & Practice.
 
-**Undergraduate — plant science:** Plant Physiology and Practice; Plant Genetics.
+**Undergraduate — programming & quantitative methods:** Basic Computer Programming; Experimental Design for Biologists; Biostatistics; Calculus (II).
+
+**Undergraduate — plant science & cultivation:** Plant Physiology and Practice; Plant Genetics; Plant Molecular Biology; Plant Biotechnology; Plant Breeding (I, II); Soil Science; Plant Ecology; Protected Horticulture.
 
 [CV (PDF)](/assets/documents/Seokyung_Park_CV.pdf) · [Education](/education/) · [Research experience](/experience/) · [Email](mailto:seokyung.park@pusan.ac.kr)
