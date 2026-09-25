@@ -5,32 +5,98 @@ nav: about
 permalink: /about/
 ---
 
-I am an M.S. student in **Bio-Industrial Machinery Engineering** at [Pusan National University](https://www.pusan.ac.kr/eng/Main.do), working in the [Precision Agriculture and Smart Sensing System Lab.](https://pass.pusan.ac.kr/) I expect to graduate in **February 2027**. I received my B.S. in **Plant Bioscience**, with a minor in **Bio-Industrial Machinery Engineering**, from Pusan National University in 2025.
+<div class="about-profile">
+<section aria-labelledby="education-heading">
+<h2 id="education-heading">Education</h2>
+<div class="about-degree">
+<h3>Pusan National University</h3>
+<p><strong>M.S. in Bio-Industrial Machinery Engineering</strong></p>
+<p class="about-date">March 2025 – February 2027 (expected)</p>
+<p>GPA: <strong>4.36 / 4.50</strong></p>
+<p>Precision Agriculture and Smart Sensing System Lab.</p>
+</div>
+<div class="about-degree">
+<h3>Pusan National University</h3>
+<p><strong>B.S. in Plant Bioscience</strong></p>
+<p class="about-date">March 2017 – February 2025</p>
+<p>GPA: <strong>4.26 / 4.50</strong></p>
+<p>Minor in Bio-Industrial Machinery Engineering</p>
+<p>Summa Cum Laude; President’s List.</p>
+</div>
+</section>
 
-My research focuses on **image-based analysis and sensing for agricultural applications**, with a particular interest in **plant phenotyping**. My current work includes hyperspectral assessment of tomato damage and spatial analysis of greenhouse environmental measurements.
+<section aria-labelledby="skills-heading">
+<h2 id="skills-heading">Technical skills</h2>
+<dl class="about-skills">
+<dt>Programming and data analysis</dt>
+<dd><p>Python, NumPy, pandas and SciPy.</p><p>Sensor time-series processing, force–deformation analysis, nonlinear model fitting and research visualisation.</p></dd>
+<dt>Robotics and mobile sensing</dt>
+<dd><p>ROS 2, Unitree Go2, RTK-GNSS and LiDAR/IMU.</p><p>Timestamped robot and sensor recording, greenhouse microclimate mapping, and matching ground images to GNSS positions and robot travel routes.</p></dd>
+<dt>Instrumentation and data acquisition</dt>
+<dd><p>Force sensors, load cells, Raspberry Pi, Arduino and RS485.</p><p>Force measurements for robotic compression tests, environmental measurements and field load-cell acquisition with CSV logging.</p></dd>
+<dt>Imaging and plant phenotyping</dt>
+<dd><p>RGB and hyperspectral imaging; SAM, YOLOv8, Roboflow and ImageJ.</p><p>Fruit-region segmentation and spectral comparison; soybean leaf-image analysis under drought stress and location-linked ground-image datasets.</p></dd>
+<dt>Finite-element modelling</dt>
+<dd><p>Abaqus/CAE and Abaqus/Standard.</p><p>Three-dimensional pile–soil contact models, displacement-controlled uplift simulations, geometric parameter studies and soil plastic-zone interpretation.</p></dd>
+</dl>
+</section>
 
-I also have hands-on experience integrating **sensors and data acquisition with robotic systems**, including robotic grippers and quadruped platforms. Building on these skills, I aim to use imaging and sensing data to quantify crop traits and study their relationships with growing conditions.
+<section aria-labelledby="coursework-heading">
+<h2 id="coursework-heading">Selected coursework</h2>
+<div class="about-course-grid">
+<section class="about-course-group">
+<h3>Graduate</h3>
+<ul>
+<li>Biological Image Processing</li>
+<li>Statistical Processing and Data Analysis in Bio-Industrial Machinery Engineering</li>
+<li>Advanced Bio-Industrial Machinery Design</li>
+<li>Biosystems Mechanics</li>
+<li>Advanced Biomaterials Engineering I</li>
+</ul>
+</section>
+<section class="about-course-group">
+<h3>Undergraduate <span>Engineering and sensing</span></h3>
+<ul>
+<li>Biosensor and Bio-Instrumentation &amp; Practice</li>
+<li>Biosystems Control Engineering</li>
+<li>Bio-Production Mechatronics Design</li>
+<li>Applied Mechanics of Materials</li>
+<li>Bio-Industrial Machine Element Design (I)</li>
+<li>Food Process Engineering &amp; Practice</li>
+</ul>
+</section>
+<section class="about-course-group">
+<h3>Undergraduate <span>Programming and quantitative methods</span></h3>
+<ul>
+<li>Basic Computer Programming</li>
+<li>Experimental Design for Biologists</li>
+<li>Biostatistics</li>
+<li>Calculus (II)</li>
+</ul>
+</section>
+<section class="about-course-group">
+<h3>Undergraduate <span>Plant science and cultivation</span></h3>
+<ul>
+<li>Plant Physiology and Practice</li>
+<li>Plant Genetics</li>
+<li>Plant Molecular Biology</li>
+<li>Plant Biotechnology</li>
+<li>Plant Breeding (I, II)</li>
+<li>Soil Science</li>
+<li>Plant Ecology</li>
+<li>Protected Horticulture</li>
+</ul>
+</section>
+</div>
+</section>
 
-## Technical skills
-
-- **Imaging & plant phenotyping:** RGB and hyperspectral imaging; SAM, YOLOv8, Roboflow and ImageJ. Fruit-region segmentation, spectral comparison, soybean leaf-image analysis under drought stress and location-linked ground-image datasets.
-- **Instrumentation & data acquisition:** Force sensors, load cells, Raspberry Pi, Arduino and RS485. Force measurements for robotic compression tests, environmental sensing and field load-cell measurements with CSV logging.
-- **Programming & data analysis:** Python, NumPy, pandas and SciPy. Sensor time-series processing, force–deformation analysis, nonlinear model fitting and research visualisation.
-- **Robotics & mobile sensing:** ROS 2, Unitree Go2, RTK-GNSS and LiDAR/IMU. Timestamped robot and sensor recording, greenhouse microclimate mapping, and matching ground images to GNSS positions and robot travel routes.
-- **Finite-element modelling:** Abaqus/CAE and Abaqus/Standard. Three-dimensional pile–soil contact models, displacement-controlled uplift simulations, geometric parameter studies and soil plastic-zone interpretation.
-
-## Selected coursework
-
-### Graduate
-
-Biological Image Processing; Statistical Processing and Data Analysis in Bio-Industrial Machinery Engineering; Advanced Bio-Industrial Machinery Design; Biosystems Mechanics; Advanced Biomaterials Engineering I.
-
-### Undergraduate
-
-**Engineering & sensing:** Biosensor and Bio-Instrumentation & Practice; Biosystems Control Engineering; Bio-Production Mechatronics Design; Applied Mechanics of Materials; Bio-Industrial Machine Element Design (I); Food Process Engineering & Practice.
-
-**Programming & quantitative methods:** Basic Computer Programming; Experimental Design for Biologists; Biostatistics; Calculus (II).
-
-**Plant science & cultivation:** Plant Physiology and Practice; Plant Genetics; Plant Molecular Biology; Plant Biotechnology; Plant Breeding (I, II); Soil Science; Plant Ecology; Protected Horticulture.
+<section aria-labelledby="training-heading">
+<h2 id="training-heading">Additional training</h2>
+<ul class="about-training">
+<li><strong>Modeling Contact with Abaqus/Standard</strong><br>VPK PLM Solution Training Center <span class="about-date">· 25–26 June 2026</span></li>
+<li><strong>Introduction to Abaqus/CAE</strong><br>VPK PLM Solution Training Center <span class="about-date">· 18–20 March 2026</span></li>
+</ul>
+</section>
+</div>
 
 [CV (PDF)](/assets/documents/Seokyung_Park_CV.pdf) · [Education](/education/) · [Research experience](/experience/) · [Email](mailto:seokyung.park@pusan.ac.kr)
