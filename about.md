@@ -11,16 +11,15 @@ permalink: /about/
 <div class="about-degree timeline-list-entry">
 <p class="timeline-period"><strong>March 2025 – February 2027 (expected)</strong><br><strong>Pusan National University</strong></p>
 <ul>
-<li><strong>M.S. in Bio-Industrial Machinery Engineering</strong> · GPA: 4.36 / 4.50</li>
+<li><strong>M.S. in Bio-Industrial Machinery Engineering</strong></li>
 <li>Precision Agriculture and Smart Sensing System Lab.</li>
 </ul>
 </div>
 <div class="about-degree timeline-list-entry">
 <p class="timeline-period"><strong>March 2017 – February 2025</strong><br><strong>Pusan National University</strong></p>
 <ul>
-<li><strong>B.S. in Plant Bioscience</strong> · GPA: 4.26 / 4.50</li>
+<li><strong>B.S. in Plant Bioscience</strong></li>
 <li><strong>Minor:</strong> Bio-Industrial Machinery Engineering</li>
-<li>Summa Cum Laude; President’s List.</li>
 </ul>
 </div>
 </section>
