@@ -122,3 +122,5 @@
 
 /* Keep contact details directly below the profile CV button. */
 .profile-photo-cell .profile-contact{flex-direction:column;gap:3px;margin:14px auto 0;min-height:0}.profile-photo-cell .contact-label{font-size:11px}.profile-photo-cell .profile-contact a{font-size:12px;overflow-wrap:anywhere}
+
+.academic-project .article-content #greenhouse .study-number{font-size:24px;line-height:1.35;font-weight:600;margin:0 0 14px}
