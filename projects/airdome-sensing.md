@@ -11,44 +11,28 @@ description: "Sensing-system design, sensor selection and field load-cell measur
 
 This work combines **sensing-system design and fabrication, sensor selection, and field data acquisition** for air-supported agricultural domes. Structural and ground characteristics informed the instrumentation layout, while structural-response and environmental measurements were considered together to support safety assessment. The system is intended for deployment in **Damyang, Republic of Korea**, and **Abu Dhabi, United Arab Emirates**, with initial load-cell measurements carried out at Damyang.
 
-## Sensing-system design and development
-
-### Site-informed instrumentation layout
-
-Foundation structural members and ground conditions were investigated to determine **sensor locations and the number of measurement points**. These findings informed the instrumentation plan for monitoring the response of the foundation and supporting members to external loads.
-
-### Structural and environmental sensing
-
-Sensor options were investigated for monitoring **displacement, angular velocity and load-induced stress** in structural members. The review included accelerometer–gyroscope units, strain gauges and related instrumentation, alongside load cells for cable-tension measurements.
-
-Environmental sensors and weather-observation systems were also evaluated for tracking **wind speed, temperature and humidity**, so that external conditions could be considered when interpreting structural response and assessing safety.
-
-### Equipment selection and system integration
-
-Equipment was selected by considering **measurement range, resolution, control-system compatibility and cost** together. This supported the configuration of a practical measurement and data-acquisition system suited to the target structural responses and field conditions.
-
-### Long-term, multi-site data acquisition
-
-A sensing system was **designed and fabricated** to support stable, long-term data collection across multiple greenhouses. Remote-control and data-transmission functions were incorporated into the design to support integrated data management on a central server.
-
 ## Deployment sites and installation plans
 
 The domestic deployment is planned for the existing air-supported dome at **Damyang Air House**. The overseas deployment is planned for a future air-dome installation in an **agricultural district of Abu Dhabi**. The photographs below show the existing Korean dome and the agricultural setting for the planned UAE installation, respectively.
 
 <div class="deployment-site-grid">
 <figure class="deployment-site-figure"><a href="/assets/images/airdome-damyang-site.png" target="_blank" rel="noopener"><img src="/assets/images/airdome-damyang-site.png" alt="Existing white air-supported agricultural dome at Damyang Air House, Republic of Korea" loading="lazy" width="643" height="352"></a><figcaption><strong>Damyang Air House, Republic of Korea.</strong> Exterior of the existing air-supported dome selected for the planned sensing-system deployment. Initial load-cell installation and cable-tension measurements at this site provide the practical basis for further sensor integration.</figcaption></figure>
-<figure class="deployment-site-figure deployment-site-abudhabi"><a class="abudhabi-photo-pair" href="/assets/images/airdome-abudhabi-planned-site.png" target="_blank" rel="noopener"><img src="/assets/images/airdome-abudhabi-planned-site.png" alt="Existing greenhouse facilities in an agricultural district of Abu Dhabi associated with a planned air-dome installation" loading="lazy" width="443" height="361"><img src="/assets/images/airdome-abudhabi-planned-site-2.png" alt="Second supplied photograph of greenhouse facilities at the planned Abu Dhabi air-dome site" loading="lazy" width="443" height="361"></a><figcaption><strong>Planned air-dome site, Abu Dhabi, United Arab Emirates.</strong> Existing greenhouse facilities in the agricultural district where an air-supported dome is planned. The photograph documents the local agricultural setting; installation of the air dome and its sensing system is planned.</figcaption></figure>
+<figure class="deployment-site-figure deployment-site-abudhabi"><a class="abudhabi-photo-pair" href="/assets/images/airdome-abudhabi-planned-site.png" target="_blank" rel="noopener"><img src="/assets/images/airdome-abudhabi-planned-site.png" alt="Existing greenhouse facilities in an agricultural district of Abu Dhabi associated with a planned air-dome installation" loading="lazy" width="443" height="361"><img src="/assets/images/airdome-abudhabi-greenhouse-interior.png" alt="Interior of an existing greenhouse in Abu Dhabi, showing crop rows, shade screens and irrigation lines" loading="lazy" width="600" height="418"></a><figcaption><strong>Planned air-dome site, Abu Dhabi, United Arab Emirates.</strong> Exterior (left) and interior (right) of existing greenhouse facilities in the agricultural district identified for a future air-dome installation. The interior view shows crop rows, shade screens and irrigation lines. These photographs document the local agricultural setting; the air dome and its sensing system are planned for installation.</figcaption></figure>
 </div>
 
-System design and fabrication have been carried out. The photographs describe the **planned field deployment locations**, while the measurements below document the **initial load-cell implementation at Damyang**.
+The sites shown are intended for full sensing-system deployment; the field measurements below document the initial load-cell implementation at Damyang.
 
 <span id="system" class="section-anchor"></span>
 
 ## System overview & field measurement
 
+The sensing system was **designed and fabricated** using foundation-member and ground investigations to define **sensor locations and measurement points**. Load cells, accelerometer–gyroscope units, strain gauges and environmental monitoring options were evaluated to capture structural response alongside **wind speed, temperature and humidity** for safety assessment. Equipment selection balanced **measurement range, resolution, control-system compatibility and cost**.
+
+The system design supports **long-term, multi-greenhouse data collection**, with remote control and data transmission for central-server management. The layout below shows sensor placement, wiring, power supply and acquisition nodes; the field photograph documents the initial load-cell implementation at Damyang.
+
 <div class="research-split sensing-overview"><figure class="research-figure "><a href="/assets/images/airdome-system-figure.png" target="_blank" rel="noopener" aria-label="Open full-size figure: Complete air-dome monitoring diagram including sensor locations, wiring, power supply and acquisition nodes"><img src="/assets/images/airdome-system-figure.png" alt="Complete air-dome monitoring diagram including sensor locations, wiring, power supply and acquisition nodes" loading="lazy"></a><figcaption><strong>Monitoring system concept.</strong> Original sensor-placement, wiring and power-supply figure prepared for the air-dome project. <a href="/assets/images/airdome-system-figure.png" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><figure class="research-figure "><a href="/assets/images/field-load-cell.jpg" target="_blank" rel="noopener" aria-label="Open full-size figure: Actual load-cell installation at an air-dome cable anchor"><img src="/assets/images/field-load-cell.jpg" alt="Actual load-cell installation at an air-dome cable anchor" loading="lazy"></a><figcaption><strong>In the field.</strong> Load cells installed at the Damyang outer-dome anchor, 15 June 2026. <a href="/assets/images/field-load-cell.jpg" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure></div>
 
-The diagram summarises the sensing-system layout, including sensor positions, wiring, power supply and acquisition nodes. The field photograph documents the Damyang load-cell implementation: a measurement chain connecting the cable anchor to the data logger. This field work forms one part of the broader system design and fabrication described above.
+
 
 <span id="field" class="section-anchor"></span>
 
