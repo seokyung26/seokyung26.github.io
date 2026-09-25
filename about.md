@@ -8,37 +8,32 @@ permalink: /about/
 <div class="about-profile">
 <section aria-labelledby="education-heading">
 <h2 id="education-heading">Education</h2>
-<div class="about-degree">
-<h3>Pusan National University</h3>
-<p><strong>M.S. in Bio-Industrial Machinery Engineering</strong></p>
-<p class="about-date">March 2025 – February 2027 (expected)</p>
-<p>GPA: <strong>4.36 / 4.50</strong></p>
-<p>Precision Agriculture and Smart Sensing System Lab.</p>
+<div class="about-degree timeline-list-entry">
+<p class="timeline-period"><strong>March 2025 – February 2027 (expected)</strong><br><strong>Pusan National University</strong></p>
+<ul>
+<li><strong>M.S. in Bio-Industrial Machinery Engineering</strong> · GPA: 4.36 / 4.50</li>
+<li>Precision Agriculture and Smart Sensing System Lab.</li>
+</ul>
 </div>
-<div class="about-degree">
-<h3>Pusan National University</h3>
-<p><strong>B.S. in Plant Bioscience</strong></p>
-<p class="about-date">March 2017 – February 2025</p>
-<p>GPA: <strong>4.26 / 4.50</strong></p>
-<p>Minor in Bio-Industrial Machinery Engineering</p>
-<p>Summa Cum Laude; President’s List.</p>
+<div class="about-degree timeline-list-entry">
+<p class="timeline-period"><strong>March 2017 – February 2025</strong><br><strong>Pusan National University</strong></p>
+<ul>
+<li><strong>B.S. in Plant Bioscience</strong> · GPA: 4.26 / 4.50</li>
+<li><strong>Minor:</strong> Bio-Industrial Machinery Engineering</li>
+<li>Summa Cum Laude; President’s List.</li>
+</ul>
 </div>
 </section>
 
 <section aria-labelledby="skills-heading">
 <h2 id="skills-heading">Technical skills</h2>
-<dl class="about-skills">
-<dt>Programming and data analysis</dt>
-<dd><p>Python, NumPy, pandas and SciPy.</p><p>Sensor time-series processing, force–deformation analysis, nonlinear model fitting and research visualisation.</p></dd>
-<dt>Robotics and mobile sensing</dt>
-<dd><p>ROS 2, Unitree Go2, RTK-GNSS and LiDAR/IMU.</p><p>Timestamped robot and sensor recording, greenhouse microclimate mapping, and matching ground images to GNSS positions and robot travel routes.</p></dd>
-<dt>Instrumentation and data acquisition</dt>
-<dd><p>Force sensors, load cells, Raspberry Pi, Arduino and RS485.</p><p>Force measurements for robotic compression tests, environmental measurements and field load-cell acquisition with CSV logging.</p></dd>
-<dt>Imaging and plant phenotyping</dt>
-<dd><p>RGB and hyperspectral imaging; SAM, YOLOv8, Roboflow and ImageJ.</p><p>Fruit-region segmentation and spectral comparison; soybean leaf-image analysis under drought stress and location-linked ground-image datasets.</p></dd>
-<dt>Finite-element modelling</dt>
-<dd><p>Abaqus/CAE and Abaqus/Standard.</p><p>Three-dimensional pile–soil contact models, displacement-controlled uplift simulations, geometric parameter studies and soil plastic-zone interpretation.</p></dd>
-</dl>
+<div class="about-skills-list">
+<section class="timeline-list-entry"><h3>Programming and data analysis</h3><ul><li>Python, NumPy, pandas and SciPy.</li><li>Sensor time-series processing, force–deformation analysis, nonlinear model fitting and research visualisation.</li></ul></section>
+<section class="timeline-list-entry"><h3>Robotics and mobile sensing</h3><ul><li>ROS 2, Unitree Go2, RTK-GNSS and LiDAR/IMU.</li><li>Timestamped robot and sensor recording, greenhouse microclimate mapping, and matching ground images to GNSS positions and robot travel routes.</li></ul></section>
+<section class="timeline-list-entry"><h3>Instrumentation and data acquisition</h3><ul><li>Force sensors, load cells, Raspberry Pi, Arduino and RS485.</li><li>Force measurements for robotic compression tests, environmental measurements and field load-cell acquisition with CSV logging.</li></ul></section>
+<section class="timeline-list-entry"><h3>Imaging and plant phenotyping</h3><ul><li>RGB and hyperspectral imaging; SAM, YOLOv8, Roboflow and ImageJ.</li><li>Fruit-region segmentation and spectral comparison; soybean leaf-image analysis under drought stress and location-linked ground-image datasets.</li></ul></section>
+<section class="timeline-list-entry"><h3>Finite-element modelling</h3><ul><li>Abaqus/CAE and Abaqus/Standard.</li><li>Three-dimensional pile–soil contact models, displacement-controlled uplift simulations, geometric parameter studies and soil plastic-zone interpretation.</li></ul></section>
+</div>
 </section>
 
 <section aria-labelledby="coursework-heading">
@@ -92,11 +87,12 @@ permalink: /about/
 
 <section aria-labelledby="training-heading">
 <h2 id="training-heading">Additional training</h2>
-<ul class="about-training">
-<li><strong>Modeling Contact with Abaqus/Standard</strong><br>VPK PLM Solution Training Center <span class="about-date">· 25–26 June 2026</span></li>
-<li><strong>Introduction to Abaqus/CAE</strong><br>VPK PLM Solution Training Center <span class="about-date">· 18–20 March 2026</span></li>
+<div class="timeline-list-entry">
+<p class="timeline-period"><strong>2026</strong><br><strong>VPK PLM Solution Training Center</strong></p>
+<ul>
+<li><strong>25–26 June:</strong> Modeling Contact with Abaqus/Standard</li>
+<li><strong>18–20 March:</strong> Introduction to Abaqus/CAE</li>
 </ul>
+</div>
 </section>
 </div>
-
-[CV (PDF)](/assets/documents/Seokyung_Park_CV.pdf) · [Education](/education/) · [Research experience](/experience/) · [Email](mailto:seokyung.park@pusan.ac.kr)
