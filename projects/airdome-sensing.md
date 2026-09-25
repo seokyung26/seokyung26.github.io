@@ -34,7 +34,6 @@ Load cells were installed at an outer-dome wire anchor at Damyang on **15 June 2
 
 **Tools and methods:** load cells · cable-tension measurement · Raspberry Pi · USB–RS485 · CSV logging · field instrumentation
 
-**Code availability:** Implementation code is not publicly available.
 
 
 <section class="project-funding muted-funding" aria-labelledby="funding-heading">
