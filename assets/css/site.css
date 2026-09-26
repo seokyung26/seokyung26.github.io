@@ -159,5 +159,6 @@
 .personal-site[data-page="home"] .name{font-size:44px;font-weight:900;line-height:1.2}
 .personal-site #research>h2,.personal-site #home-about-heading,.personal-site:is([data-page="about"],[data-page="publications"]) .page-heading>h1{font-size:34px;font-weight:800;line-height:1.3}
 .personal-site[data-page="publications"] .citation-list li{font-size:14px}
+.personal-site .about-profile>section>h2,.personal-site .publications-cv .publication-group>h2,.personal-site .publications-cv .talks>h2{color:#245b78}
 @media(max-width:600px){.personal-site[data-page="home"] .name{font-size:38px}.personal-site #research>h2,.personal-site #home-about-heading,.personal-site:is([data-page="about"],[data-page="publications"]) .page-heading>h1{font-size:30px}}
 .academic-project .article-content .project-status,.academic-project .article-content .study-status{font-size:inherit;line-height:inherit;text-align:left;font-weight:400;color:inherit;margin:0 0 22px!important}
