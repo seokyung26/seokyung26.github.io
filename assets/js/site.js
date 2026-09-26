@@ -38,7 +38,7 @@ document.querySelectorAll('.research-tabs').forEach(tabs => {
     if (updateUrl && location.hash !== links[index].hash) history.pushState(null, '', links[index].hash);
   }
   const fromHash = () => links.findIndex(link => link.hash === location.hash);
-  activate(fromHash());
+  activate(Math.max(0, fromHash()));
   links.forEach((link, i) => {
     link.addEventListener('click', event => { event.preventDefault(); activate(i, true); });
     link.addEventListener('keydown', event => {
