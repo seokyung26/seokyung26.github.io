@@ -6,7 +6,7 @@ permalink: /research/quadruped-research/
 description: "Bringing mobile sensing into greenhouses and field surveys, with plant phenotyping as the next research direction."
 ---
 
-<section class="hero project-hero"><div class="hero-body"><div class="container is-max-desktop"><div class="columns is-centered"><div class="column has-text-centered"><p class="project-number">PROJECT 02</p><h1 class="title is-1 publication-title">Quadruped Robotics<br>for Agricultural Sensing</h1></div></div></div></div></section>
+<section class="hero project-hero"><div class="hero-body"><div class="container is-max-desktop"><div class="columns is-centered"><div class="column has-text-centered"><p class="project-number">PROJECT 01</p><h1 class="title is-1 publication-title">Quadruped Robotics<br>for Agricultural Sensing</h1></div></div></div></div></section>
 
 
 Three connected research directions, from environmental mapping to crop observation. Select a card to explore each study.
