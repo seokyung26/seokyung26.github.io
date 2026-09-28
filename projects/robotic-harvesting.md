@@ -6,7 +6,7 @@ permalink: /research/robotic-harvesting/
 description: "Connecting gripping speed, contact mechanics and hyperspectral imaging to understand delayed tomato damage."
 ---
 
-<section class="hero project-hero"><div class="hero-body"><div class="container is-max-desktop"><div class="columns is-centered"><div class="column has-text-centered"><p class="project-number">PROJECT 02</p><h1 class="title is-1 publication-title paper-long-title">Speed-Dependent Control of Robotic Gripper for Tomato Harvesting to Minimise Compression-Induced Damage</h1><div class="is-size-5 publication-authors"><a href="/">Seokyung Park</a>, Jisu Song, Hyeonjun Hwang,<br>Gunhui Park, Jaesung Park</div><div class="publication-links"><span class="link-block"><a class="button is-normal is-rounded is-dark" href="#results">Results</a></span></div></div></div></div></div></section>
+<section class="hero project-hero"><div class="hero-body"><div class="container is-max-desktop"><div class="columns is-centered"><div class="column has-text-centered"><p class="project-number">PROJECT 02</p><h1 class="title is-1 publication-title paper-long-title">Speed-Dependent Control of Robotic Gripper for Tomato Harvesting to Minimise Compression-Induced Damage</h1><div class="is-size-5 publication-authors"><a href="/">Seokyung Park</a>, Jisu Song, Hyeonjun Hwang,<br>Gunhui Park, Jaesung Park</div></div></div></div></div></section>
 
 <p class="project-status"><strong>Status:</strong> <em>Biosystems Engineering</em> — <strong>Under review.</strong></p>
 

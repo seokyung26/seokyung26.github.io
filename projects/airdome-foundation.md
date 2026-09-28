@@ -6,7 +6,7 @@ permalink: /research/airdome-foundation/
 description: "Numerical analysis of expandable X-Pile foundations: effects of wing dimensions and inclination on uplift resistance in sandy soil."
 ---
 
-<section class="hero project-hero"><div class="hero-body"><div class="container is-max-desktop"><div class="columns is-centered"><div class="column has-text-centered"><p class="project-number">PROJECT 03</p><h1 class="title is-1 publication-title xpile-paper-title">Analysis of uplift resistance characteristics of expandable piles in sandy soil with varying wing inclination and dimensions</h1><div class="is-size-5 publication-authors"><a href="/">Seokyung Park</a>, Jaesung Park, Junbong Jang,<br>Daniel Park, Sein Kwon, Minjoo Kim, Gaeun Choi</div><div class="publication-links"><span class="link-block"><a class="button is-normal is-rounded is-dark" href="#results">Results</a></span></div></div></div></div></div></section>
+<section class="hero project-hero"><div class="hero-body"><div class="container is-max-desktop"><div class="columns is-centered"><div class="column has-text-centered"><p class="project-number">PROJECT 03</p><h1 class="title is-1 publication-title xpile-paper-title">Analysis of uplift resistance characteristics of expandable piles in sandy soil with varying wing inclination and dimensions</h1><div class="is-size-5 publication-authors"><a href="/">Seokyung Park</a>, Jaesung Park, Junbong Jang,<br>Daniel Park, Sein Kwon, Minjoo Kim, Gaeun Choi</div></div></div></div></div></section>
 
 <p class="project-status"><strong>Status:</strong> Manuscripts in preparation.</p>
 
