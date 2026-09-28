@@ -138,7 +138,7 @@
 .article-content .rs-deployment-heading{font-size:18px;margin:24px 0 14px}
 .rs-deployment-media{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:center;justify-content:center;margin:0 auto 26px;max-width:740px}
 .article-content .rs-deployment-media figure{margin:0;min-width:0;background:#fff}
-.rs-deployment-media .rs-field img{width:100%;height:210px;object-fit:contain}
+.rs-deployment-media .rs-field img{width:100%;height:auto;aspect-ratio:3/4;object-fit:contain}
 .rs-deployment-video video{display:block;width:100%;height:auto;max-height:210px;background:#fff;border-radius:4px}
 .publications-cv .publication-group{margin:32px 0;padding:0;border:0}.publications-cv .publication-group h2,.publications-cv .talks h2{font-size:22px;border-bottom:1px solid #dce3e7;padding-bottom:10px;margin-bottom:18px}
 .article-content .deployment-site-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.46fr);gap:20px;align-items:start}.deployment-site-grid>.deployment-site-figure:first-child{width:100%;max-width:none;margin:0}.deployment-site-grid>.deployment-site-figure:first-child>a{height:auto;aspect-ratio:643/352}.deployment-site-grid>.deployment-site-figure:first-child img{width:100%;height:auto}.deployment-site-abudhabi .abudhabi-photo-pair{display:grid;grid-template-columns:443fr 518.18fr;gap:0;height:auto;max-width:886px;margin:0 auto}.academic-project .deployment-site-abudhabi .abudhabi-photo-pair img{width:100%;height:auto;max-height:none;object-fit:contain}@media(max-width:600px){.article-content .deployment-site-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.46fr);gap:12px}.deployment-site-grid .deployment-site-figure figcaption{font-size:11px;line-height:1.55}}
@@ -162,3 +162,7 @@
 .personal-site .about-profile>section>h2,.personal-site .publications-cv .publication-group>h2,.personal-site .publications-cv .talks>h2{color:#245b78}
 @media(max-width:600px){.personal-site[data-page="home"] .name{font-size:38px}.personal-site #research>h2,.personal-site #home-about-heading,.personal-site:is([data-page="about"],[data-page="publications"]) .page-heading>h1{font-size:30px}}
 .academic-project .article-content .project-status,.academic-project .article-content .study-status{font-size:inherit;line-height:inherit;text-align:left;font-weight:400;color:inherit;margin:0 0 22px!important}
+
+/* Preserve full portrait media while keeping landscape video sizing. */
+.rs-deployment-media .rs-portrait-video video{width:100%;height:auto;max-height:none;aspect-ratio:3/4;object-fit:contain}
+@media(max-width:600px){.rs-deployment-media{grid-template-columns:minmax(0,1fr);max-width:360px}.rs-deployment-media .rs-field img{height:auto}.rs-deployment-media .rs-portrait-video video{max-height:none}}
