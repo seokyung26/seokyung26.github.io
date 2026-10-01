@@ -17,6 +17,7 @@ permalink: /publications/
 <h2>Under review</h2>
 <ol class="citation-list">
 <li><p><strong>Park, S.</strong>, Song, J., Hwang, H., Park, G., and Park, J. (2026). <span class="citation-title">Speed-dependent control of robotic gripper for tomato harvesting to minimise compression-induced damage.</span> <em>Biosystems Engineering</em>.</p><div class="citation-links"><a href="/research/robotic-harvesting/">Research overview →</a></div></li>
+<li><p><strong>Park, S.</strong>, Park, J., Jang, J., Park, D., Kwon, S., Kim, M., and Choi, G. <span class="citation-title">Analysis of uplift resistance characteristics of expandable piles in sandy soil with varying wing inclination and dimensions.</span> <em>The Korean Society of Agricultural Engineers</em>.</p><div class="citation-links"><a href="/research/airdome-foundation/">Research overview →</a></div></li>
 </ol>
 </section>
 
@@ -24,7 +25,6 @@ permalink: /publications/
 <h2>Manuscripts in preparation</h2>
 <ol class="citation-list">
 <li><p>Hwang, H.<sup>†</sup>, <strong>Park, S.</strong><sup>†</sup>, and Park, J. <span class="citation-title">Greenhouse microclimate mapping using a quadruped robot to assess fixed sensor representativeness.</span></p><p><sup>†</sup>Equal contribution.</p><div class="citation-links"><a href="/research/quadruped-research/">Research overview →</a></div></li>
-<li><p><strong>Park, S.</strong>, Park, J., Jang, J., Park, D., Kwon, S., Kim, M., and Choi, G. <span class="citation-title">Analysis of uplift resistance characteristics of expandable piles in sandy soil with varying wing inclination and dimensions.</span></p><div class="citation-links"><a href="/research/airdome-foundation/">Research overview →</a></div></li>
 </ol>
 </section>
 
