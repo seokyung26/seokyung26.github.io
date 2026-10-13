@@ -1,0 +1,1030 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>1012 r03 포기·꼬투리</title><style>body{font:16px/1.6 "Malgun Gothic",sans-serif;max-width:1180px;margin:30px auto;padding:0 20px;color:#0f172a;background:#fff}table{border-collapse:collapse;font-size:13px;margin:12px 0}th,td{border:1px solid #cbd5e1;padding:4px 7px}th{background:#f1f5f9}img{max-width:100%;border:1px solid #e2e8f0;margin:6px 0}code{background:#f1f5f9;padding:1px 4px}pre{background:#f1f5f9;padding:10px;overflow-x:auto}a{color:#0369a1}blockquote{margin:12px 0;padding:8px 14px;background:#fef9c3;border-left:4px solid #ca8a04}table{display:block;max-width:100%;overflow-x:auto}video{max-width:100%}nav{margin-bottom:18px;font-size:14px}</style><nav aria-label="사이트로 돌아가기"><a href="/research/quadruped-research/#phenotyping">← Phenotyping (M.S. Thesis Research)</a></nav><h1>1012 r03 포기·꼬투리 보고서 — 포기 분할부터 포기별 착협고까지</h1>
+<p>작성 2026-10-12 · 데이터 2026-10-12 콩 포장 r03 행 내부 주행 (D405, 0.33 m 근접, R8)
+관련 문서: <a href="REPORT_KO.html">REPORT_KO.html</a> (촬영 → RTK → pose → 3D 행 → 20 cm 구간 착협고)</p>
+<blockquote>
+<p><strong>채택 결과 = SAM3 추적 객체 51개(10개씩 나눠 추적) + v2(줄기 밑동 보정 + 3D 위치 배정).</strong> 추적 객체 16개 버전은 5절에서 비교한다.</p>
+</blockquote>
+<hr />
+<h2>0. 요약</h2>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>한 일</th>
+<th>핵심 결과</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 포기 분할</td>
+<td>SAM3 예시 상자 2개(st090) → 동영상 추적 + 새 포기 찾기(2 → 16 → 51개) → 10개씩 나눠 최종 추적 → D405 깊이로 3D 밑동 위치 보정</td>
+<td>약 9.4 m 행에서 <strong>64포기</strong>, 188지점 중 187지점에서 포기가 잡힘</td>
+</tr>
+<tr>
+<td>2 꼬투리 배정 (마스크)</td>
+<td>PodNet 꼬투리(<code>4_pods</code>)를 포기 마스크에 배정, 3D 병합, 3프레임 이상만 유효</td>
+<td>유효 꼬투리 <strong>80 %</strong>가 마스크로 배정됨</td>
+</tr>
+<tr>
+<td>3 v2 보정</td>
+<td>흙 위 3–10 cm 줄기로 밑동 보정, 같은 줄기의 포기 합침, 마스크 밖 꼬투리는 x ±8 cm 안 가장 가까운 밑동에 배정</td>
+<td><strong>55포기</strong>(SAM3 54 + 새 후보 1). 유효 꼬투리 배정 <strong>95 %</strong>. <strong>42포기</strong>에서 값이 나옴</td>
+</tr>
+<tr>
+<td><strong>결과</strong></td>
+<td>포기별 최하위·최상위 유효 꼬투리의 흙 위 높이</td>
+<td><strong>최하위 착협고 중앙값 23.5 cm</strong> (5.3–41.7 cm), 10 cm 미만 6포기, 12 cm 미만 8포기. 최상위 중앙값 40.2 cm(하한값)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>모든 수치는 <strong>실측 정답 없이 구한 내부 추정값</strong>이다.</li>
+<li>최하위 꼬투리 42개 중 31개는 20 cm 구간 분석(<code>4_pods/lowest_pods.csv</code>)에서 이미 육안으로 꼬투리임을 확인한 것이고, 11개는 아직 확인하지 않았다.</li>
+<li>행 전체 최하위 착협고는 세 방법이 2 cm 안에서 맞는다: 20 cm 구간 21.6 cm, 16개 버전 v2 23.4 cm, <strong>51개 버전 v2 23.5 cm</strong>.</li>
+</ul>
+<hr />
+<h2>1. 포기 분할과 추적 (<code>5_plants/plant_video_b51.py</code> → <code>5_plants/plant_video_b51/</code>)</h2>
+<h3>1.1 방법</h3>
+<p>1002 행 10 방법(<code>REPORT_ROW10_PLANT_POD_KO</code> 2절)을 D405 세션에 맞게 옮겼다. 1002와 달리 <strong>DA3 없이 D405 센서 깊이</strong>(0.15–0.6 m)를 그대로 쓴다.</p>
+<ol>
+<li><strong>기준 지점(st090)에서 시작한다.</strong> 사람이 포기 2개에 상자를 쳤다(원본 1280×720 좌표 x380–720 / x900–1280). SAM3 이미지 모델이 그 사진의 포기를 각각 분할했다.</li>
+<li><strong>새 포기 찾기 (2라운드):</strong> SAM3 동영상 추적기로 188지점 전체에 앞뒤로 추적한다. 그다음 4지점마다 그 사진에서 추적 중인 포기의 상자를 예시로 다시 넣어, 아직 추적되지 않은 포기를 추가한다.</li>
+<li><strong>나눠서 최종 추적:</strong> 51개를 한꺼번에 추적하면 GPU 메모리(16 GB)가 넘쳐 지점당 4분까지 느려졌다. 그래서 객체를 기준 지점 순서로 <strong>10개씩 6묶음</strong>으로 나눈다. 묶음마다 그 묶음의 기준 지점 범위 ±30지점만 추적한다(지점 간격 약 5 cm, 한 포기는 15–25지점에서 보인다). 묶음 하나에 1–1.5분, 최종 추적 전체가 약 7분 걸렸다. 찾은 객체(<code>objects.npz</code>)와 묶음 결과(<code>tracks/</code>)는 저장해 두어, 끊겨도 이어서 돌릴 수 있다.</li>
+<li><strong>크기 조건:</strong> 포기 마스크는 화면의 1.5–35 %, 높이 250화소 이상, 폭은 화면의 55 % 이하다.</li>
+<li><strong>3D로 추적 오류를 고친다.</strong> 각 마스크를 D405 깊이와 채택 pose(<code>icp_lf</code>)로 행 좌표계에 올린다. 포기는 땅에 고정돼 있으므로 밑동 x(마스크 하위 15 % 점의 x 중앙값)는 움직이면 안 된다.
+<ul>
+<li>같은 추적 번호에서 밑동이 6 cm 넘게 튀거나 3지점 넘게 끊기면 자른다.</li>
+<li>3지점 미만 조각은 버린다.</li>
+<li>남은 조각을 밑동 위치로 다시 묶는다(5 cm 이내면 같은 포기).</li>
+</ul>
+</li>
+<li><strong>키포인트:</strong> 마스크 모양에서 밑동·꼭대기·줄기 선을 규칙으로 계산했다(<code>keypoints_segpose.json</code>). R8 근접 영상이라 위아래가 화면에서 잘린다.</li>
+</ol>
+<p><strong>3D란:</strong> D405는 스테레오 깊이 카메라라 화소마다 카메라까지의 거리를 잰다. 화소 위치와 거리, 카메라 내부 보정값으로 카메라 기준 3D 좌표를 구하고, 사진마다 카메라 pose(ICP + RTK + 중력)로 하나의 행 좌표계(x = 줄 방향, y = 옆, z = 위)에 옮긴다. 높이는 그 자리 흙 높이를 뺀 값이다(<code>4_pods/soil_grid.npz</code>).</p>
+<h3>1.2 추적 라운드</h3>
+<table>
+<thead>
+<tr>
+<th>라운드</th>
+<th style="text-align:right">추적 객체</th>
+<th style="text-align:right">새로 찾음</th>
+<th style="text-align:right">포기가 잡힌 지점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td style="text-align:right">2 → 16</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">139 / 188</td>
+</tr>
+<tr>
+<td>1</td>
+<td style="text-align:right">16 → 51</td>
+<td style="text-align:right">35</td>
+<td style="text-align:right">187 / 188</td>
+</tr>
+<tr>
+<td>2 (전파만, 10개씩 6묶음)</td>
+<td style="text-align:right">51</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">188 / 188</td>
+</tr>
+</tbody>
+</table>
+<h3>1.3 결과 (<code>plant_traits.csv</code>, <code>summary.json</code>)</h3>
+<ul>
+<li>3D 정리 뒤 <strong>64포기</strong>다. 밑동 x는 0.27–9.82 m에 있다. 포기가 하나라도 남은 지점은 <strong>187 / 188</strong>이다.</li>
+<li><strong>밑동 간격 중앙값 15 cm</strong>로, 포장 포기 간격(15 cm 이하)과 맞는다. 30 cm 넘게 비는 곳은 4곳(최대 35 cm)이다.</li>
+<li>4지점 이하에서만 보이는 포기는 13개, 그중 점이 1,000개 미만인 조각은 7개다.</li>
+<li><strong>마스크가 흙까지 내려오지 않는다.</strong> 마스크의 가장 낮은 점은 흙 위 중앙 11.1 cm다. 5 cm 미만까지 내려온 포기는 15개, 5–15 cm는 21개, 15 cm 이상에서 끝나는 포기는 28개다. 아래쪽 잎·낙엽·로봇 다리 덮개에 가려 SAM3가 줄기 아래를 포기에 넣지 못한다. 3절의 v2 보정이 이 문제를 다룬다.</li>
+</ul>
+<p><img src="5_plants/plant_video_b51/panels/st090.jpg" alt="st090: RGB | D405 깊이 | SAM3 포기" /></p>
+<p><em>st090 (기준 지점). 오른쪽 칸 색 = 포기, 흰 선 = 줄기 선, 빨강 = 밑동, 하늘색 = 꼭대기. 왼쪽 아래 파란 물체는 로봇 고관절 덮개다.</em></p>
+<p><img src="5_plants/plant_pods_b51/fig_plants_3d.png" alt="포기 3D (위·옆)" /></p>
+<p><video preload="metadata" controls loop muted playsinline style="width:100%" src="5_plants/plant_video_b51/panels.mp4"></video></p>
+<hr />
+<h2>2. 꼬투리를 포기 마스크에 배정 (<code>5_plants/plant_pods.py</code>, <code>run_b51_pods.py</code> → <code>5_plants/plant_pods_b51/</code>)</h2>
+<ol>
+<li><strong>꼬투리:</strong> <code>4_pods</code>의 PodNet 검출 3,454개(D405 깊이로 3D, 크기 필터 통과)를 쓴다.</li>
+<li><strong>포기 배정:</strong> 검출 마스크를 11화소 넓혀 그 지점의 포기 지도(<code>plant_video_b51/masks/stNNN.npz</code>)와 겹쳐 본다. 30 % 이상 한 포기에 덮이면 그 포기로 배정한다.</li>
+<li><strong>3D 병합:</strong> 점수 순서로, 2 cm 안이고 같은 프레임이 없으면 같은 꼬투리로 합친다(<code>4_pods/pod_zone.py</code>와 같은 규칙). 꼬투리의 포기 = 그 검출들의 다수결이다. <strong>3프레임 이상</strong>이면 유효로 본다.</li>
+<li><strong>높이:</strong> 꼬투리 중심 z − 그 자리 흙 높이.</li>
+</ol>
+<p><strong>결과:</strong> 검출 3,454개 중 1,790개(52 %)가 포기에 배정됐다. 유효 꼬투리 416개 중 <strong>332개(80 %)</strong>가 배정됐다. 착협고가 나온 포기는 35 / 64이고, 최하위 착협고 중앙값은 27.4 cm다. 아래 높이별 표처럼 <strong>낮은 꼬투리일수록 마스크에 덜 덮여</strong> 이 값은 위로 치우친다.</p>
+<hr />
+<h2>3. v2: 줄기 밑동 보정 + 3D 위치 배정 (<code>5_plants/plant_pods_v2.py</code>, <code>run_b51_pods.py</code> → <code>5_plants/plant_pods_v2_b51/</code>)</h2>
+<h3>3.1 방법</h3>
+<ol>
+<li><strong>줄기 찾기:</strong> 3D 행 점군(<code>3_cloud/row_icp_lf_3mm.ply</code>)에서 흙 위 2–14 cm 점의 법선을 구한다. 수직면(|nz| &lt; 0.4)만 남긴다. 흙과 낙엽은 평평해서 빠진다. 1 cm 격자 칸 중 3–5 / 5–7.5 / 7.5–10 cm 세 층 모두에 수직면 점이 있는 칸을 줄기 후보로 본다. 행 방향(x)으로 후보 칸의 밀도(1.5 cm 가우시안)를 구하고, 8 cm 이상 떨어진 봉우리를 줄기로 잡는다 → <strong>줄기 56개</strong> (<code>stems.csv</code>).</li>
+<li><strong>밑동 보정:</strong> SAM3 포기마다 마스크 밑동에서 x ±8 cm, y ±15 cm 안의 가장 가까운 줄기로 밑동을 옮긴다. 없으면 마스크 밑동을 그대로 쓴다. 64포기 중 43포기가 줄기에 붙었다(옮긴 거리: 중앙 2.3 cm, P90 5.2 cm).</li>
+<li><strong>같은 줄기의 포기 합치기:</strong> 같은 줄기에 붙은 포기는 SAM3가 한 포기를 나눈 것으로 보고 합쳤다. 9건이다: P9+P10, P14+P15, P20+P23+P21, P28+P29, P36+P37, P45+P46, P50+P51, P57+P58, P59+P60. 그래서 SAM3 포기는 54개가 된다.</li>
+<li><strong>놓친 포기 추가:</strong> 근처(x ±8 cm)에 SAM3 포기가 없는 줄기 중, 배정 안 된 유효 꼬투리가 3개 이상 모인 곳을 새 후보 포기로 추가한다. <strong>N0 하나</strong>(x 8.84 m, 꼬투리 5개)다. 16개 버전에서는 8개였다. 51개 버전에서는 SAM3가 대부분을 직접 찾았다.</li>
+<li><strong>배정:</strong> 마스크로 배정된 꼬투리는 그대로 둔다. 안 덮인 꼬투리는 x ±8 cm, y ±15 cm 안에서 가장 가까운 밑동의 포기에 붙인다. 포기 간격이 15–18 cm라서 ±8 cm로 잡았다.</li>
+<li><strong>육안 판정 재사용:</strong> 20 cm 구간 분석의 육안 판정(<code>4_pods/lowest_pods.csv</code>)을 그대로 쓴다. 꼬투리 번호가 같다. '제외' 5개(#451, #702, #1078, #1242, #1588)는 뺐다. 뺀 결과 유효 꼬투리는 411개다.</li>
+</ol>
+<p><img src="5_plants/plant_pods_v2_b51/fig_bases_map.png" alt="밑동 보정과 배정 (위에서 본 행)" /></p>
+<p><em>회색 = 줄기 후보 칸, 점선 = 줄기 봉우리, ▼ = 포기 밑동(화살표: 마스크 밑동 → 줄기), ◆ = 새 후보 포기, ● = 마스크로 배정된 꼬투리, ■ = x로 배정된 꼬투리, 주황 빈 원 = 미배정.</em></p>
+<h3>3.2 결과 (<code>plant_pod_height_v2.csv/.json</code>, <code>pods_v2.csv</code>, <code>bases.csv</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th style="text-align:right">마스크만 (2절)</th>
+<th style="text-align:right"><strong>v2</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>포기</td>
+<td style="text-align:right">64</td>
+<td style="text-align:right"><strong>55</strong> (SAM3 54 + 새 후보 1)</td>
+</tr>
+<tr>
+<td>유효 꼬투리 중 배정</td>
+<td style="text-align:right">330 / 411 (80 %)</td>
+<td style="text-align:right"><strong>392 / 411 (95 %)</strong></td>
+</tr>
+<tr>
+<td>착협고가 나온 포기</td>
+<td style="text-align:right">35</td>
+<td style="text-align:right"><strong>42</strong></td>
+</tr>
+<tr>
+<td>최하위 착협고 중앙값 (최소–최대)</td>
+<td style="text-align:right">27.4 cm (6.8–43.0)</td>
+<td style="text-align:right"><strong>23.5 cm</strong> (5.3–41.7)</td>
+</tr>
+<tr>
+<td>최하위 10 cm 미만 / 12 cm 미만</td>
+<td style="text-align:right">4 / 4</td>
+<td style="text-align:right">6 / 8</td>
+</tr>
+<tr>
+<td>최상위 꼬투리 중앙값</td>
+<td style="text-align:right">41.0 cm</td>
+<td style="text-align:right">40.2 cm</td>
+</tr>
+</tbody>
+</table>
+<p><strong>높이별 배정률:</strong></p>
+<table>
+<thead>
+<tr>
+<th>꼬투리 높이 (cm)</th>
+<th style="text-align:right">&lt; 10</th>
+<th style="text-align:right">10–15</th>
+<th style="text-align:right">15–20</th>
+<th style="text-align:right">20–25</th>
+<th style="text-align:right">25–30</th>
+<th style="text-align:right">30–35</th>
+<th style="text-align:right">≥ 35</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>유효 꼬투리</td>
+<td style="text-align:right">9</td>
+<td style="text-align:right">13</td>
+<td style="text-align:right">23</td>
+<td style="text-align:right">50</td>
+<td style="text-align:right">69</td>
+<td style="text-align:right">98</td>
+<td style="text-align:right">149</td>
+</tr>
+<tr>
+<td>마스크만</td>
+<td style="text-align:right">67 %</td>
+<td style="text-align:right">69 %</td>
+<td style="text-align:right">57 %</td>
+<td style="text-align:right">74 %</td>
+<td style="text-align:right">74 %</td>
+<td style="text-align:right">81 %</td>
+<td style="text-align:right">91 %</td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td style="text-align:right"><strong>100 %</strong></td>
+<td style="text-align:right"><strong>100 %</strong></td>
+<td style="text-align:right">87 %</td>
+<td style="text-align:right">92 %</td>
+<td style="text-align:right">91 %</td>
+<td style="text-align:right">96 %</td>
+<td style="text-align:right">99 %</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>v1(마스크만)과 v2 둘 다 값이 있는 34포기 중 8포기는 최하위가 낮아졌다. 크게 바뀐 곳은 P31(22.5 → 5.3 cm), P30(36.7 → 10.6 cm), P24(31.9 → 19.4 cm), P4(39.3 → 18.9 cm)다. 나머지는 그대로다(변화 중앙값 0.0 cm).</li>
+<li>유효 꼬투리가 없는 포기는 13개다(P1, P5, P6, P7, P12, P16, P34, P48, P50+P51, P54, P56, P57+P58, P62). 잎·조각이거나 꼬투리가 반대쪽에 있는 포기일 수 있다.</li>
+<li><strong>최상위 꼬투리는 하한값이다.</strong> 화면에 보이는 위 끝이 흙 위 중앙 42 cm(최대 약 46 cm)다. 위가 판별되는 41포기 중 <strong>27포기는 가장 높은 꼬투리가 화면 위 끝에 걸렸다.</strong> 위가 안 잘린 14포기의 최상위 중앙값은 33.8 cm다.</li>
+</ul>
+<p><img src="5_plants/plant_pods_v2_b51/fig_plant_pod_height_v2.png" alt="v2 포기별 꼬투리 높이" /></p>
+<p><em>● = 마스크 배정, ■(주황 테) = x 배정, 빨강 = 최하위(아래 숫자, cm), 파랑 = 최상위, 회색 가로선 = 마스크만 썼을 때의 최하위, N = 새 후보 포기.</em></p>
+<p><strong>포기별 결과 (유효 꼬투리가 있는 42포기):</strong></p>
+<table>
+<thead>
+<tr>
+<th>포기</th>
+<th style="text-align:right">밑동 x (m)</th>
+<th>밑동</th>
+<th style="text-align:right">유효 꼬투리 (마스크 / x)</th>
+<th style="text-align:right">최하위 (cm)</th>
+<th style="text-align:right">다음 낮은 (cm)</th>
+<th style="text-align:right">최상위 (cm)</th>
+<th style="text-align:center">위 잘림</th>
+<th>육안</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td style="text-align:right">0.28</td>
+<td>줄기</td>
+<td style="text-align:right">4 (4 / 0)</td>
+<td style="text-align:right">31.8</td>
+<td style="text-align:right">32.6</td>
+<td style="text-align:right">33.7</td>
+<td style="text-align:center"></td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P2</td>
+<td style="text-align:right">0.51</td>
+<td>줄기</td>
+<td style="text-align:right">3 (3 / 0)</td>
+<td style="text-align:right">29.3</td>
+<td style="text-align:right">38.0</td>
+<td style="text-align:right">40.7</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P3</td>
+<td style="text-align:right">0.65</td>
+<td>줄기</td>
+<td style="text-align:right">6 (0 / 6)</td>
+<td style="text-align:right">23.2</td>
+<td style="text-align:right">29.2</td>
+<td style="text-align:right">35.1</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P4</td>
+<td style="text-align:right">0.82</td>
+<td>마스크</td>
+<td style="text-align:right">5 (1 / 4)</td>
+<td style="text-align:right">18.9</td>
+<td style="text-align:right">34.7</td>
+<td style="text-align:right">41.0</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P8</td>
+<td style="text-align:right">1.50</td>
+<td>마스크</td>
+<td style="text-align:right">1 (1 / 0)</td>
+<td style="text-align:right">41.7</td>
+<td style="text-align:right">–</td>
+<td style="text-align:right">41.7</td>
+<td style="text-align:center"></td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P9+P10</td>
+<td style="text-align:right">1.76</td>
+<td>줄기</td>
+<td style="text-align:right">4 (4 / 0)</td>
+<td style="text-align:right">33.0</td>
+<td style="text-align:right">33.3</td>
+<td style="text-align:right">38.8</td>
+<td style="text-align:center"></td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P11</td>
+<td style="text-align:right">1.86</td>
+<td>마스크</td>
+<td style="text-align:right">9 (9 / 0)</td>
+<td style="text-align:right">23.7</td>
+<td style="text-align:right">26.1</td>
+<td style="text-align:right">40.1</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P13</td>
+<td style="text-align:right">1.91</td>
+<td>마스크</td>
+<td style="text-align:right">7 (7 / 0)</td>
+<td style="text-align:right">31.6</td>
+<td style="text-align:right">31.9</td>
+<td style="text-align:right">42.0</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P14+P15</td>
+<td style="text-align:right">2.18</td>
+<td>줄기</td>
+<td style="text-align:right">1 (1 / 0)</td>
+<td style="text-align:right">33.8</td>
+<td style="text-align:right">–</td>
+<td style="text-align:right">33.8</td>
+<td style="text-align:center"></td>
+<td>미확인</td>
+</tr>
+<tr>
+<td>P17</td>
+<td style="text-align:right">2.48</td>
+<td>줄기</td>
+<td style="text-align:right">6 (6 / 0)</td>
+<td style="text-align:right">30.2</td>
+<td style="text-align:right">35.8</td>
+<td style="text-align:right">44.9</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P18</td>
+<td style="text-align:right">2.68</td>
+<td>줄기</td>
+<td style="text-align:right">2 (0 / 2)</td>
+<td style="text-align:right">10.1</td>
+<td style="text-align:right">30.4</td>
+<td style="text-align:right">30.4</td>
+<td style="text-align:center"></td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P19</td>
+<td style="text-align:right">2.86</td>
+<td>줄기</td>
+<td style="text-align:right">2 (1 / 1)</td>
+<td style="text-align:right">30.2</td>
+<td style="text-align:right">43.4</td>
+<td style="text-align:right">43.4</td>
+<td style="text-align:center">●</td>
+<td>미확인</td>
+</tr>
+<tr>
+<td>P20+P23+P21</td>
+<td style="text-align:right">3.06</td>
+<td>줄기</td>
+<td style="text-align:right">5 (5 / 0)</td>
+<td style="text-align:right">26.6</td>
+<td style="text-align:right">30.3</td>
+<td style="text-align:right">35.1</td>
+<td style="text-align:center"></td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P22</td>
+<td style="text-align:right">3.22</td>
+<td>줄기</td>
+<td style="text-align:right">26 (26 / 0)</td>
+<td style="text-align:right">28.6</td>
+<td style="text-align:right">30.8</td>
+<td style="text-align:right">43.1</td>
+<td style="text-align:center">●</td>
+<td>미확인</td>
+</tr>
+<tr>
+<td>P24</td>
+<td style="text-align:right">3.40</td>
+<td>줄기</td>
+<td style="text-align:right">29 (21 / 8)</td>
+<td style="text-align:right">19.4</td>
+<td style="text-align:right">21.7</td>
+<td style="text-align:right">45.1</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P25</td>
+<td style="text-align:right">3.53</td>
+<td>줄기</td>
+<td style="text-align:right">1 (0 / 1)</td>
+<td style="text-align:right">27.4</td>
+<td style="text-align:right">–</td>
+<td style="text-align:right">27.4</td>
+<td style="text-align:center">●</td>
+<td>미확인</td>
+</tr>
+<tr>
+<td>P26</td>
+<td style="text-align:right">3.61</td>
+<td>줄기</td>
+<td style="text-align:right">23 (17 / 6)</td>
+<td style="text-align:right">18.5</td>
+<td style="text-align:right">18.8</td>
+<td style="text-align:right">42.5</td>
+<td style="text-align:center">●</td>
+<td>미확인</td>
+</tr>
+<tr>
+<td>P27</td>
+<td style="text-align:right">3.82</td>
+<td>줄기</td>
+<td style="text-align:right">4 (3 / 1)</td>
+<td style="text-align:right">35.0</td>
+<td style="text-align:right">35.2</td>
+<td style="text-align:right">44.3</td>
+<td style="text-align:center">●</td>
+<td>미확인</td>
+</tr>
+<tr>
+<td>P28+P29</td>
+<td style="text-align:right">4.00</td>
+<td>줄기</td>
+<td style="text-align:right">7 (7 / 0)</td>
+<td style="text-align:right">35.1</td>
+<td style="text-align:right">37.3</td>
+<td style="text-align:right">43.0</td>
+<td style="text-align:center">●</td>
+<td>미확인</td>
+</tr>
+<tr>
+<td>P30</td>
+<td style="text-align:right">4.21</td>
+<td>줄기</td>
+<td style="text-align:right">10 (7 / 3)</td>
+<td style="text-align:right">10.6</td>
+<td style="text-align:right">16.3</td>
+<td style="text-align:right">42.3</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P31</td>
+<td style="text-align:right">4.59</td>
+<td>줄기</td>
+<td style="text-align:right">26 (23 / 3)</td>
+<td style="text-align:right"><strong>5.3</strong></td>
+<td style="text-align:right">22.5</td>
+<td style="text-align:right">43.4</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P32</td>
+<td style="text-align:right">4.77</td>
+<td>줄기</td>
+<td style="text-align:right">4 (0 / 4)</td>
+<td style="text-align:right">13.0</td>
+<td style="text-align:right">19.9</td>
+<td style="text-align:right">34.5</td>
+<td style="text-align:center"></td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P33</td>
+<td style="text-align:right">5.00</td>
+<td>줄기</td>
+<td style="text-align:right">22 (21 / 1)</td>
+<td style="text-align:right"><strong>6.8</strong></td>
+<td style="text-align:right">6.9</td>
+<td style="text-align:right">36.7</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P35</td>
+<td style="text-align:right">5.33</td>
+<td>줄기</td>
+<td style="text-align:right">15 (14 / 1)</td>
+<td style="text-align:right">19.9</td>
+<td style="text-align:right">21.0</td>
+<td style="text-align:right">41.5</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P36+P37</td>
+<td style="text-align:right">5.51</td>
+<td>줄기</td>
+<td style="text-align:right">9 (9 / 0)</td>
+<td style="text-align:right">14.2</td>
+<td style="text-align:right">17.9</td>
+<td style="text-align:right">31.7</td>
+<td style="text-align:center"></td>
+<td>미확인</td>
+</tr>
+<tr>
+<td>P38</td>
+<td style="text-align:right">5.71</td>
+<td>줄기</td>
+<td style="text-align:right">10 (10 / 0)</td>
+<td style="text-align:right">14.1</td>
+<td style="text-align:right">15.4</td>
+<td style="text-align:right">27.8</td>
+<td style="text-align:center"></td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P39</td>
+<td style="text-align:right">5.95</td>
+<td>줄기</td>
+<td style="text-align:right">19 (17 / 2)</td>
+<td style="text-align:right">25.3</td>
+<td style="text-align:right">26.4</td>
+<td style="text-align:right">41.0</td>
+<td style="text-align:center">●</td>
+<td>미확인</td>
+</tr>
+<tr>
+<td>P40</td>
+<td style="text-align:right">6.12</td>
+<td>줄기</td>
+<td style="text-align:right">15 (13 / 2)</td>
+<td style="text-align:right">21.1</td>
+<td style="text-align:right">26.0</td>
+<td style="text-align:right">42.9</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P41</td>
+<td style="text-align:right">6.22</td>
+<td>마스크</td>
+<td style="text-align:right">1 (0 / 1)</td>
+<td style="text-align:right">34.8</td>
+<td style="text-align:right">–</td>
+<td style="text-align:right">34.8</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P42</td>
+<td style="text-align:right">6.50</td>
+<td>줄기</td>
+<td style="text-align:right">1 (1 / 0)</td>
+<td style="text-align:right">23.4</td>
+<td style="text-align:right">–</td>
+<td style="text-align:right">23.4</td>
+<td style="text-align:center"></td>
+<td>미확인</td>
+</tr>
+<tr>
+<td>P43</td>
+<td style="text-align:right">6.72</td>
+<td>줄기</td>
+<td style="text-align:right">19 (17 / 2)</td>
+<td style="text-align:right"><strong>7.6</strong></td>
+<td style="text-align:right">8.3</td>
+<td style="text-align:right">35.6</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P44</td>
+<td style="text-align:right">6.91</td>
+<td>줄기</td>
+<td style="text-align:right">27 (27 / 0)</td>
+<td style="text-align:right"><strong>7.5</strong></td>
+<td style="text-align:right">12.0</td>
+<td style="text-align:right">37.0</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P45+P46</td>
+<td style="text-align:right">7.12</td>
+<td>줄기</td>
+<td style="text-align:right">12 (12 / 0)</td>
+<td style="text-align:right">27.1</td>
+<td style="text-align:right">28.4</td>
+<td style="text-align:right">43.8</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P47</td>
+<td style="text-align:right">7.29</td>
+<td>줄기</td>
+<td style="text-align:right">15 (15 / 0)</td>
+<td style="text-align:right">18.9</td>
+<td style="text-align:right">20.8</td>
+<td style="text-align:right">41.9</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P49</td>
+<td style="text-align:right">7.49</td>
+<td>줄기</td>
+<td style="text-align:right">4 (2 / 2)</td>
+<td style="text-align:right">29.5</td>
+<td style="text-align:right">34.9</td>
+<td style="text-align:right">40.5</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P52</td>
+<td style="text-align:right">7.91</td>
+<td>줄기</td>
+<td style="text-align:right">3 (0 / 3)</td>
+<td style="text-align:right"><strong>7.5</strong></td>
+<td style="text-align:right">23.7</td>
+<td style="text-align:right">29.9</td>
+<td style="text-align:center"></td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P53</td>
+<td style="text-align:right">8.10</td>
+<td>마스크</td>
+<td style="text-align:right">7 (7 / 0)</td>
+<td style="text-align:right"><strong>7.8</strong></td>
+<td style="text-align:right">15.4</td>
+<td style="text-align:right">38.8</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P55</td>
+<td style="text-align:right">8.45</td>
+<td>줄기</td>
+<td style="text-align:right">2 (2 / 0)</td>
+<td style="text-align:right">37.3</td>
+<td style="text-align:right">38.1</td>
+<td style="text-align:right">38.1</td>
+<td style="text-align:center"></td>
+<td>확인</td>
+</tr>
+<tr>
+<td>N0</td>
+<td style="text-align:right">8.84</td>
+<td>줄기</td>
+<td style="text-align:right">5 (0 / 5)</td>
+<td style="text-align:right">14.2</td>
+<td style="text-align:right">19.7</td>
+<td style="text-align:right">35.4</td>
+<td style="text-align:center"></td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P59+P60</td>
+<td style="text-align:right">9.07</td>
+<td>줄기</td>
+<td style="text-align:right">16 (15 / 1)</td>
+<td style="text-align:right">21.8</td>
+<td style="text-align:right">26.7</td>
+<td style="text-align:right">40.3</td>
+<td style="text-align:center">●</td>
+<td>확인</td>
+</tr>
+<tr>
+<td>P61</td>
+<td style="text-align:right">9.19</td>
+<td>줄기</td>
+<td style="text-align:right">1 (0 / 1)</td>
+<td style="text-align:right">29.1</td>
+<td style="text-align:right">–</td>
+<td style="text-align:right">29.1</td>
+<td style="text-align:center"></td>
+<td>미확인</td>
+</tr>
+<tr>
+<td>P63</td>
+<td style="text-align:right">9.87</td>
+<td>줄기</td>
+<td style="text-align:right">4 (2 / 2)</td>
+<td style="text-align:right">38.0</td>
+<td style="text-align:right">39.6</td>
+<td style="text-align:right">42.2</td>
+<td style="text-align:center"></td>
+<td>확인</td>
+</tr>
+</tbody>
+</table>
+<p><em>밑동: 줄기 = 줄기 봉우리로 보정, 마스크 = 근처에 줄기가 없어 마스크 밑동 그대로. 육안: 확인 = 20 cm 구간 분석에서 꼬투리로 판정된 것.</em></p>
+<p><strong>최하위 착협고 12 cm 미만 포기 (기계수확 참고 기준 아래):</strong></p>
+<table>
+<thead>
+<tr>
+<th>포기</th>
+<th style="text-align:right">밑동 x (m)</th>
+<th style="text-align:right">최하위 (cm)</th>
+<th style="text-align:right">다음 낮은 (cm)</th>
+<th style="text-align:right">유효 꼬투리</th>
+<th>최하위 배정 방식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P31</td>
+<td style="text-align:right">4.59</td>
+<td style="text-align:right"><strong>5.3</strong></td>
+<td style="text-align:right">22.5</td>
+<td style="text-align:right">26</td>
+<td>x</td>
+</tr>
+<tr>
+<td>P33</td>
+<td style="text-align:right">5.00</td>
+<td style="text-align:right"><strong>6.8</strong></td>
+<td style="text-align:right">6.9</td>
+<td style="text-align:right">22</td>
+<td>마스크</td>
+</tr>
+<tr>
+<td>P44</td>
+<td style="text-align:right">6.91</td>
+<td style="text-align:right"><strong>7.5</strong></td>
+<td style="text-align:right">12.0</td>
+<td style="text-align:right">27</td>
+<td>마스크</td>
+</tr>
+<tr>
+<td>P52</td>
+<td style="text-align:right">7.91</td>
+<td style="text-align:right"><strong>7.5</strong></td>
+<td style="text-align:right">23.7</td>
+<td style="text-align:right">3</td>
+<td>x</td>
+</tr>
+<tr>
+<td>P43</td>
+<td style="text-align:right">6.72</td>
+<td style="text-align:right"><strong>7.6</strong></td>
+<td style="text-align:right">8.3</td>
+<td style="text-align:right">19</td>
+<td>x</td>
+</tr>
+<tr>
+<td>P53</td>
+<td style="text-align:right">8.10</td>
+<td style="text-align:right"><strong>7.8</strong></td>
+<td style="text-align:right">15.4</td>
+<td style="text-align:right">7</td>
+<td>마스크</td>
+</tr>
+<tr>
+<td>P18</td>
+<td style="text-align:right">2.68</td>
+<td style="text-align:right"><strong>10.1</strong></td>
+<td style="text-align:right">30.4</td>
+<td style="text-align:right">2</td>
+<td>x</td>
+</tr>
+<tr>
+<td>P30</td>
+<td style="text-align:right">4.21</td>
+<td style="text-align:right"><strong>10.6</strong></td>
+<td style="text-align:right">16.3</td>
+<td style="text-align:right">10</td>
+<td>x</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>8개 모두 20 cm 구간 분석에서 육안으로 꼬투리임을 확인했다.</li>
+<li><strong>P31, P52, P18은 가장 낮은 꼬투리 하나만 낮다.</strong> 다음 꼬투리는 22 cm 이상이다. 처진 꼬투리 하나이거나 옆 포기 꼬투리일 수 있어 실측이 가장 필요하다.</li>
+<li><strong>P33, P43은 낮은 꼬투리가 2개 이상</strong>이라 값이 안정적이다.</li>
+</ul>
+<p><img src="5_plants/plant_pods_v2_b51/lowest_sheet_v2.jpg" alt="v2 포기별 가장 낮은 꼬투리 (빨강 = 마스크 배정, 주황 = x 배정)" /></p>
+<p><strong>v2 결과 영상</strong> (<code>5_plants/make_v2_panels.py</code> → <code>plant_pods_v2_b51/panels/</code>, <code>panels.mp4</code>): 왼쪽 = 원본, 가운데 = SAM3 포기(v2에서 합친 이름), 오른쪽 = 유효 꼬투리를 v2 포기 색으로 칠한 것. 흰 테 = 3D x로 배정된 꼬투리, 회색 윤곽 = 미배정이거나 2프레임 이하, 빨간 상자 = 그 포기의 가장 낮은 꼬투리, ▼ = 줄기로 보정한 밑동(흙 높이로 투영, 'v' = 화면 아래).</p>
+<p><img src="5_plants/plant_pods_v2_b51/panels/st081.jpg" alt="v2 st081 (P31 최하위 5 cm)" /></p>
+<p><img src="5_plants/plant_pods_v2_b51/panels/st129.jpg" alt="v2 st129 (P44 최하위 8 cm)" /></p>
+<p><video preload="metadata" controls loop muted playsinline style="width:100%" src="5_plants/plant_pods_v2_b51/panels.mp4"></video></p>
+<h3>3.3 카메라 각도와 착협고</h3>
+<ul>
+<li><strong>최하위 착협고가 어려운 이유는 카메라 각도보다 가림과 검출이다.</strong> 카메라가 32° 아래를 봐서 흙 위 0 cm부터 화면에 들어온다. 놓치는 원인은 앞 잎·낙엽, 로봇 고관절 덮개(화면 왼쪽 아래 약 1/6)에 가리는 것, PodNet이 어둡고 마른 꼬투리를 잘 못 잡는 것, 한쪽에서만 본다는 점이다. 그래서 최하위는 '보이고 검출된 꼬투리 중 가장 낮은 것'이라 실제보다 높을 수 있다.</li>
+<li><strong>최상위 꼬투리는 카메라 각도 때문에 하한값이다.</strong> 화면 위 끝이 흙 위 약 42–46 cm다. 카메라를 덜 숙이거나(권장 19°) 높이면 위가 보이지만 흙과 낮은 꼬투리가 덜 보인다. 두 값을 다 원하면 <strong>각도를 달리해 두 번 주행</strong>하는 것이 가장 확실하다.</li>
+</ul>
+<h3>3.4 포장 실측 대상 (자로 재기)</h3>
+<p>가장 정확한 확인은 포장에서 <strong>밑동 위치</strong>와 <strong>흙 → 가장 낮은 꼬투리</strong> 높이를 자로 재는 것이다. RTK로 아래 위치를 찾으면 된다. 위경도는 밑동 위치(행 좌표 → WGS84)다. 카메라 레버암을 아직 재지 않아 수 cm 오차가 있을 수 있다. 전체 55포기 위경도는 <code>plant_pods_v2_b51/plant_pod_height_v2.csv</code>의 <code>lat</code>, <code>lon</code> 열에 있다.</p>
+<table>
+<thead>
+<tr>
+<th>목적</th>
+<th>포기</th>
+<th style="text-align:right">밑동 x (m)</th>
+<th style="text-align:right">추정 최하위 (cm)</th>
+<th style="text-align:right">위도</th>
+<th style="text-align:right">경도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>낮은 값 (1개만 낮음)</td>
+<td>P31</td>
+<td style="text-align:right">4.59</td>
+<td style="text-align:right">5.3</td>
+<td style="text-align:right">35.49614723</td>
+<td style="text-align:right">128.74006343</td>
+</tr>
+<tr>
+<td>낮은 값 (1개만 낮음)</td>
+<td>P52</td>
+<td style="text-align:right">7.91</td>
+<td style="text-align:right">7.5</td>
+<td style="text-align:right">35.49617611</td>
+<td style="text-align:right">128.74005363</td>
+</tr>
+<tr>
+<td>낮은 값 (안정)</td>
+<td>P33</td>
+<td style="text-align:right">5.00</td>
+<td style="text-align:right">6.8</td>
+<td style="text-align:right">35.49615079</td>
+<td style="text-align:right">128.74006202</td>
+</tr>
+<tr>
+<td>낮은 값 (안정)</td>
+<td>P43</td>
+<td style="text-align:right">6.72</td>
+<td style="text-align:right">7.6</td>
+<td style="text-align:right">35.49616575</td>
+<td style="text-align:right">128.74005704</td>
+</tr>
+<tr>
+<td>중간</td>
+<td>P35</td>
+<td style="text-align:right">5.33</td>
+<td style="text-align:right">19.9</td>
+<td style="text-align:right">35.49615385</td>
+<td style="text-align:right">128.74006206</td>
+</tr>
+<tr>
+<td>중간</td>
+<td>P22</td>
+<td style="text-align:right">3.22</td>
+<td style="text-align:right">28.6</td>
+<td style="text-align:right">35.49613523</td>
+<td style="text-align:right">128.74006709</td>
+</tr>
+<tr>
+<td>높은 값</td>
+<td>P28+P29</td>
+<td style="text-align:right">4.00</td>
+<td style="text-align:right">35.1</td>
+<td style="text-align:right">35.49614221</td>
+<td style="text-align:right">128.74006542</td>
+</tr>
+<tr>
+<td>높은 값</td>
+<td>P63</td>
+<td style="text-align:right">9.87</td>
+<td style="text-align:right">38.0</td>
+<td style="text-align:right">35.49619294</td>
+<td style="text-align:right">128.74004705</td>
+</tr>
+<tr>
+<td>새 후보 포기 확인</td>
+<td>N0</td>
+<td style="text-align:right">8.84</td>
+<td style="text-align:right">14.2</td>
+<td style="text-align:right">35.49618386</td>
+<td style="text-align:right">128.74004955</td>
+</tr>
+<tr>
+<td>합친 포기 확인 (한 포기인가)</td>
+<td>P20+P23+P21</td>
+<td style="text-align:right">3.06</td>
+<td style="text-align:right">26.6</td>
+<td style="text-align:right">35.49613388</td>
+<td style="text-align:right">128.74006770</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 20 cm 구간 결과와 비교</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>20 cm 구간 (<code>REPORT_KO</code> 5.2)</th>
+<th><strong>포기 단위 (51개 + v2)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>단위 수</td>
+<td>45구간 (오검출 5개 육안 제외)</td>
+<td>42포기 (55포기 중)</td>
+</tr>
+<tr>
+<td>쓴 유효 꼬투리</td>
+<td>411개</td>
+<td>392개 (배정된 것)</td>
+</tr>
+<tr>
+<td>최하위 착협고 중앙값</td>
+<td>21.6 cm</td>
+<td><strong>23.5 cm</strong></td>
+</tr>
+<tr>
+<td>10 cm 미만</td>
+<td>6구간</td>
+<td>6포기</td>
+</tr>
+<tr>
+<td>낮은 자리 (x, m)</td>
+<td>2.6, 4.4, 4.8, 6.6–7.0, 7.8–8.2</td>
+<td>2.68, 4.59, 5.00, 6.72, 6.91, 7.91, 8.10</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>두 결과가 2 cm 안에서 맞고, 낮은 자리도 같은 곳을 가리킨다.</li>
+<li>포기 단위는 같은 값을 <strong>포기 번호와 위경도</strong>로 줄 수 있어 실측 검증과 포기별 형질 연결에 쓸 수 있다.</li>
+</ul>
+<hr />
+<h2>5. 추적 객체 16개 버전과 비교</h2>
+<p>처음에는 51개를 한꺼번에 추적하다 GPU 메모리가 넘쳐 16개(2라운드)로 끝낸 버전을 먼저 만들었다(<code>plant_video/</code>, <code>plant_pods/</code>, <code>plant_pods_v2/</code>).</p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th style="text-align:right">16개 마스크만</th>
+<th style="text-align:right">16개 + v2</th>
+<th style="text-align:right">51개 마스크만</th>
+<th style="text-align:right"><strong>51개 + v2 (채택)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3D 정리 뒤 포기</td>
+<td style="text-align:right">44</td>
+<td style="text-align:right">49 (새 후보 8)</td>
+<td style="text-align:right">64</td>
+<td style="text-align:right"><strong>55 (새 후보 1)</strong></td>
+</tr>
+<tr>
+<td>포기가 잡힌 지점</td>
+<td style="text-align:right">155 / 188</td>
+<td style="text-align:right">–</td>
+<td style="text-align:right">187 / 188</td>
+<td style="text-align:right">–</td>
+</tr>
+<tr>
+<td>밑동 간격 중앙값 / 30 cm 넘는 공백</td>
+<td style="text-align:right">18 cm / 7곳</td>
+<td style="text-align:right">–</td>
+<td style="text-align:right">15 cm / 4곳</td>
+<td style="text-align:right">–</td>
+</tr>
+<tr>
+<td>유효 꼬투리 배정</td>
+<td style="text-align:right">45 %</td>
+<td style="text-align:right">95 %</td>
+<td style="text-align:right">80 %</td>
+<td style="text-align:right"><strong>95 %</strong></td>
+</tr>
+<tr>
+<td>착협고가 나온 포기</td>
+<td style="text-align:right">21</td>
+<td style="text-align:right">40</td>
+<td style="text-align:right">35</td>
+<td style="text-align:right"><strong>42</strong></td>
+</tr>
+<tr>
+<td>최하위 착협고 중앙값</td>
+<td style="text-align:right">29.2 cm</td>
+<td style="text-align:right">23.4 cm</td>
+<td style="text-align:right">27.4 cm</td>
+<td style="text-align:right"><strong>23.5 cm</strong></td>
+</tr>
+<tr>
+<td>10 cm 미만</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right"><strong>6</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>51개 버전이 포기 경계가 더 믿을 만하다.</strong> 마스크만으로 꼬투리의 80 %를 덮고, 줄기로 추가한 포기는 1개뿐이다. 16개 버전은 놓친 포기를 줄기로 8개나 메워야 했다.</li>
+<li>대신 51개 버전은 한 포기를 더 잘게 나눈다(같은 줄기에 붙어 합친 경우 9건, 16개 버전은 3건).</li>
+<li>행 전체 최하위 착협고(23.4 vs 23.5 cm)와 10 cm 미만 포기 수(6 vs 6)는 같다. <strong>결론이 추적 객체 수에 거의 좌우되지 않는다.</strong></li>
+</ul>
+<hr />
+<h2>6. 한계와 다음 단계</h2>
+<p><strong>한계</strong></p>
+<ul>
+<li><strong>줄기 검출이 거칠다.</strong> 줄기 후보 칸이 줄기 하나가 아니라 10–20 cm 덩어리로 나오고, 낮은 잎·잡초의 수직면도 섞인다. 줄기 봉우리 56개는 기대 포기 수(약 9.4 m ÷ 15–18 cm ≈ 52–63)와 비슷하지만, 봉우리 하나하나가 실제 줄기인지는 확인하지 않았다.</li>
+<li><strong>x 배정은 포기 경계가 정확하지 않다.</strong> 포기 간격이 15–18 cm인데 ±8 cm로 배정하므로, 옆으로 뻗은 가지의 꼬투리가 이웃 포기로 갈 수 있다. 포기별 꼬투리 <strong>개수</strong>는 보고하지 않는다.</li>
+<li><strong>최하위는 보인 것 중 가장 낮은 값, 최상위는 하한값이다</strong> (3.3절).</li>
+<li><strong>실측 정답이 없다</strong> (3.4절).</li>
+</ul>
+<p><strong>다음 단계</strong></p>
+<ol>
+<li>포장 실측(3.4절)으로 밑동 위치와 최하위 착협고를 검증한다.</li>
+<li>최하위 꼬투리 중 육안 미확인 11개를 검토한다. 제외할 것은 <code>4_pods/lowest_pods.csv</code> 형식으로 추가한다.</li>
+<li>다음 촬영에서 최상위까지 보려면 카메라 각도를 달리해 두 번 주행한다.</li>
+</ol>
+<hr />
+<h2>재현 순서 (GPU Python environment)</h2>
+<pre><code>python 5_plants/plant_video_b51.py   # SAM3 포기 추적 51개 (GPU, 약 15분, 끊기면 이어서 실행) → 5_plants/plant_video_b51/
+python 5_plants/run_b51_pods.py      # plant_pods.py + plant_pods_v2.py를 b51 마스크로 (CPU, 약 2분) → plant_pods_b51/, plant_pods_v2_b51/
+python 5_plants/make_v2_panels.py    # v2 결과 패널·영상 (CPU, 약 3분) → plant_pods_v2_b51/panels/, panels.mp4
+python build_plant_html.py           # 이 문서 → REPORT_PLANT_POD_KO.html
+</code></pre>
+<p>16개 버전: <code>5_plants/plant_video.py</code> → <code>plant_pods.py</code> → <code>plant_pods_v2.py</code> (<code>plant_video/</code>, <code>plant_pods/</code>, <code>plant_pods_v2/</code>)</p>
+</html>

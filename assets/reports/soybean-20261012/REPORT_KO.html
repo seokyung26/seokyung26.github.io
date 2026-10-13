@@ -1,0 +1,379 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>1012 r03 콩 분석</title><style>body{font:16px/1.6 "Malgun Gothic",sans-serif;max-width:1180px;margin:30px auto;padding:0 20px;color:#0f172a;background:#fff}table{border-collapse:collapse;font-size:13px;margin:12px 0}th,td{border:1px solid #cbd5e1;padding:4px 7px}th{background:#f1f5f9}img{max-width:100%;border:1px solid #e2e8f0;margin:6px 0}code{background:#f1f5f9;padding:1px 4px}pre{background:#f1f5f9;padding:10px;overflow-x:auto}a{color:#0369a1}table{display:block;max-width:100%;overflow-x:auto}video{max-width:100%}nav{margin-bottom:18px;font-size:14px}</style><nav aria-label="사이트로 돌아가기"><a href="/research/quadruped-research/#phenotyping">← Phenotyping (M.S. Thesis Research)</a></nav><h1>1012 r03 콩 행 내부 주행 (D405 + MTi-680G RTK) 분석</h1>
+<p>작성 2026-10-12. 대상 세션은 <code>rtktest_1012_1129_s005_drive_r03_inside4</code>다.</p>
+<ul>
+<li>bag: <code>walkABm_r03_inside4_1012_112942</code></li>
+<li>주행 로그: <code>drive_1012_113007.jsonl</code></li>
+<li>줄 등록: <code>row_plan_r03_1012_112938.json</code></li>
+</ul>
+<p><code>analysis_1002_soy</code>의 흐름(촬영 품질 → RTK → 로봇·카메라 pose → 3D 행 → 꼬투리 → 착협고)을 D405 데이터에 맞게 다시 짰다. D405 깊이는 0.33 m에서 직접 측정값이라, 1002처럼 DA3로 깊이를 만들 필요가 없다.</p>
+<hr />
+<h2>0. 요약</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>결과</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RTK</td>
+<td>bag 전체 156 s 동안 GGA 623개가 <strong>모두 Fixed(4)</strong>다. 주행 중에도 Fixed 100 %, hAcc 14 mm다. 1002의 '걸으면 끊김'(이동 중 Fixed 3–14 %)은 이 주행에서 재현되지 않았다.</td>
+</tr>
+<tr>
+<td>MTi 방위</td>
+<td><strong>쓸 수 없다.</strong> 서 있을 때도 yaw가 약 0.7°/s로 흐른다(156 s에 −178° → −106°). roll·pitch(중력)만 믿을 만하다.</td>
+</tr>
+<tr>
+<td>카메라 장착</td>
+<td>로봇 <strong>왼쪽</strong>(방위 90.5°)을 본다. 아래로 <strong>32°</strong> 기울어 있다(session.json 권장값 19.3°와 다름). 영상 가로축 기울기는 −0.9°다. 손-눈 보정(ICP 회전 ↔ MTi 회전)으로 구했다.</td>
+</tr>
+<tr>
+<td>pose 채택</td>
+<td><strong>icp_lf</strong> = ICP 연쇄의 국소 모양 + RTK·중력으로 저주파 보정. 다른 쌍 검증 오차는 중앙 7.5 mm(P90 13 mm), RTK 편차는 RMS 3.6 cm다.</td>
+</tr>
+<tr>
+<td>3D 행</td>
+<td>약 9.4 m, 388만 점(3 mm 격자). 행 좌표계는 x = A→B, y = 왼쪽(작물 쪽), z = 위다.</td>
+</tr>
+<tr>
+<td>꼬투리</td>
+<td>PodNet 검출 3,454개 → 3D 병합 1,822개 → <strong>유효 꼬투리(3프레임 이상) 416개</strong>. 길이 중앙값 3.4 cm다.</td>
+</tr>
+<tr>
+<td><strong>최하위 착협고</strong></td>
+<td>20 cm 구간 45개(오검출 5개를 육안으로 빼고 다시 계산). <strong>중앙값 21.6 cm</strong>, P10–P90은 7.7–34.4 cm다. 10 cm 미만 6구간, 12 cm 미만 8구간.</td>
+</tr>
+<tr>
+<td><strong>최상위 꼬투리 높이</strong></td>
+<td>중앙값 40.3 cm다. 다만 화면 위 끝이 흙 위 약 46 cm라 <strong>11구간은 위가 잘렸다</strong>. 최상위 높이는 하한값으로만 본다.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>1. 촬영 조건과 품질 (<code>0_capture/</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>값</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>카메라</td>
+<td>RealSense D405, 1280×720@30. 컬러는 깊이 격자와 같은 센서다</td>
+</tr>
+<tr>
+<td>방식</td>
+<td>연속 주행. odom 5 cm마다 1장, 188지점, 40.3 s</td>
+</tr>
+<tr>
+<td>속도</td>
+<td>중앙값 0.20 m/s (P5–P95 0.15–0.25). 촬영 간격은 0.20 s다</td>
+</tr>
+<tr>
+<td>작물까지 거리</td>
+<td>깊이 중앙값 0.33 m (0.29–0.39)</td>
+</tr>
+<tr>
+<td>깊이 유효 비율</td>
+<td>중앙 68 % (P5 44 %)</td>
+</tr>
+<tr>
+<td>선명도 (Laplacian 분산)</td>
+<td>중앙 485 (P5 331). 심한 흔들림 프레임은 없다</td>
+</tr>
+<tr>
+<td>노출</td>
+<td>깊이는 자동(상한 8.5 ms). 컬러는 캡처 스크립트가 컬러 센서를 못 찾아 기본값이다</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>영상 왼쪽 아래에 로봇 앞다리 고관절(파란 덮개)이 늘 찍힌다. 깊이 0.2 m 미만이라 3D에서는 빠진다.</li>
+<li>하지만 그 뒤에 있는 낮은 꼬투리는 가려진다.</li>
+<li>그림: <code>0_capture/fig_capture_qc.png</code>, <code>contact_sheet.jpg</code></li>
+</ul>
+<p><img src="0_capture/fig_capture_qc.png" alt="촬영 품질" /></p>
+<p><img src="0_capture/contact_sheet.jpg" alt="촬영 영상 예시 (12지점마다)" /></p>
+<h2>2. bag 해석 (<code>1_bag/</code>)</h2>
+<p>ROS 없이 sqlite3와 CDR로 직접 읽었다(<code>decode_bag.py</code> → <code>bag.npz</code>).</p>
+<table>
+<thead>
+<tr>
+<th>토픽</th>
+<th style="text-align:right">Hz</th>
+<th>쓰임</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/nmea</code> GGA</td>
+<td style="text-align:right">4</td>
+<td>Fixed 여부. 623/623이 품질 4다</td>
+</tr>
+<tr>
+<td><code>/gnss</code> NavSatFix</td>
+<td style="text-align:right">4</td>
+<td>확인용. 시각이 수신보다 155 ms 늦게 찍혀 주행 중 lla와 7 cm 흔들린다</td>
+</tr>
+<tr>
+<td><code>/filter/positionlla</code></td>
+<td style="text-align:right">100</td>
+<td><strong>안테나 위치</strong>로 사용. MT Manager 레버암이 0이라 안테나 위치로 보며, <code>/gnss</code>와 중앙 1 cm 안에서 맞다</td>
+</tr>
+<tr>
+<td><code>/filter/quaternion</code></td>
+<td style="text-align:right">100</td>
+<td>roll·pitch와 짧은 시간의 회전 변화. yaw는 쓰지 않는다</td>
+</tr>
+<tr>
+<td><code>/utlidar/robot_odom</code></td>
+<td style="text-align:right">150</td>
+<td>비교용 pose</td>
+</tr>
+</tbody>
+</table>
+<p>시각: MTi header는 Orin 수신보다 32 ms 이르다. 지점 시각은 <code>captured_epoch − frame_age − 0.032 s</code>로 맞췄다. 시각 오프셋을 −0.4~+0.4 s로 훑어도 뚜렷한 최소가 없었다. RTK의 0.2 s 걸음 오차(12–16 mm)는 시각 문제가 아니다(<code>2_pose/time_offset.json</code>).</p>
+<h2>3. 카메라 pose (<code>2_pose/</code>)</h2>
+<h3>3.1 만드는 법</h3>
+<ol>
+<li><strong>인접 ICP</strong> (<code>icp_edges.py</code>)
+<ul>
+<li>D405 깊이 0.2–0.7 m, 4 mm 격자, 컬러 ICP로 i→i+1, i→i+2 쌍을 맞췄다.</li>
+<li>1칸 이동 중앙값은 +4.9 cm(광축 +X)다. <strong>전진 = +X이므로 카메라는 왼쪽을 본다</strong>(1002와 같다).</li>
+<li>끝부분(st138–st168)은 잎이 가까워 fitness가 낮다.</li>
+</ul>
+</li>
+<li><strong>장착 회전(손-눈 보정)</strong>
+<ul>
+<li>ICP 상대 회전과 MTi 상대 회전이 맞도록 MTi→카메라 회전을 풀었다(312쌍).</li>
+<li>결과: 왼쪽 90.5°, 아래 32.0°, 가로축 −0.9°다. 공칭값(19.3°)과 12.8° 차이가 난다.</li>
+<li>잔차 중앙값은 0.55°다(공칭값이면 0.62°).</li>
+</ul>
+</li>
+<li><strong>yaw</strong>
+<ul>
+<li>MTi yaw는 쓸 수 없다. 대신 <code>Rz(a + b·t)</code> 보정을 ICP 이동 방향과 RTK 이동 방향이 맞도록 풀었다.</li>
+</ul>
+</li>
+<li><strong>위치</strong>
+<ul>
+<li>카메라 = 안테나 + R·L이다. L은 <code>0. plan/12</code> CAD 값으로, MTi 좌표 (−0.393, +0.010, −0.632) m다.</li>
+<li>렌즈와 피벗 사이 거리는 아직 재지 않아 수 cm의 상수 오차가 남는다.</li>
+</ul>
+</li>
+<li><strong>비교 pose</strong>: <code>rtk_mti</code>(2–4단계), <code>odom</code>(Go2 odom ×1.18, RTK에 2D 정렬), <code>icp</code>(연쇄만), <code>fused</code>(포즈 그래프), <strong><code>icp_lf</code></strong>(<code>lowfreq.py</code>).</li>
+</ol>
+<h3>3.2 검증: 그래프에 넣지 않은 쌍 (i, i+3)·(i, i+4)의 ICP 보정량 (<code>heldout.json</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>pose</th>
+<th style="text-align:right">보정 중앙 (mm)</th>
+<th style="text-align:right">P90 (mm)</th>
+<th style="text-align:right">RTK 편차 RMS (cm)</th>
+<th>판단</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>icp (연쇄만)</td>
+<td style="text-align:right">4.6</td>
+<td style="text-align:right">6.9</td>
+<td style="text-align:right"><strong>125</strong> (최대 2.6 m)</td>
+<td>국소는 최고. 전체는 회전이 흘러 못 쓴다</td>
+</tr>
+<tr>
+<td><strong>icp_lf (채택)</strong></td>
+<td style="text-align:right"><strong>7.5</strong></td>
+<td style="text-align:right"><strong>13.1</strong></td>
+<td style="text-align:right"><strong>3.6</strong></td>
+<td>국소와 전역의 균형이 가장 좋다</td>
+</tr>
+<tr>
+<td>fused (포즈 그래프)</td>
+<td style="text-align:right">9.7</td>
+<td style="text-align:right">39.7</td>
+<td style="text-align:right">3.4</td>
+<td>일부 구간이 크게 틀어진다(수렴 미완)</td>
+</tr>
+<tr>
+<td>odom ×1.18</td>
+<td style="text-align:right">13.5</td>
+<td style="text-align:right">23.3</td>
+<td style="text-align:right">8.7 (최대 27)</td>
+<td></td>
+</tr>
+<tr>
+<td>rtk_mti</td>
+<td style="text-align:right">35.9</td>
+<td style="text-align:right">70.2</td>
+<td style="text-align:right">0 (기준)</td>
+<td>100 Hz 위치의 0.2 s 걸음 오차가 1–1.5 cm라 국소 정합에는 쓸 수 없다</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>결론: RTK는 '어디에 있나'(수 cm 절대 위치)를 주고, 국소 모양은 D405 ICP가 맡는다.</strong> RTK를 지점 간 상대 위치로 직접 쓰면 꼬투리가 2–4 cm 번진다.</li>
+</ul>
+<p><img src="3_cloud/fig_zoom_check.png" alt="x 4–5 m 확대: pose별 위(위)·옆 단면(아래), 색 = 프레임 번호" /></p>
+<ul>
+<li>odom ×1.18로 다시 잰 경로는 9.32 m로, RTK 카메라 경로와 비슷하다. 원래 odom은 RTK보다 15.5 % 짧다(<code>rtk_eval</code>). 0917·1002의 12–18 %와 같은 경향이다.</li>
+</ul>
+<h2>4. 3D 행 (<code>3_cloud/</code>)</h2>
+<ul>
+<li>
+<p><code>row_icp_lf_3mm.ply</code> (채택). 비교용으로 <code>row_fused_3mm.ply</code>, <code>row_rtk_mti_3mm.ply</code>, <code>row_odom_3mm.ply</code>가 있다.</p>
+</li>
+<li>
+<p>행 좌표계: 원점 = 등록점 A, x = A→B(방위 343.5°), y = 왼쪽, z = 위.</p>
+</li>
+<li>
+<p>카메라는 x 0.31→9.73 m를 지난다. 줄에서 벗어난 정도는 y −17~+10 cm다(시작 1 m에서 가장 크다).</p>
+</li>
+<li>
+<p>그림:</p>
+<ul>
+<li><code>fig_side_top.png</code>: 측면과 위에서 본 모습</li>
+<li><code>fig_pose_compare.png</code>, <code>fig_zoom_check.png</code>: pose 비교, x 4–5 m 확대
+<img src="3_cloud/fig_side_top.png" alt="행 측면·위에서 본 모습 (icp_lf)" /></li>
+</ul>
+</li>
+<li>
+<p>화면에 들어오는 높이는 흙 위 약 0–46 cm다(구간별 43–52 cm). 초장은 잴 수 없다. 1007 계획(D405 단일 0.4 m, 착협 구간 형질)대로다.</p>
+</li>
+</ul>
+<h2>5. 꼬투리와 착협고 (<code>4_pods/</code>)</h2>
+<h3>5.1 방법</h3>
+<ol>
+<li><strong>검출</strong> (<code>pods_detect.py</code>, GPU venv)
+<ul>
+<li>PodNet(1002 <code>podseg</code> 복원 가중치), imgsz 640, conf 0.25.</li>
+<li>640이 1024·1280보다 이 근접 영상에서 더 많이, 더 맞게 잡았다.</li>
+</ul>
+</li>
+<li><strong>3D</strong> (<code>pods_detect.py</code>)
+<ul>
+<li>마스크 안 D405 깊이의 중앙값에서 ±2.5 cm만 남긴다.</li>
+<li>PCA로 길이·폭을 구하고, 꼬투리 크기(길이 1.5–9 cm, 폭 0.4–3 cm, 길이/폭 ≥ 1.5)만 남긴다.</li>
+<li>탈락: 깊이 부족 578개, 크기 284개.</li>
+</ul>
+</li>
+<li><strong>흙 기준</strong> (<code>pod_zone.py</code>)
+<ul>
+<li>3D 행을 2 cm 칸으로 나눠 칸마다 하위 3 % 높이를 잡고, 18 cm 열림 연산으로 하위 포락선을 만든다.</li>
+<li>낙엽 층 위를 흙으로 잡을 수 있어 높이가 1–3 cm 낮게 나올 수 있다.</li>
+</ul>
+</li>
+<li><strong>병합</strong> (<code>pod_zone.py</code>)
+<ul>
+<li>점수 순서로, 2 cm 안이고 같은 프레임이 없으면 같은 꼬투리로 합친다.</li>
+<li>같은 꼬투리의 프레임 간 흩어짐은 중앙 <strong>4.8 mm</strong>다. 1002 DA3의 3–8 cm보다 10배 작아, D405에서는 3D 병합이 작동한다.</li>
+<li><strong>3프레임 이상</strong>이면 유효로 본다.</li>
+</ul>
+</li>
+<li><strong>육안 확인</strong> (<code>lowest_check.py</code> → <code>lowest_pods_sheet.jpg</code>, <code>lowest_pods.csv</code>)
+<ul>
+<li>구간별 가장 낮은 꼬투리 46개를 잘라 직접 봤다.</li>
+<li>오검출 5개는 빼고, 그 구간은 다음으로 낮은 꼬투리를 쓴다(<code>final_table.py</code>):
+<ul>
+<li>x 2.8·8.2: 잎 위 수평 형태</li>
+<li>x 3.8: 잎 가장자리</li>
+<li>x 5.4: 흙덩이</li>
+<li>x 6.4: 흙 위에 누운 형태(떨어진 꼬투리 의심)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3>5.2 결과 (<code>segments_final.csv</code>, <code>pod_zone_final.json</code>, <code>fig_pod_zone_final.png</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>지표 (20 cm 구간 45개)</th>
+<th style="text-align:right">중앙값</th>
+<th style="text-align:right">P10</th>
+<th style="text-align:right">P90</th>
+<th style="text-align:right">최소</th>
+<th style="text-align:right">최대</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>최하위 착협고 (꼬투리 중심)</td>
+<td style="text-align:right"><strong>21.6 cm</strong></td>
+<td style="text-align:right">7.7</td>
+<td style="text-align:right">34.4</td>
+<td style="text-align:right">5.3</td>
+<td style="text-align:right">41.7</td>
+</tr>
+<tr>
+<td>최상위 꼬투리 (전체)</td>
+<td style="text-align:right">40.3 cm</td>
+<td style="text-align:right">29.2</td>
+<td style="text-align:right">43.6</td>
+<td style="text-align:right">15.6</td>
+<td style="text-align:right">45.1</td>
+</tr>
+<tr>
+<td>최상위 꼬투리 (화면 위 끝에 안 걸린 34구간)</td>
+<td style="text-align:right">37.5 cm</td>
+<td style="text-align:right">28.3</td>
+<td style="text-align:right">42.1</td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+</tbody>
+</table>
+<p><img src="4_pods/fig_pod_zone_final.png" alt="꼬투리 범위 (최종)" /></p>
+<p><img src="4_pods/fig_pod_zone.png" alt="꼬투리 높이 전체 (병합 전 후보 포함)" /></p>
+<ul>
+<li>유효 꼬투리 416개의 높이 분포: P5 13 cm, 중앙 32 cm, P95 42 cm. 꼬투리는 흙 위 약 13–45 cm에 몰려 있다.</li>
+<li>최하위 착협고가 <strong>10 cm 미만인 구간이 6개, 12 cm 미만이 8개</strong>다(x 2.6, 4.4, 4.8, 6.6–7.0, 7.8–8.2 근처). 육안으로 보면 흙 가까이 처진 실제 꼬투리 다발이다(<code>lowest_pods_sheet.jpg</code>). 기계수확 참고 기준(약 10–12 cm)에 못 미칠 수 있는 자리다.</li>
+<li>구간 최하위 착협고가 30 cm 이상인 구간은 대개 유효 꼬투리가 1–3개뿐이다. PodNet이 놓친 구간이라 <strong>값이 위로 치우친다</strong>.</li>
+</ul>
+<p><img src="4_pods/lowest_pods_sheet.jpg" alt="구간별 가장 낮은 꼬투리 육안 확인 (빨간 윤곽)" /></p>
+<p>검출 영상: <a href="4_pods/panels.mp4">4_pods/panels.mp4</a></p>
+<h3>5.3 한계</h3>
+<ul>
+<li><strong>검출기가 병목이다</strong> (1002와 같다):
+<ul>
+<li>유효 꼬투리의 보인 프레임 수가 중앙 4다. 기하로는 한 꼬투리가 10프레임 이상 화면에 있다.</li>
+<li>1,406개는 1–2프레임만 잡혀 버렸다. 실제 꼬투리 수는 416개보다 훨씬 많다.</li>
+<li><strong>개수는 보고하지 않는다.</strong></li>
+</ul>
+</li>
+<li>최하위 착협고는 '보이고 검출된 꼬투리 중 가장 낮은 것'이라 <strong>상한 쪽</strong>이다. 고관절 덮개와 앞 잎에 가린 아래 꼬투리, 반대쪽 꼬투리는 빠진다.</li>
+<li><strong>포기 단위가 아니다.</strong> 포기 간격 15 cm 이하에 R8 잎·줄기가 엉켜 있어 20 cm 구간(포기 1–2개)으로 냈다. 포기별로 하려면 1002 9_sam3처럼 SAM3 포기 추적이 필요하다.</li>
+<li><strong>실측 정답이 없다.</strong> 낮은 구간(x 4.4, 4.8, 6.8, 7.8)과 높은 구간(x 1.2, 8.4) 몇 곳에서 흙 → 가장 낮은 꼬투리를 자로 재면 바로 검증된다. 측정 위치는 RTK로 찾을 수 있다. 행 좌표 → WGS84는 <code>common.enu_to_llh</code>로 바꾼다.</li>
+<li>카메라 렌즈 레버암을 아직 재지 않았다. 지도 위 절대 위치에는 수 cm 상수 오차가 있다. 높이(흙 기준 차이)에는 영향이 없다.</li>
+</ul>
+<h2>6. 다음 촬영·처리에 반영할 것</h2>
+<ol>
+<li><strong>카메라 기울기를 32°로 기록하거나 실제로 재설정한다.</strong> 권장값 19.3°와 달랐다. 위 끝이 46 cm라 최상위 꼬투리가 11/45 구간에서 잘렸다.
+<ul>
+<li>최상위까지 보려면 기울기를 줄이거나(약 20–25°) 카메라를 높인다.</li>
+<li>다만 그만큼 흙 쪽 시야가 준다. 최하위 착협고가 우선이면 지금 각도가 맞다.</li>
+</ul>
+</li>
+<li><strong>MTi 방위 문제를 고친다.</strong> yaw가 0.7°/s로 흐른다. GNSS 방위 보조(이동 중 수렴), 자력계 설정, 필터 프로파일을 확인해야 한다. RTK 직선 주행 제어가 MTi yaw를 쓴다면 이것이 직선 오차의 원인 후보다.</li>
+<li><strong>컬러 노출.</strong> 캡처 스크립트가 D405 컬러 센서를 못 찾아 노출을 고정하지 못했다. 역광 프레임에서 검출이 줄어든다.</li>
+<li><strong>PodNet 미세조정</strong> (1002 NEXT_STEPS 2-1과 같다). 이 데이터의 D405 근접 영상 20–30장을 빠짐없이 라벨한다. 초안은 <code>masks/*.npz</code>를 쓴다.</li>
+<li>고관절이 화면 왼쪽 아래 약 1/6을 가린다. 카메라를 앞으로 빼거나 각도를 조정하면 낮은 꼬투리를 더 볼 수 있다.</li>
+</ol>
+<h2>재현 순서</h2>
+<pre><code>python 1_bag/decode_bag.py
+python 2_pose/icp_edges.py
+python 2_pose/build_poses.py          # rtk_mti / odom / icp / fused
+python 2_pose/lowfreq.py              # icp_lf (채택), poses.npz에 추가
+python 2_pose/heldout_check.py        # 검증 (KEYS=icp_lf,fused,odom,rtk_mti,icp)
+python 2_pose/time_offset.py
+python 0_capture/capture_qc.py
+python 3_cloud/build_cloud.py ; python 3_cloud/zoom_check.py
+C:/Users/user/venvs/pheno_gpu/Scripts/python.exe 4_pods/pods_detect.py
+python 4_pods/pod_zone.py ; python 4_pods/lowest_check.py   # lowest_pods.csv의 verdict 열을 육안으로 채운다
+python 4_pods/final_table.py
+</code></pre>
+</html>

@@ -168,3 +168,18 @@
 /* Preserve full portrait media while keeping landscape video sizing. */
 .rs-deployment-media .rs-portrait-video video{width:100%;height:auto;max-height:none;aspect-ratio:3/4;object-fit:contain}
 @media(max-width:600px){.rs-deployment-media{grid-template-columns:minmax(0,1fr);max-width:360px}.rs-deployment-media .rs-field img{height:auto}.rs-deployment-media .rs-portrait-video video{max-height:none}}
+
+/* M.S. thesis figures and field-to-plant methods. */
+#phenotyping .pheno-study-figure{margin:26px 0 32px;width:100%;min-width:0}
+#phenotyping .pheno-study-figure img,#phenotyping .pheno-study-figure video{display:block;width:100%;height:auto;max-height:none;object-fit:contain;background:#fff}
+#phenotyping .pheno-study-figure figcaption{font-size:13px;line-height:1.6;color:#596579;margin-top:9px}
+#phenotyping .pheno-map-example{max-width:760px;margin-left:auto;margin-right:auto}
+#phenotyping .pheno-method-details{border-top:1px solid #d9dfe7;border-bottom:1px solid #d9dfe7;margin:24px 0;padding:14px 0}
+#phenotyping .pheno-method-details summary{cursor:pointer;font-weight:600;color:#255c7c}
+#phenotyping .pheno-method-details>div{padding-top:14px}
+#phenotyping .pheno-results-table{overflow-x:auto;margin:22px 0}
+#phenotyping .pheno-results-table table{width:100%;margin:0}
+#phenotyping .pheno-results-table caption{text-align:left;font-weight:600;padding-bottom:10px;color:#344054}
+#phenotyping .pheno-report-link{border-left:3px solid #3c7058;padding:12px 18px;background:#f4f8f5;margin:28px 0}
+#phenotyping .pheno-report-link span{font-size:13px;color:#596579}
+@media(max-width:600px){#phenotyping .study-number{font-size:21px}#phenotyping .pheno-study-figure{margin:20px 0 26px}#phenotyping .pheno-study-figure figcaption{font-size:12px}}
