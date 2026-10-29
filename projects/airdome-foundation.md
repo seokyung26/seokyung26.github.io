@@ -8,7 +8,7 @@ description: "Numerical analysis of expandable X-Pile foundations: effects of wi
 
 <section class="hero project-hero"><div class="hero-body"><div class="container is-max-desktop"><div class="columns is-centered"><div class="column has-text-centered"><p class="project-number">PROJECT 03</p><h1 class="title is-1 publication-title xpile-paper-title">Analysis of uplift resistance characteristics of expandable piles in sandy soil with varying wing inclination and dimensions</h1><div class="is-size-5 publication-authors"><a href="/">Seokyung Park</a>, Jaesung Park, Junbong Jang,<br>Daniel Park, Sein Kwon, Minjoo Kim, Gaeun Choi</div></div></div></div></div></section>
 
-<p class="project-status"><strong>Status:</strong> Under review.</p>
+<p class="project-status"><strong>Status:</strong> Under review, <em>Journal of the Korean Society of Agricultural Engineers</em>.</p>
 
 
 Air-supported domes transfer membrane and cable tension into their foundations. This study investigates how the dimensions and inclination of expandable pile wings affect uplift resistance in sandy soil, with a focus on the mechanisms of pile–soil load transfer.
@@ -60,4 +60,5 @@ The plastic zone followed the inclined wing surface, and the upward wedge genera
 ## Research output
 
 **Analysis of uplift resistance characteristics of expandable piles in sandy soil with varying wing inclination and dimensions**<br>
-Seokyung Park, Jaesung Park, Junbong Jang, Daniel Park, Sein Kwon, Minjoo Kim and Gaeun Choi.
+Seokyung Park, Jaesung Park, Junbong Jang, Daniel Park, Sein Kwon, Minjoo Kim and Gaeun Choi.<br>
+*Journal of the Korean Society of Agricultural Engineers* — under review.
