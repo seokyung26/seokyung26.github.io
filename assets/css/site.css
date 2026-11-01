@@ -183,3 +183,19 @@
 #phenotyping .pheno-report-link{border-left:3px solid #3c7058;padding:12px 18px;background:#f4f8f5;margin:28px 0}
 #phenotyping .pheno-report-link span{font-size:13px;color:#596579}
 @media(max-width:600px){#phenotyping .study-number{font-size:21px}#phenotyping .pheno-study-figure{margin:20px 0 26px}#phenotyping .pheno-study-figure figcaption{font-size:12px}}
+
+/* Three-column project grid and cross-platform campus app project. */
+.research-project-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.campus-app-card-visual{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;width:100%;height:155px;overflow:hidden;background:#f8fafc;padding:8px;border-radius:5px}
+.research-project-grid .research-thumb .campus-app-card-visual img{width:100%;height:139px;max-height:139px;object-fit:cover;object-position:top;border-radius:4px;box-shadow:0 1px 5px #0f172a20}
+.campus-app-gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin:26px 0 38px}
+.campus-app-gallery figure{margin:0;min-width:0}
+.campus-app-gallery img{display:block;width:100%;height:auto;border:1px solid #dbe2eb;border-radius:12px;background:#fff;box-shadow:0 8px 24px #0f172a12}
+.campus-app-gallery figcaption{font-size:13px;line-height:1.5;color:#64748b;margin-top:10px;text-align:center}
+.campus-app-feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px;margin:22px 0 34px}
+.campus-app-feature-grid article{border-top:1px solid #dbe2eb;padding-top:16px}
+.campus-app-feature-grid h3{margin:0 0 8px}
+.campus-app-feature-grid p{margin:0}
+@media(max-width:1000px){.research-project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:780px){.campus-app-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.research-project-grid{grid-template-columns:minmax(0,1fr)}.campus-app-card-visual{height:175px}.research-project-grid .research-thumb .campus-app-card-visual img{height:159px;max-height:159px}.campus-app-feature-grid{grid-template-columns:minmax(0,1fr)}}
