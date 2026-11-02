@@ -10,7 +10,7 @@ description: "Cross-platform mobile app development for campus transport plannin
 
 I designed and developed a **cross-platform mobile application for students at Pusan National University's Miryang Campus**. The app, released under the name *Sangjadae Friends*, brings together daily transport and campus-life tasks that were previously split across timetables, notices and separate messaging channels.
 
-The work covered **mobile interface design, application architecture, backend integration and data collection**. The Flutter client uses Riverpod, GoRouter and Freezed, while Supabase provides PostgreSQL, authentication, real-time messaging, storage and Edge Functions. Python crawlers collect and structure campus dining information.
+The work centred on **cross-platform mobile development and backend integration**. I built the client with Dart and Flutter, using Riverpod for state management, GoRouter for navigation and Freezed for immutable data models. Supabase provides PostgreSQL, Auth, Realtime, Storage and Edge Functions for account management, ride participation, live chat and server-side workflows.
 
 <div class="campus-app-gallery">
 <figure><a href="/assets/images/campus-app/home.png" target="_blank" rel="noopener"><img src="/assets/images/campus-app/home.png" alt="Home screen of the campus mobility and community app" loading="lazy"></a><figcaption>Home screen and service entry points</figcaption></figure>
@@ -25,15 +25,15 @@ The work covered **mobile interface design, application architecture, backend in
 <article><h3>Integrated transport planning</h3><p>Combined train schedules with campus bus times in a single timeline so students can compare transfer options and expected waiting time.</p></article>
 <article><h3>Real-time taxi ride-sharing</h3><p>Implemented ride creation and participation flows, capacity controls, role-based actions, live chat and fare-settlement information for trips between Miryang Station and campus.</p></article>
 <article><h3>Campus information</h3><p>Added bus timetables and structured dining menus for dormitory, student and staff restaurants, supported by automated data collection.</p></article>
-<article><h3>Full-stack mobile architecture</h3><p>Built the Flutter application and connected authentication, PostgreSQL data, real-time updates, storage and server-side functions through Supabase.</p></article>
+<article><h3>Full-stack mobile architecture</h3><p>Built the Dart and Flutter application with Riverpod, GoRouter and Freezed, then connected authentication, PostgreSQL data, real-time updates, storage and server-side functions through Supabase.</p></article>
 </div>
 
 ## Engineering scope
 
-- **Frontend:** Flutter, Riverpod, GoRouter and Freezed for cross-platform UI, navigation and state management.
-- **Backend:** Supabase PostgreSQL, Auth, Realtime, Storage and Edge Functions.
-- **Data pipeline:** Python, Playwright and BeautifulSoup for collecting campus information.
-- **Product concerns:** input validation, loading and retry states, access control, concurrency-safe ride capacity, sensitive-data masking and responsive layouts.
+- **Mobile application:** Dart and Flutter for cross-platform interface development and device-level testing.
+- **State, navigation and models:** Riverpod, GoRouter and Freezed for predictable application structure and data flow.
+- **Backend and real-time services:** Supabase PostgreSQL, Auth, Realtime, Storage and Edge Functions.
+- **Product engineering:** input validation, loading and retry states, access control, concurrency-safe ride capacity, sensitive-data masking and responsive layouts.
 
 This project gave me practical experience taking a student-facing mobile service from feature requirements and screen design through **full-stack implementation and device-level testing**.
 
