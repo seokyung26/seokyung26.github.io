@@ -24,6 +24,7 @@ permalink: /about/
 <section class="timeline-list-entry"><h3>Robotics and mobile sensing</h3><ul><li>ROS 2, Unitree Go2, RTK-GNSS and LiDAR/IMU.</li><li>Timestamped robot and sensor recording, greenhouse microclimate mapping, and matching ground images to GNSS positions and robot travel routes.</li></ul></section>
 <section class="timeline-list-entry"><h3>Instrumentation and data acquisition</h3><ul><li>Force sensors, load cells, Raspberry Pi, Arduino and RS485.</li><li>Force measurements for robotic compression tests, environmental measurements and field load-cell acquisition with CSV logging.</li></ul></section>
 <section class="timeline-list-entry"><h3>Imaging and plant phenotyping</h3><ul><li>RGB and hyperspectral imaging; SAM, YOLOv8, Roboflow and ImageJ.</li><li>Fruit-region segmentation and spectral comparison; soybean leaf-image analysis under drought stress and location-linked ground-image datasets.</li></ul></section>
+<section class="timeline-list-entry"><h3>App development</h3><ul><li>Dart, Flutter, Riverpod, GoRouter and Freezed.</li><li>Supabase PostgreSQL, Auth, Realtime, Storage and Edge Functions; cross-platform interface development, real-time chat and service workflows.</li></ul></section>
 <section class="timeline-list-entry"><h3>Finite-element modelling</h3><ul><li>Abaqus/CAE and Abaqus/Standard.</li><li>Three-dimensional pile–soil contact models, displacement-controlled uplift simulations, geometric parameter studies and soil plastic-zone interpretation.</li></ul></section>
 </div>
 </section>
